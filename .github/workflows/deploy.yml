@@ -2,7 +2,7 @@ name: Build and Deploy ASP.NET Core App to Azure
 
 on:
   push:
-    branches: [ main ]   # deploy when main branch is updated
+    branches: [ main ]
 
 jobs:
   build-and-deploy:
@@ -17,22 +17,23 @@ jobs:
       with:
         dotnet-version: '8.0.x'
 
-    - name: Restore
-      run: dotnet restore
+    # 1) Restore
+    - name: Restore dependencies
+        #  point to your actual .csproj
+      run: dotnet restore ./VMS.WebApp/VMS.WebApp.csproj
 
+    # 2) Build
     - name: Build
-      run: dotnet build --configuration Release --no-restore
+      run: dotnet build ./VMS.WebApp/VMS.WebApp.csproj --configuration Release --no-restore
 
-    # Optional: skip this step if you don’t have tests yet
-    # - name: Test
-    #   run: dotnet test --no-build --verbosity normal
-
+    # 3) Publish
     - name: Publish
-      run: dotnet publish -c Release -o ./publish
+      run: dotnet publish ./VMS.WebApp/VMS.WebApp.csproj -c Release -o ./publish
 
+    # 4) Deploy
     - name: Deploy to Azure Web App
       uses: azure/webapps-deploy@v2
       with:
-        app-name: 'OnewheroBay-VMS'   # must match your Azure app name
+        app-name: 'OnewheroBay-VMS'   # your Azure app name
         publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
         package: ./publish
