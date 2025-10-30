@@ -1,0 +1,21 @@
+# Visual Studio
+.vs/
+*.user
+*.suo
+
+# Build
+bin/
+obj/
+[Bb]uild/
+[Rr]elease/
+[Dd]ebug/
+
+# Packages
+packages/
+*.nupkg
+
+# IIS Express
+/.vs/config/
+
+# Logs
+*.log
