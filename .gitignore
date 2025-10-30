@@ -19,3 +19,5 @@ packages/
 
 # Logs
 *.log
+/VMS.WebApp/UpgradeLog.htm
+/VMS.WebApp/Backup
