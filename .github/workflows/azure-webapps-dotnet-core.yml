@@ -29,13 +29,13 @@ jobs:
           dotnet-version: ${{ env.DOTNET_VERSION }}
 
       - name: Restore
-        run: dotnet restore VMS.WebApp/VMS.WebApp.csproj
+        run: dotnet restore VMS.WebApp/VMS.WebApp/VMS.WebApp.csproj
 
       - name: Build
-        run: dotnet build VMS.WebApp/VMS.WebApp.csproj --configuration Release --no-restore
+        run: dotnet build VMS.WebApp/VMS.WebApp/VMS.WebApp.csproj --configuration Release --no-restore
 
       - name: Publish
-        run: dotnet publish VMS.WebApp/VMS.WebApp.csproj -c Release -o ./publish
+        run: dotnet publish VMS.WebApp/VMS.WebApp/VMS.WebApp.csproj -c Release -o ./publish
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v4
