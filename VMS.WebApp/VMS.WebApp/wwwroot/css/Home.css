@@ -1,10 +1,98 @@
-﻿.Landing h1 {
-    color: #2a6f97; /* A rich blue color */
-    font-size: 3rem; /* Large headline */
-    text-align: center; /* Center it on the page */
-    margin-top: 50px; /* Add spacing at the top */
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    text-transform: uppercase; /* Make all letters uppercase */
-    letter-spacing: 2px; /* Space out the letters */
-    text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.2); /* Soft shadow for depth */
+﻿/* Outer background behind the rounded bar */
+.top-nav-wrapper {
+    padding: 8px 0;
+    background-color: #f5f5f5;
+}
+
+/* Main rounded navbar container */
+.top-nav-inner {
+    width: 90%; 
+    max-width: 1300px; 
+    margin: 0 auto;
+    padding: 10px 30px;
+    background-color: #ffffff;
+    border: 1px solid #e0e0e0;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+}
+
+/* Logo on the left */
+.nav-logo img {
+    height: 55px;
+    width: auto;
+    display: block;
+}
+
+/* Nav links in the middle */
+.nav-links {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+}
+
+    .nav-links .nav-item {
+        margin: 0 24px;
+    }
+
+    .nav-links .nav-link {
+        color: #333;
+        font-size: 0.95rem;
+        text-decoration: none;
+        white-space: nowrap;
+    }
+
+        .nav-links .nav-link:hover {
+            text-decoration: underline;
+        }
+
+/* Login/Profile button on the right */
+.nav-login-btn {
+    display: inline-block;
+    padding: 8px 24px;
+    background-color: #e8e8e8;
+    color: #333;
+    border-radius: 999px;
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: background-color 0.2s ease;
+}
+
+    .nav-login-btn:hover {
+        background-color: #d6d6d6;
+    }
+
+/* Hamburger button styling */
+.navbar-toggler {
+    border: none;
+}
+
+/* Let Bootstrap show its default icon */
+.navbar-light .navbar-toggler-icon {
+
+}
+
+/* --- Responsive tweaks --- */
+
+/* Tablet and Phones */
+@media (max-width: 992px) {
+    .top-nav-inner {
+        flex-wrap: wrap;
+    }
+
+    .nav-links {
+        flex-direction: column;
+        align-items: center;
+        margin-top: 10px;
+    }
+
+        .nav-links .nav-item {
+            margin: 4px 0;
+        }
+
+    .nav-login {
+        margin-top: 10px;
+        text-align: center;
+        width: 100%;
+    }
 }
