@@ -1,2 +1,10 @@
-﻿body {
+﻿.Landing h1 {
+    color: #2a6f97; /* A rich blue color */
+    font-size: 3rem; /* Large headline */
+    text-align: center; /* Center it on the page */
+    margin-top: 50px; /* Add spacing at the top */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    text-transform: uppercase; /* Make all letters uppercase */
+    letter-spacing: 2px; /* Space out the letters */
+    text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.2); /* Soft shadow for depth */
 }
