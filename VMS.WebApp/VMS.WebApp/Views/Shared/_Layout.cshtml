@@ -1,4 +1,8 @@
 ﻿<!DOCTYPE html>
+@using Microsoft.AspNetCore.Http
+@{
+    var userFirstName = Context.Session.GetString("UserFirstName");
+}
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -58,10 +62,20 @@
 
                     <!-- Login/Profile (right) -->
                     <div class="nav-login ms-lg-3">
-                        <a asp-controller="Home" asp-action="Login" class="nav-login-btn">
-                            Account
-                        </a>
+                        @if (string.IsNullOrEmpty(userFirstName))
+                        {
+                            <a asp-controller="Home" asp-action="Login" class="nav-login-btn">
+                                Account
+                            </a>
+                        }
+                        else
+                        {
+                            <span class="nav-login-btn">
+                                Welcome, @userFirstName!
+                            </span>
+                        }
                     </div>
+
 
                 </div>
 

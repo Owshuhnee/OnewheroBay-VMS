@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System.Diagnostics;
 using VMS.WebApp.Data;
-using VMS.WebApp.Models;
 using VMS.WebApp.Models;
 
 namespace VMS.WebApp.Controllers
@@ -86,6 +86,29 @@ namespace VMS.WebApp.Controllers
 
             TempData["Registered"] = "Account created successfully. Please log in.";
             return RedirectToAction("Index");
+        }
+
+        // LOGIN ACTION
+        [HttpPost]
+        public async Task<IActionResult> Login(LoginViewModel model)
+        {
+            if (!ModelState.IsValid)
+                return View("Index", model);
+
+            var user = await _context.Users
+                .FirstOrDefaultAsync(u => u.Email == model.Email && u.Password == model.Password);
+
+            if (user == null)
+            {
+                TempData["Error"] = "Invalid email or password.";
+                return RedirectToAction("Index");
+            }
+
+            // Store first name in session
+            HttpContext.Session.SetString("UserFirstName", user.FirstName);
+
+            // Redirect to homepage
+            return RedirectToAction("Index", "Home");
         }
     }
 }
