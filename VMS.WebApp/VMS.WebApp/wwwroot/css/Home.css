@@ -1,1 +1,98 @@
-﻿
+﻿/* Section background + spacing */
+.events-section {
+    background-color: #b8c6b3; /* the muted green */
+    padding: 60px 80px 80px;
+    text-align: center;
+    width: 100vw;
+    position: relative;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
+}
+
+/* Title & subtitle */
+.events-title {
+    font-size: 2rem;
+    margin: 0 0 0.5rem;
+}
+
+.events-subtitle {
+    max-width: 1200px;
+    margin: 0 auto 40px;
+    line-height: 1.5;
+}
+
+/* Tabs row */
+.events-nav {
+    list-style: none;
+    margin: 0 auto;
+    padding: 18px 40px;
+    max-width: 1000px;
+    display: flex;
+    justify-content: space-between;
+    border-top: 1px solid #333;
+    border-bottom: 1px solid #333;
+}
+
+    .events-nav li {
+        flex: 1;
+        text-align: center;
+    }
+
+.events-link {
+    text-decoration: none;
+    color: #000;
+    font-weight: 600;
+    font-size: 1rem;
+}
+
+
+/* Event card (white box) */
+.events-card {
+    background-color: #fff;
+    max-width: 1100px;
+    margin: 40px auto 0;
+    padding: 40px;
+    border: 1px solid #555;
+    display: flex;
+    gap: 40px;
+    align-items: center;
+}
+
+/* Image on the left */
+.events-image {
+    width: 50%;
+    height: auto;
+    object-fit: cover;
+}
+
+/* Text on the right */
+.events-info {
+    text-align: left;
+    flex: 1;
+}
+
+.events-info-title {
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+}
+
+.events-info-text {
+    line-height: 1.6;
+}
+
+/* Responsive tweak */
+@media (max-width: 900px) {
+    .events-section {
+        padding: 40px 20px 60px;
+    }
+
+    .events-card {
+        flex-direction: column;
+    }
+
+    .events-image {
+        width: 100%;
+    }
+}
