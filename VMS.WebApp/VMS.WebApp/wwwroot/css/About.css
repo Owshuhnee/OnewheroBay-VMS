@@ -25,12 +25,9 @@ h1 {
     box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
 }
 
-/* Two-column layout: mission + visitors */
-.mission-layout {
-    display: grid;
-    grid-template-columns: minmax(0, 2.5fr) minmax(260px, 1fr);
-    gap: 32px;
-    align-items: flex-start;
+
+.page-layout {
+    display: block;
     margin-bottom: 3rem;
 }
 
