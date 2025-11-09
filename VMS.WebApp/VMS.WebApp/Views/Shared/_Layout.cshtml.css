@@ -46,6 +46,8 @@ button.accept-policy {
     color: #fff;
     padding: 60px 80px 40px;
     font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    width: 100vw;
+    margin-left: calc(-1 * (100vw - 100%) / 2);
 }
 
 .footer-container {
