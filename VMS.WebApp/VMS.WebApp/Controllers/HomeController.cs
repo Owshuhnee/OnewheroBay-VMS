@@ -1,5 +1,7 @@
-using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
+using System.Diagnostics;
+using VMS.WebApp.Data;
+using VMS.WebApp.Models;
 using VMS.WebApp.Models;
 
 namespace VMS.WebApp.Controllers
@@ -7,10 +9,15 @@ namespace VMS.WebApp.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly AppDbContext _context;
 
-        public HomeController(ILogger<HomeController> logger)
+
+        public HomeController(
+            ILogger<HomeController> logger,
+            AppDbContext context)
         {
             _logger = logger;
+            _context = context;
         }
 
         public IActionResult Index()
@@ -49,6 +56,36 @@ namespace VMS.WebApp.Controllers
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        }
+
+
+        // REGISTER ACTION
+        [HttpPost]
+        public async Task<IActionResult> Register(RegisterViewModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                // If form fields are missing or invalid, reload the same page for now
+                return View("Index", model);
+            }
+
+            var user = new User
+            {
+                Role = "Visitor",               // default role
+                FirstName = model.FirstName,
+                LastName = model.LastName,
+                Phone = model.Phone,
+                Email = model.Email,
+                Password = model.Password,     // we’ll hash later
+                CreatedDate = DateTime.UtcNow,
+                IsActive = true
+            };
+
+            _context.Users.Add(user);
+            await _context.SaveChangesAsync();
+
+            TempData["Registered"] = "Account created successfully. Please log in.";
+            return RedirectToAction("Index");
         }
     }
 }
