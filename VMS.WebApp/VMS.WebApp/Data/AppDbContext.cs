@@ -12,7 +12,9 @@ namespace VMS.WebApp.Data
         }
 
         public DbSet<Visitor> Visitors { get; set; } = null!;
+
         public DbSet<Event> Events { get; set; } = null!;
+
         public DbSet<Booking> Bookings { get; set; } = null!;
     }
 }
