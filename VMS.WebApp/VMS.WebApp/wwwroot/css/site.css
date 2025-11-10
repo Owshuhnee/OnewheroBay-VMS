@@ -1,22 +1,91 @@
+
+/* ===== GLOBAL BUTTON DESIGN (REUSABLE) ==== */
+/* Primary = Button.Green */
+/* Secondary = Button.Beige */
+/* Tertiary = Link.Green */
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-weight: 700;
+    text-decoration: none;
+    transition: all 0.2s ease;
+}
+
+/* --- Primary (strongest action) --- */
+.btn-primary {
+    background-color: #315a35;
+    color: #fff;
+    border: 2px solid #27482a;
+}
+
+    .btn-primary:hover {
+        background-color: #3f6f43; /* slightly lighter on hover */
+        transform: translateY(-1px);
+    }
+
+/* --- Secondary (outlined or alternative) --- */
+.btn-secondary {
+    background-color: #fff8ec; /* creamy ivory */
+    color: #2f2b25;
+    border: 1.8px solid #2f2b25;
+}
+
+    .btn-secondary:hover {
+        background-color: #e8d7b9; /* warm tint */
+        transform: translateY(-1px);
+    }
+
+/* --- Tertiary (for links like “Read More”) --- */
+.btn-tertiary {
+    background: none;
+    border: none;
+    color: #315a35;
+    font-weight: 700;
+    font-size: 0.95rem;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    cursor: pointer;
+}
+
+    .btn-tertiary:hover {
+        color: #3f6f43;
+        text-decoration-color: #3f6f43;
+    }
+
+
 html {
-  font-size: 14px;
+    font-size: 14px;
 }
 
 @media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
+    html {
+        font-size: 16px;
+    }
 }
 
 .btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
-  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+    box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
 }
 
 html {
-  position: relative;
-  min-height: 100%;
+    position: relative;
+    min-height: 100%;
 }
 
 body {
-  margin-bottom: 60px;
+    margin-bottom: 60px;
+}
+
+footer.footer {
+    background-color: #f8f9fa; /* Light neutral tone */
+    color: #555; /* Softer text */
+    padding: 20px 0;
+    text-align: center;
+    border-top: 1px solid #ddd;
+    margin-top: 40px; /* Space above footer */
+    position: relative; /* ensure it sits normally */
 }

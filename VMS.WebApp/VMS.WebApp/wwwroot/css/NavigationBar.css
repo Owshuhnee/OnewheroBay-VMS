@@ -1,0 +1,89 @@
+﻿/* === NAVIGATION BAR === */
+
+/* Outer background behind the rounded bar */
+.top-nav-wrapper {
+    padding: 8px 0;
+    background-color: #f5f5f5;
+}
+
+/* Main rounded navbar container */
+.top-nav-inner {
+    width: 90%;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 10px 30px;
+    background-color: #ffffff;
+    border: 1px solid #e0e0e0;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* logo left, nav+account right */
+    gap: 24px;
+}
+
+/* Logo on the left */
+.nav-logo {
+    flex-shrink: 0;
+}
+
+.top-nav-inner .nav-logo img {
+    max-height: 60px;
+    width: auto;
+    height: auto;
+    display: block;
+}
+
+/* Collapse container (links + account) */
+.top-nav-inner .navbar-collapse {
+    display: flex !important;
+    align-items: center;
+}
+
+/* Nav links in the middle */
+.nav-links {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+}
+
+    .nav-links .nav-item {
+        margin: 0 24px;
+    }
+
+.nav-link {
+    color: #2f2b25;
+    font-weight: 600;
+    transition: color 0.2s ease;
+}
+
+    .nav-link:hover {
+        color: #315a35; /* green accent on hover */
+    }
+
+/* Account/Profile on the right */
+.nav-login {
+    margin-left: auto;
+}
+
+.nav-login-btn {
+    background-color: #315a35; /* matches primary button */
+    color: #fff;
+    padding: 8px 24px;
+    border-radius: 999px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.2s ease;
+}
+
+    .nav-login-btn:hover {
+        background-color: #3f6f43;
+        transform: translateY(-1px);
+    }
+
+/* Hamburger button styling */
+.navbar-toggler {
+    border: none;
+}
+
+.navbar-light .navbar-toggler-icon {
+}
