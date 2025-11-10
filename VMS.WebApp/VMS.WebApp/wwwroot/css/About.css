@@ -1,0 +1,157 @@
+﻿/* Base page styling */
+body {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    background-color: #f5f3ea;
+    margin: 0;
+    padding: 40px 60px;
+    color: #2f2b25;
+}
+
+h1 {
+    font-size: 2.4rem;
+    margin-bottom: 0.3rem;
+}
+
+.subtitle {
+    color: #6c675f;
+    margin-bottom: 1.8rem;
+}
+
+/* Generic card style */
+.card {
+    background-color: #ffffff;
+    border-radius: 16px;
+    padding: 24px 28px;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+}
+
+
+.page-layout {
+    display: block;
+    margin-bottom: 3rem;
+}
+
+/* Mission card details */
+.mission-card h4 {
+    margin-top: 0.4rem;
+    margin-bottom: 0.4rem;
+}
+
+.mission-card ul {
+    margin: 0.4rem 0 1rem;
+    padding-left: 1.2rem;
+}
+
+.mission-card li {
+    margin-bottom: 0.25rem;
+}
+
+.mission-quote {
+    margin: 1.4rem 0;
+    padding: 12px 16px;
+    border-radius: 8px;
+    background-color: #d7e7c6;
+    border-left: 4px solid #88a95c;
+    font-style: italic;
+}
+
+/* Visitors sidebar */
+.visitors-card h2 {
+    margin-top: 0;
+    margin-bottom: 1rem;
+}
+
+.testimonial {
+    margin-bottom: 1.4rem;
+    font-size: 0.95rem;
+}
+
+.testimonial-name {
+    font-weight: 600;
+    margin-top: 0.4rem;
+}
+
+.primary-btn {
+    margin-top: 0.8rem;
+    padding: 10px 18px;
+    border-radius: 999px;
+    border: none;
+    background-color: #7bc46b;
+    cursor: pointer;
+    font-weight: 600;
+    transition: transform 0.1s ease, box-shadow 0.1s ease, background-color 0.1s ease;
+}
+
+    .primary-btn:hover {
+        background-color: #69b058;
+        box-shadow: 0 6px 16px rgba(0, 0, 0, 0.18);
+        transform: translateY(-1px);
+    }
+
+/* Team section */
+.team-section {
+    margin-top: 3rem;
+}
+
+.team-intro {
+    max-width: 720px;
+}
+
+.team-stats {
+    list-style: none;
+    padding: 0;
+    margin: 1.5rem 0 0.5rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 3rem;
+    font-weight: 600;
+}
+
+    .team-stats li span {
+        display: block;
+        font-size: 1.1rem;
+    }
+
+.team-grid {
+    margin-top: 2rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    gap: 24px;
+}
+
+.team-card {
+    background-color: #fff7e6;
+    border-radius: 18px;
+    padding: 20px 22px;
+    box-shadow: 0 10px 26px rgba(0, 0, 0, 0.08);
+}
+
+    .team-card h3 {
+        margin: 0;
+    }
+
+    .team-card .role {
+        margin: 0.1rem 0 0.8rem;
+        font-weight: 600;
+        color: #6a5a3d;
+    }
+
+    .team-card ul {
+        padding-left: 1.2rem;
+        margin: 0.4rem 0 0;
+    }
+
+    .team-card li {
+        margin-bottom: 0.25rem;
+    }
+
+/* Responsive tweaks */
+@media (max-width: 960px) {
+    body {
+        padding: 24px 18px;
+    }
+
+    .mission-layout {
+        grid-template-columns: 1fr;
+    }
+}

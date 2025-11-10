@@ -1,61 +1,138 @@
 ﻿<!DOCTYPE html>
+@using Microsoft.AspNetCore.Http
+@{
+    var userFirstName = Context.Session.GetString("UserFirstName");
+}
 <html lang="en">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - VMS.WebApp</title>
+
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/NavigationBar.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/Home.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/Booking.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/Account.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/ParkInfo.css" asp-append-version="true" />    
     <link rel="stylesheet" href="~/VMS.WebApp.styles.css" asp-append-version="true" />
 </head>
+
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">VMS.WebApp</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
+        <!--NAVBAR -->
+        <div class="top-nav-wrapper">
+            <div class="top-nav-inner navbar navbar-expand-lg navbar-light">
+
+                <!-- Logo (left) -->
+                <div class="nav-logo">
+                    <a asp-controller="Home" asp-action="Index">
+                        <img src="~/images/logo.png" alt="Onewhero Bay Logo" />
+                    </a>
+                </div>
+
+                <!-- Hamburger button (shows on small screens) -->
+                <button class="navbar-toggler ms-auto" type="button"
+                        data-bs-toggle="collapse" data-bs-target="#mainNav"
+                        aria-controls="mainNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
+
+                <!-- Collapsible content: links + login -->
+                <div class="collapse navbar-collapse justify-content-center" id="mainNav">
+
+                    <!-- Center nav links -->
+                    <ul class="navbar-nav mx-auto nav-links">
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                            <a class="nav-link" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Booking">Booking</a>
+                            <a class="nav-link" asp-controller="Home" asp-action="ParkInfo">Park Info</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="AboutUs">AboutUs</a>
+                            <a class="nav-link" asp-controller="Home" asp-action="Booking">Booking</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Promotions">Promotions</a>
+                            <a class="nav-link" asp-controller="Home" asp-action="About">About Us</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Login">Login</a>
+                            <a class="nav-link" asp-controller="Home" asp-action="Promotions">Promotions</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
+
                     </ul>
+
+                    <!-- Account/Profile (right) -->
+                    <div class="nav-login ms-lg-3">
+                        @if (string.IsNullOrEmpty(userFirstName))
+                        {
+                            <a asp-controller="Home" asp-action="Login" class="nav-login-btn">
+                                Account
+                            </a>
+                        }
+                        else
+                        {
+                            <span class="nav-login-btn">
+                                Welcome, @userFirstName!
+                            </span>
+                        }
+                    </div>
+
+
                 </div>
+
             </div>
-        </nav>
+        </div>
     </header>
-    <div class="container">
+
+    <div class="page-layout container">
         <main role="main" class="pb-3">
             @RenderBody()
         </main>
     </div>
 
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2025 - VMS.WebApp - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+
+    <!-- FOOTER -->
+    <footer class="site-footer">
+        <div class="footer-container">
+            <div class="footer-intro">
+                <h4>Explore Onewhero Bay Heritage Park's rich history and natural beauty.</h4>
+            </div>
+
+            <div class="footer-links">
+                <div class="footer-column">
+                    <h6>Explore</h6>
+                    <ul>
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">Attractions</a></li>
+                        <li><a href="#">Events</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h6>About Us</h6>
+                    <ul>
+                        <li><a href="#">Our Story</a></li>
+                        <li><a href="#">Contact</a></li>
+                        <li><a href="#">Careers</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h6>Legal</h6>
+                    <ul>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                        <li><a href="#">Cookies</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>Copyright © 2025 Onewhero Bay Heritage Park. All rights reserved.</p>
         </div>
     </footer>
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
-    @await RenderSectionAsync("Scripts", required: false)
+
 </body>
 </html>
