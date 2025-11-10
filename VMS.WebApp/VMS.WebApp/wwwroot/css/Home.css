@@ -1,14 +1,116 @@
-﻿/* Section background + spacing */
+﻿/* ========== LANDING SECTION ========== */
+
+.Landing-section {
+    background-color: #f5e6c8;
+    padding: 85px  100px;
+    display: flex;
+    gap: 100px;
+    align-items: flex-start;
+    justify-content: space-between;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    margin-bottom: 60px;
+}
+
+.landing-left {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    max-width: 425px;
+}
+
+.landing-left h1 {
+    font-size: 2.4rem;
+    font-weight: 800;
+    margin-bottom: 0.8rem;
+}
+
+.landing-left p {
+    line-height: 1.6;
+    margin-bottom: 1.6rem;
+}
+
+.landing-actions {
+    margin-top: 40px; /* space below paragraph */
+    display: flex;
+    gap: 16px;
+}
+
+.landing-socials {
+    margin-top: 60px;
+    display: flex;
+    gap: 16px;
+ }
+
+.landing-socials a svg {
+    width: 20px;
+    height: 20px;
+    color: #333;
+    transition: color 0.2s ease;
+}
+
+.landing-socials a:hover svg {
+    color: white;
+}
+
+.landing-cards {
+    display: flex;
+    gap: 24px;
+    flex: 1;
+    justify-content: space-between;
+}
+
+.landing-card {
+    flex: 1;
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+    padding: 16px 16px 20px;
+    display: flex;
+    flex-direction: column;
+    max-width: 360px;
+}
+
+.landing-card img {
+    width: 100%;
+    height: 160px;
+    border-radius: 8px;
+    object-fit: cover;
+    margin-bottom: 12px;
+}
+
+.landing-card-body {
+    flex: 1;
+}
+
+.landing-card-body h4 {
+    font-size: 0.95rem;
+    font-weight: 600;
+    margin-bottom: 6px;
+}
+
+.landing-card-body p {
+    font-size: 0.9rem;
+    line-height: 1.4;
+}
+
+.landing-card .btn {
+    align-self: flex-start;
+    font-size: 0.85rem;
+}
+
+.landing-card-link {
+    align-self: flex-end; 
+    margin-top: 10px;
+}
+
+
+/* ========== EVENTS SECTION ========== */
+
 .events-section {
-    background-color: #b8c6b3; /* the muted green */
+    background-color: #b8c6b3; /* muted green */
     padding: 60px 80px 80px;
     text-align: center;
-    width: 100vw;
-    position: relative;
-    left: 50%;
-    right: 50%;
-    margin-left: -50vw;
-    margin-right: -50vw;
 }
 
 /* Title & subtitle */
@@ -47,8 +149,7 @@
     font-size: 1rem;
 }
 
-
-/* Event card (white box) */
+/* Event card */
 .events-card {
     background-color: #fff;
     max-width: 1100px;
@@ -60,14 +161,12 @@
     align-items: center;
 }
 
-/* Image on the left */
 .events-image {
     width: 50%;
     height: auto;
     object-fit: cover;
 }
 
-/* Text on the right */
 .events-info {
     text-align: left;
     flex: 1;
@@ -82,8 +181,174 @@
     line-height: 1.6;
 }
 
-/* Responsive tweak */
+
+/* ========== PARK INFO SECTION ========== */
+
+.ParkInfo-section {
+    background-color: #f5e6c8;
+    padding: 80px 100px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    color: #2f2b25;
+}
+
+    /* Left column */
+    .ParkInfo-section h4 {
+        font-weight: 600;
+        margin: 0;
+        font-size: 1.4rem;
+    }
+
+    .ParkInfo-section h3 {
+        font-size: 2.4rem;
+        font-weight: 800;
+        margin: 0.2rem 0 1.4rem;
+    }
+
+    /* Buttons inside ParkInfo use global .btn classes */
+
+    /* Right column text */
+    .ParkInfo-section p {
+        flex: 1 1 45%;
+        font-size: 1.25rem;
+        line-height: 1.5;
+        max-width: 600px;
+    }
+
+
+
+/* ========== EXPLORE SECTION ========== */
+
+.Explore-section {
+    background-color: #b8c4b1;
+    padding: 80px 100px;
+    text-align: center;
+    color: #222;
+}
+
+    .Explore-section h3 {
+        font-size: 2rem;
+        font-weight: 800;
+        margin-bottom: 10px;
+    }
+
+    .Explore-section > p {
+        font-size: 1rem;
+        color: #333;
+        max-width: 750px;
+        margin: 0 auto 50px;
+        line-height: 1.5;
+    }
+
+/* Explore cards */
+.explore-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.explore-card {
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 30px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+    text-align: left;
+}
+
+    .explore-card img {
+        width: 45%;
+        height: auto;
+        border-radius: 8px;
+    }
+
+.explore-text {
+    flex: 1;
+}
+
+    .explore-text h4 {
+        font-size: 1.25rem;
+        font-weight: 700;
+        margin-bottom: 10px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .explore-text p {
+        font-size: 1rem;
+        margin-bottom: 20px;
+    }
+
+
+
+/* ========== DISCOVER HERO SECTION ========== */
+
+.Discover-section {
+    position: relative;
+    min-height: 600px;
+    padding: 40px 0px;
+    display: flex;
+    align-items: stretch;
+    justify-content: flex-start;
+    background-image: url("/img/home-discover.jpg"); /* adjust path */
+    background-size: cover;
+    background-position: center right;
+    background-repeat: no-repeat;
+    margin-bottom: 40px;
+}
+
+.discover-card {
+    background-color: #ffffff;
+    border-radius: 18px;
+    max-width: 460px;
+    margin-left: 40px;
+    padding: 40px 48px;
+    box-shadow: 0 18px 40px rgba(0,0,0,0.15);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.discover-kicker {
+    margin: 0 0 12px;
+    font-size: 0.9rem;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+}
+
+.discover-card h2 {
+    margin: 0;
+    font-size: 2.1rem;
+    line-height: 1.2;
+    color: #315a35;
+}
+
+.discover-bottom {
+    margin-top: 80px;
+}
+
+    .discover-bottom p {
+        margin-bottom: 24px;
+        font-size: 0.95rem;
+        line-height: 1.6;
+    }
+
+.discover-btn {
+    align-self: flex-start;
+    border-radius: 999px;
+    padding-inline: 24px;
+}
+
+/* ========== RESPONSIVE ========== */
+
 @media (max-width: 900px) {
+    /* Events */
     .events-section {
         padding: 40px 20px 60px;
     }
@@ -94,5 +359,43 @@
 
     .events-image {
         width: 100%;
+    }
+
+    /* Park info */
+    .ParkInfo-section {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        padding: 50px 24px;
+    }
+
+        .ParkInfo-section p {
+            margin-top: 1.5rem;
+            max-width: 100%;
+        }
+
+    /* Explore */
+    .explore-card {
+        flex-direction: column;
+        text-align: center;
+    }
+
+        .explore-card img {
+            width: 100%;
+        }
+
+    /* Discover hero */
+    .Discover-section {
+        background-position: center;
+        padding: 24px;
+    }
+
+    .discover-card {
+        margin: 0 auto;
+        max-width: 100%;
+    }
+
+    .discover-bottom {
+        margin-top: 40px;
     }
 }
