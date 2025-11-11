@@ -1,38 +1,267 @@
-﻿.events-container {
+﻿/* ===== PARK INFO ===== */
+
+body {
+    background-color: #f5f3ea;
+}
+
+.park-lead {
+    max-width: 760px;
+    margin-bottom: 1.8rem;
+    line-height: 1.6;
+}
+
+/* Hero card at top */
+.park-hero {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 1.5rem;
-    margin-top: 2rem;
+    grid-template-columns: minmax(0, 2fr) minmax(260px, 1.2fr);
+    gap: 32px;
+    margin-bottom: 2.5rem;
 }
 
-.event-card {
-    background: #fff;
-    border-radius: 10px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-    overflow: hidden;
-    transition: transform 0.2s;
+.park-hero-text h2 {
+    font-size: 1.9rem;
+    margin-bottom: 0.8rem;
 }
 
-    .event-card:hover {
-        transform: translateY(-5px);
-    }
-
-.event-image {
-    width: 100%;
-    height: 180px;
-    object-fit: cover;
+.park-hero-text p {
+    margin-bottom: 1.4rem;
+    line-height: 1.6;
 }
 
-.event-content {
-    padding: 1rem 1.25rem;
+.park-hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
 }
 
-    .event-content h3 {
+/* small highlight card on the right */
+.park-hero-highlight {
+    background-color: #f0f6e5;
+    border-radius: 12px;
+    padding: 18px 20px;
+}
+
+    .park-hero-highlight h3 {
         margin-top: 0;
-        font-size: 1.25rem;
-        color: #2b2b2b;
+        margin-bottom: 0.6rem;
+        font-size: 1.1rem;
     }
 
-    .event-content p {
-        margin: 0.25rem 0;
+    .park-hero-highlight ul {
+        list-style: none;
+        padding-left: 0;
+        margin: 0 0 0.4rem;
     }
+
+    .park-hero-highlight li {
+        margin-bottom: 4px;
+        font-size: 0.95rem;
+    }
+
+    .park-hero-highlight .note {
+        font-size: 0.85rem;
+        color: #666;
+    }
+
+/* two-column layout below hero */
+.park-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 2.4fr) minmax(260px, 1.2fr);
+    gap: 32px;
+    align-items: flex-start;
+}
+
+/* left: essentials card */
+.park-main {
+    padding: 24px 26px;
+}
+
+    .park-main h2 {
+        margin-top: 0;
+        margin-bottom: 1.4rem;
+    }
+
+/* grid of info blocks inside left column */
+.info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    gap: 20px;
+}
+
+.info-block {
+    background-color: #fffaf0;
+    border-radius: 12px;
+    padding: 16px 18px;
+}
+
+    .info-block h3 {
+        margin-top: 0;
+        margin-bottom: 0.6rem;
+        font-size: 1.1rem;
+    }
+
+    .info-block ul {
+        margin: 0 0 0.6rem;
+        padding-left: 1.2rem;
+    }
+
+    .info-block li {
+        margin-bottom: 4px;
+        font-size: 0.95rem;
+    }
+
+.small-note {
+    font-size: 0.85rem;
+    color: #666;
+}
+
+/* right: map + contact column */
+.park-side {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.park-map-card,
+.park-contact-card {
+    padding: 20px 22px;
+}
+
+.map-placeholder {
+    margin-top: 0.8rem;
+    border-radius: 12px;
+    background: #d4e0cf;
+    height: 180px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.9rem;
+    color: #344934;
+    font-weight: 600;
+}
+
+.park-contact-card ul {
+    list-style: none;
+    margin: 0 0 0.8rem;
+    padding-left: 0;
+}
+
+.park-contact-card li {
+    margin-bottom: 4px;
+    font-size: 0.95rem;
+}
+
+.full-width-btn {
+    width: 100%;
+    justify-content: center;
+}
+/* ===== FAQ SECTION ===== */
+.faq-section {
+    margin-top: 60px;
+    padding: 40px 50px;
+    background-color: #fffaf0;
+}
+
+    .faq-section h2 {
+        text-align: center;
+        font-size: 1.9rem;
+        margin-bottom: 1rem;
+    }
+
+.faq-intro {
+    text-align: center;
+    max-width: 700px;
+    margin: 0 auto 2rem;
+    line-height: 1.6;
+    color: #4b4b4b;
+}
+
+.faq-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 24px;
+}
+
+.faq-item {
+    background-color: #ffffff;
+    border-radius: 12px;
+    padding: 18px 22px;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.05);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+    .faq-item:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+    }
+
+    .faq-item h4 {
+        color: #2c2c2c;
+        margin-top: 0;
+        margin-bottom: 8px;
+        font-size: 1.1rem;
+    }
+
+    .faq-item p {
+        margin: 0;
+        line-height: 1.6;
+        color: #555;
+    }
+/* ===== INTERACTIVE FAQ ===== */
+.faq-question {
+    width: 100%;
+    background: none;
+    border: none;
+    text-align: left;
+    font-weight: 600;
+    font-size: 1.05rem;
+    padding: 12px 0;
+    cursor: pointer;
+    color: #2c2c2c;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: color 0.2s ease;
+}
+
+    .faq-question::after {
+        content: "+";
+        font-weight: bold;
+        font-size: 1.2rem;
+        transition: transform 0.2s ease;
+    }
+
+.faq-item.active .faq-question::after {
+    content: "–";
+    transform: rotate(180deg);
+}
+
+.faq-question:hover {
+    color: #2b4b2c; /* subtle green accent */
+}
+
+.faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease, opacity 0.3s ease;
+    opacity: 0;
+    padding-left: 4px;
+}
+
+.faq-item.active .faq-answer {
+    max-height: 500px; /* enough to show most content */
+    opacity: 1;
+    margin-top: 6px;
+}
+
+/* responsive tweaks */
+@media (max-width: 992px) {
+    .park-hero {
+        grid-template-columns: 1fr;
+    }
+
+    .park-layout {
+        grid-template-columns: 1fr;
+    }
+}
+
