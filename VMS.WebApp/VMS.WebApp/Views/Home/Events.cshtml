@@ -2,45 +2,109 @@
     ViewData["Title"] = "Events";
 }
 
-<h1> Unveil Wonders</h1>
-<p>
-    Onewhero Bay Heritage Park offers a unique blend of natural beauty and historical charm,
-    making it the perfect destination for family outings, outdoor adventures, and cultural exploration.
-    Whether you’re interested in scenic trails, historic exhibits, or enjoying serene park landscapes,
-    there is something for everyone to appreciate in our inviting and tranquil environment.
-</p>
+<!-- HERO -->
+<section class="events-hero">
+    <div class="events-hero-grid">
+        <div class="events-header">
+            <h1>Unveil Wonders</h1>
+            <p>
+                Onewhero Bay Heritage Park offers a unique blend of natural beauty and historical charm.
+                Plan your visit and explore guided tours, nature walks, and special events for all ages.
+            </p>
+        </div>
 
-<div class="ParkInfoEvent1">
-    <h3> Exploring Kiwi Habitats in Depth </h3>
-    <p> Dive into the unique and fascinating world of the kiwi bird, discovering its natural habitat and preservation efforts. </p>
-    <p> MARCH 12, 2025 </p>
-    <a href="/Home/ParkInfo class=btn btn-primary1">Learn More</a>
+        <div class="events-hero-img">
+            <img src="/img/homepage1.png" alt="Kiwi forest at sunrise">
+        </div>
+    </div>
+</section>
+
+
+
+<!-- FILTER BAR -->
+<nav class="events-filterbar" aria-label="Filter events">
+    <div class="container">
+        <div class="chips">
+            <button class="chip is-active" data-filter="all">All</button>
+            <button class="chip" data-filter="tours">Tours</button>
+            <button class="chip" data-filter="nature">Nature</button>
+            <button class="chip" data-filter="workshops">Workshops</button>
+            <button class="chip" data-filter="special">Special</button>
+        </div>
+    </div>
+</nav>
+
+
+
+
+<!-- RESPONSIVE EVENTS GRID -->
+
+<div class="events-grid">
+
+    <!-- CARD -->
+    <article class="event-card" data-cat="nature,tours">
+        <div class="event-media">
+            <img src="~/img/homepage1.png" alt="Kiwi habitat tour" />
+            <span class="event-date">Mar 12, 2025</span>
+        </div>
+        <div class="event-body">
+            <h3 class="event-title">Exploring Kiwi Habitats in Depth</h3>
+            <p class="event-desc">
+                Dive into the unique world of the kiwi bird, discovering its habitat and preservation efforts.
+            </p>
+            <div class="event-actions">
+                <a asp-controller="Booking" asp-action="Start" asp-route-id="1" class="btn btn-primary">Book Now</a>
+                <a asp-controller="Events" asp-action="Details" asp-route-id="1" class="btn btn-tertiary">Details</a>
+            </div>
+        </div>
+    </article>
+
+    <article class="event-card" data-cat="nature,tours">
+        <div class="event-media">
+            <img src="~/img/homepage1.png" alt="New trails at Onewhero Bay" />
+            <span class="event-date">Apr 07, 2025</span>
+        </div>
+        <div class="event-body">
+            <h3 class="event-title">New Trails Unveiled in Onewhero Bay</h3>
+            <p class="event-desc">
+                Enjoy newly opened walking and hiking trails designed for every nature enthusiast.
+            </p>
+            <div class="event-actions">
+                <a asp-controller="Events" asp-action="Details" asp-route-id="2" class="btn btn-secondary">Explore</a>
+                <a asp-controller="Booking" asp-action="Start" asp-route-id="2" class="btn btn-tertiary">Book</a>
+            </div>
+        </div>
+    </article>
+
+    <article class="event-card" data-cat="tours,special">
+        <div class="event-media">
+            <img src="~/img/homepage1.png" alt="Kiwi night tours" />
+            <span class="event-date">May 15, 2025</span>
+        </div>
+        <div class="event-body">
+            <h3 class="event-title">Kiwi Night Tours Introduced</h3>
+            <p class="event-desc">
+                Experience a mesmerizing night tour and see these remarkable birds come alive after dark.
+            </p>
+            <div class="event-actions">
+                <a asp-controller="Booking" asp-action="Start" asp-route-id="3" class="btn btn-primary">Book Tickets</a>
+                <a asp-controller="Events" asp-action="Details" asp-route-id="3" class="btn btn-tertiary">Details</a>
+            </div>
+        </div>
+    </article>
+
+    <!-- Add more placeholder cards as needed -->
 </div>
 
-<div class="ParkInfoEvent2">
-    <h3> New Trails Unveiled in Onewhero Bay </h3>
-    <p> Experience the scenic beauty of Onewhero Bay with newly opened walking and hiking trails, designed for all nature enthusiasts. </p>
-    <p> APRIL 07, 2025 </p>
-    <a href="/Home/ParkInfo class=btn btn-primary1">Explore Now</a>
-</div>
 
-<div class="ParkInfoEvent3">
-    <h3> Kiwi Night Tours Introduced </h3>
-    <p> Embark on a mesmerizing night tour at the Kiwi house and see these remarkable birds come alive after dark. </p>
-    <p> MARCH 12, 2025 </p>
-    <a href="/Home/ParkInfo class=btn btn-primary1">Learn More</a>
-</div>
+<script>
+    document.addEventListener('click', (e) => {
+      const btn = e.target.closest('.chip');
+      if (!btn) return;
+      btn.parentElement.querySelectorAll('.chip').forEach(c => c.classList.remove('is-active'));
+      btn.classList.add('is-active');
+      // TODO: trigger the filter here (show/hide cards)
+    });
+</script>
 
-<div class="ParkInfoEvent4">
-    <h3> Marae: Sacred Ground </h3>
-    <p> Learn about the spiritual and cultural significance of the Marae at Onewhero Bay Heritage Park. </p>
-    <p> MARCH 12, 2025 </p>
-    <a href="/Home/ParkInfo class=btn btn-primary1">Learn More</a>
-</div>
 
-<div class="ParkInfoEvent5">
-    <h3> Onewhero Bay Park </h3>
-    <p> Discover the rich history and breathtaking natural beauty of Onewhero Bay Heritage Park. </p>
-    <p> MARCH 12, 2025 </p>
-    <a href="/Home/ParkInfo class=btn btn-primary1">Learn More</a>
-</div>

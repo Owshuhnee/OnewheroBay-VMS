@@ -1,4 +1,4 @@
-﻿/* ===== PARK INFO ===== */
+﻿/* PARK INFO */
 
 body {
     background-color: #f5f3ea;
@@ -155,7 +155,7 @@ body {
     width: 100%;
     justify-content: center;
 }
-/* ===== FAQ SECTION ===== */
+/* FAQ SECTION */
 .faq-section {
     margin-top: 60px;
     padding: 40px 50px;
@@ -207,7 +207,7 @@ body {
         line-height: 1.6;
         color: #555;
     }
-/* ===== INTERACTIVE FAQ ===== */
+/* INTERACTIVE FAQ */
 .faq-question {
     width: 100%;
     background: none;
@@ -254,7 +254,7 @@ body {
     margin-top: 6px;
 }
 
-/* responsive tweaks */
+/* RESPONSIVE */
 @media (max-width: 992px) {
     .park-hero {
         grid-template-columns: 1fr;
