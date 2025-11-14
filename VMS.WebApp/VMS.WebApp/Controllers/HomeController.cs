@@ -110,5 +110,10 @@ namespace VMS.WebApp.Controllers
             // Redirect to homepage
             return RedirectToAction("Index", "Home");
         }
+
+        public IActionResult Analytics()
+        {
+            return View();
+        }
     }
 }
