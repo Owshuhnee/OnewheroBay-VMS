@@ -2,6 +2,7 @@
     ViewData["Title"] = "Park Info";
 }
 
+<!-- Hero section + Today's Highlight  -->
 <section class="park-hero-wrapper">
     <div class="park-hero">
         <div class="park-hero-text">
@@ -11,25 +12,15 @@
                 opening hours, admission, directions, and visitor facilities.
             </p>
 
-            <h2>Discover Onewhero Bay Heritage &amp; Nature</h2>
-            <p>
-                Stroll heritage streets, wander coastal trails, and unwind in peaceful picnic
-                areas. Whether you’re here for a family day out or a quiet retreat, we’ve got
-                you covered.
-            </p>
-
             <div class="park-hero-actions">
-                <a asp-controller="Home" asp-action="Booking" class="btn btn-primary">
-                    Book Your Visit
+                <a asp-controller="Home" asp-action="Events" class="btn btn-primary">
+                    View Events
                 </a>
-                <a asp-controller="Home" asp-action="Events" class="btn btn-secondary">
-                    View Events &amp; Attractions
-                </a>
-            </div>
+              </div>
         </div>
 
         <aside class="park-hero-highlight">
-            <h3>Today at a Glance</h3>
+            <h2>Today at a Glance</h2>
             <ul>
                 <li><strong>Hours:</strong> 9:00am – 5:00pm</li>
                 <li><strong>Last entry:</strong> 4:30pm</li>
@@ -42,6 +33,7 @@
     </div>
 </section>
 
+<!-- Additional information section -->
 <div class="park-layout-wrapper">
     <div class="park-layout">
 
@@ -73,14 +65,14 @@
                         shuttle services.
                     </p>
                     <ul>
-                        <li>On-site parking (including accessible spaces)</li>
+                        <li>On-site parking </li>
                         <li>EV charging stations available</li>
                         <li>Bike racks near the main entrance</li>
                     </ul>
                 </article>
 
                 <article class="info-block">
-                    <h3>Accessibility &amp; Facilities</h3>
+                    <h3>Accessibility </h3>
                     <ul>
                         <li>Wheelchair-friendly paths in key areas</li>
                         <li>Accessible restrooms and baby-change facilities</li>
@@ -89,6 +81,18 @@
                     </ul>
                 </article>
 
+                <article class="info-block">
+                    <h3>Park Guidelines</h3>
+                    <p>
+                    Help us keep Onewhero Bay Heritage Park clean, safe, and enjoyable for all visitors.
+                    </p>
+
+                    <ul>
+                        <li>Dogs must remain on a leash at all times</li>
+                        <li>No smoking in heritage zones and indoor spaces</li>
+                        <li>Please stay on marked trails and respect wildlife habitats</li>
+                    </ul>
+                </article>
             </div>
         </section>
 
