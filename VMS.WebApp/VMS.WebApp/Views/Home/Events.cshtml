@@ -43,10 +43,12 @@
 
     <!-- CARD -->
     <article class="event-card" data-cat="nature,tours">
+
         <div class="event-media">
             <img src="~/img/homepage1.png" alt="Kiwi habitat tour" />
             <span class="event-date">Mar 12, 2025</span>
         </div>
+
         <div class="event-body">
             <h3 class="event-title">Exploring Kiwi Habitats in Depth</h3>
             <p class="event-desc">
@@ -54,7 +56,6 @@
             </p>
             <div class="event-actions">
                 <a asp-controller="Booking" asp-action="Start" asp-route-id="1" class="btn btn-primary">Book Now</a>
-                <a asp-controller="Events" asp-action="Details" asp-route-id="1" class="btn btn-tertiary">Details</a>
             </div>
         </div>
     </article>
@@ -99,12 +100,21 @@
 
 <script>
     document.addEventListener('click', (e) => {
-      const btn = e.target.closest('.chip');
-      if (!btn) return;
-      btn.parentElement.querySelectorAll('.chip').forEach(c => c.classList.remove('is-active'));
-      btn.classList.add('is-active');
-      // TODO: trigger the filter here (show/hide cards)
+        const btn = e.target.closest('.chip');
+        if (!btn) return;
+
+        // toggle active state
+        btn.parentElement.querySelectorAll('.chip')
+            .forEach(c => c.classList.remove('is-active'));
+        btn.classList.add('is-active');
+
+        const filter = btn.dataset.filter; // "all", "tours", etc.
+        const cards = document.querySelectorAll('.event-card');
+
+        cards.forEach(card => {
+            const cats = card.dataset.cat.split(',');
+            const show = filter === 'all' || cats.includes(filter);
+            card.style.display = show ? '' : 'none';
+        });
     });
 </script>
-
-

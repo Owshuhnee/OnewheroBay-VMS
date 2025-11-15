@@ -1,0 +1,160 @@
+﻿/* Utility */
+.hidden {
+    display: none !important;
+}
+
+/* Auth Wrapper */
+
+.auth-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 16px;
+    background-color: #f5f5f5;
+}
+
+.auth-card {
+    display: flex;
+    width: 100%;
+    max-width: 900px;
+    min-height: 420px;
+    background-color: #ffffff;
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    overflow: hidden;
+}
+
+    /* For REGISTER: we add .register-mode via JS to flip sides */
+    .auth-card.register-mode {
+        flex-direction: row-reverse;
+    }
+
+.auth-content {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    padding: 32px 40px;
+}
+
+.form-container {
+    width: 100%;
+}
+
+.auth-form h2 {
+    margin-bottom: 16px;
+    color: #2f2b25;
+}
+
+.auth-form label {
+    display: block;
+    margin-bottom: 4px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: #444;
+}
+
+.auth-form input[type="text"],
+.auth-form input[type="email"],
+.auth-form input[type="password"],
+.auth-form input[type="tel"] {
+    width: 100%;
+    padding: 10px 12px;
+    margin-bottom: 12px;
+    border-radius: 8px;
+    border: 1px solid #d0d0d0;
+    font-size: 0.95rem;
+    box-sizing: border-box;
+}
+
+.auth-form input:focus {
+    outline: none;
+    border-color: #315a35;
+    box-shadow: 0 0 0 1px rgba(49, 90, 53, 0.25);
+}
+
+.auth-form button[type="submit"] {
+    width: 100%;
+    padding: 10px 16px;
+    margin-top: 8px;
+    background-color: #315a35;
+    color: #fff;
+    border: none;
+    border-radius: 999px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+    .auth-form button[type="submit"]:hover {
+        background-color: #3f6f43;
+        transform: translateY(-1px);
+    }
+
+.auth-form p {
+    margin-top: 12px;
+    font-size: 0.9rem;
+}
+
+.auth-form a {
+    color: #315a35;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+    .auth-form a:hover {
+        text-decoration: underline;
+    }
+
+/* Image side */
+
+.auth-image {
+    flex: 1;
+    min-width: 280px;
+    background-image: url("/images/login-hero.jpg"); /* TODO: replace with your image path */
+    background-size: cover;
+    background-position: center;
+}
+
+/* Interest chips */
+
+.interest-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: 6px 0 14px;
+}
+
+.chip {
+    border: 1px solid #d0d0d0;
+    border-radius: 999px;
+    padding: 6px 12px;
+    background-color: #ffffff;
+    font-size: 0.8rem;
+    cursor: pointer;
+    transition: all 0.15s ease;
+}
+
+    .chip.selected {
+        background-color: #d8e7db;
+        border-color: #315a35;
+        color: #315a35;
+    }
+
+/* Responsive */
+@media (max-width: 768px) {
+    .auth-card {
+        flex-direction: column;
+    }
+
+        .auth-card.register-mode {
+            flex-direction: column;
+        }
+
+    .auth-image {
+        display: none; /* or keep, if you want the image above/below */
+    }
+
+    .auth-content {
+        padding: 24px 20px;
+    }
+}

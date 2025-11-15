@@ -1,31 +1,50 @@
 ﻿/* PARK INFO */
 
+/* Page background (you already had this) */
 body {
     background-color: #f5f3ea;
 }
 
-.park-lead {
-    max-width: 760px;
-    margin-bottom: 1.8rem;
-    line-height: 1.6;
+/* Green hero wrapper similar to home hero */
+.park-hero-wrapper {
+    max-width: 1200px;
+    margin: 32px auto 40px;
+    padding: 24px 32px;
+    background-color: #a6c0a3; /* tweak to match your exact home hero green */
+    border-radius: 18px;
 }
 
-/* Hero card at top */
+/* Hero content inside the green bar */
 .park-hero {
     display: grid;
     grid-template-columns: minmax(0, 2fr) minmax(260px, 1.2fr);
     gap: 32px;
-    margin-bottom: 2.5rem;
+    align-items: flex-start;
+}
+
+.park-hero-text h1 {
+    font-size: 2rem;
+    margin-bottom: 0.4rem;
+    color: #123118;
+}
+
+.park-lead {
+    max-width: 760px;
+    margin-bottom: 1.2rem;
+    line-height: 1.6;
+    color: #1f3321;
 }
 
 .park-hero-text h2 {
-    font-size: 1.9rem;
-    margin-bottom: 0.8rem;
+    font-size: 1.5rem;
+    margin-bottom: 0.6rem;
+    color: #123118;
 }
 
 .park-hero-text p {
-    margin-bottom: 1.4rem;
+    margin-bottom: 1.2rem;
     line-height: 1.6;
+    color: #1f3321;
 }
 
 .park-hero-actions {
@@ -33,6 +52,7 @@ body {
     flex-wrap: wrap;
     gap: 12px;
 }
+
 
 /* small highlight card on the right */
 .park-hero-highlight {
@@ -63,7 +83,13 @@ body {
         color: #666;
     }
 
-/* two-column layout below hero */
+/* Wrapper so layout width matches hero */
+.park-layout-wrapper {
+    max-width: 1200px;
+    margin: 0 auto 60px;
+}
+
+/* Two-column layout: big left, right column for Find Us + info */
 .park-layout {
     display: grid;
     grid-template-columns: minmax(0, 2.4fr) minmax(260px, 1.2fr);
@@ -71,17 +97,21 @@ body {
     align-items: flex-start;
 }
 
-/* left: essentials card */
-.park-main {
+/* Generic card look (you can reuse this elsewhere) */
+.card {
+    background-color: #ffffff;
+    border-radius: 12px;
     padding: 24px 26px;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.04);
 }
 
-    .park-main h2 {
-        margin-top: 0;
-        margin-bottom: 1.4rem;
-    }
+/* Visitor essentials */
+.park-main h2 {
+    margin-top: 0;
+    margin-bottom: 1.4rem;
+}
 
-/* grid of info blocks inside left column */
+/* grid of inner info blocks */
 .info-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
@@ -94,37 +124,11 @@ body {
     padding: 16px 18px;
 }
 
-    .info-block h3 {
-        margin-top: 0;
-        margin-bottom: 0.6rem;
-        font-size: 1.1rem;
-    }
-
-    .info-block ul {
-        margin: 0 0 0.6rem;
-        padding-left: 1.2rem;
-    }
-
-    .info-block li {
-        margin-bottom: 4px;
-        font-size: 0.95rem;
-    }
-
-.small-note {
-    font-size: 0.85rem;
-    color: #666;
-}
-
-/* right: map + contact column */
+/* Right column (Find Us + Visitor Info stacked) */
 .park-side {
     display: flex;
     flex-direction: column;
     gap: 20px;
-}
-
-.park-map-card,
-.park-contact-card {
-    padding: 20px 22px;
 }
 
 .map-placeholder {
@@ -140,21 +144,24 @@ body {
     font-weight: 600;
 }
 
-.park-contact-card ul {
-    list-style: none;
-    margin: 0 0 0.8rem;
-    padding-left: 0;
-}
-
-.park-contact-card li {
-    margin-bottom: 4px;
-    font-size: 0.95rem;
-}
-
 .full-width-btn {
     width: 100%;
     justify-content: center;
 }
+
+/* Responsive */
+@media (max-width: 992px) {
+    .park-hero {
+        grid-template-columns: 1fr;
+    }
+
+    .park-layout {
+        grid-template-columns: 1fr;
+    }
+}
+
+
+
 /* FAQ SECTION */
 .faq-section {
     margin-top: 60px;
@@ -207,6 +214,7 @@ body {
         line-height: 1.6;
         color: #555;
     }
+
 /* INTERACTIVE FAQ */
 .faq-question {
     width: 100%;
@@ -264,4 +272,3 @@ body {
         grid-template-columns: 1fr;
     }
 }
-
