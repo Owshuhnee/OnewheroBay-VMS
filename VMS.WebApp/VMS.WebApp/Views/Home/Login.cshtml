@@ -1,14 +1,17 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Login";
 }
 
-<div class="form-container">
-    <!-- Login Form (Visible by default) -->
-    <form id="loginForm"
-          class="auth-form"
-          method="post"
-          action="/Home/Login">
-        <h2>Login</h2>
+<div class="login-card">
+
+    <!-- Left side Login Form -->
+    <div class="login-content">
+            <form id="loginForm"
+            class="auth-form"
+            method="post"
+            asp-action="Login">
+
+        <h1>Login</h1>
 
         <label for="loginEmail">Email</label>
         <input type="email" id="loginEmail" name="Email" required />
@@ -17,54 +20,16 @@
         <input type="password" id="loginPassword" name="Password" required />
 
         <button type="submit">Login</button>
-        <p>Don't have an account? <a href="#" id="showRegister">Register here</a></p>
+
+        <p>
+            Don't have an account?
+            <a asp-controller="Home" asp-action="Register">Register here</a>
+        </p>
     </form>
+    </div>
 
-
-
-    <!-- Registration Form (Hidden initially) -->
-    <form id="registerForm"
-          class="auth-form hidden"
-          method="post"
-          asp-action="Register">
-        <h2>Register</h2>
-
-        @* no role input, we force Visitor in backend/db *@
-
-        <label for="firstName">First Name</label>
-        <input type="text" id="firstName" name="FirstName" required />
-
-        <label for="lastName">Last Name</label>
-        <input type="text" id="lastName" name="LastName" required />
-
-        <label for="phone">Phone</label>
-        <input type="tel" id="phone" name="Phone" required />
-
-        <label for="registerEmail">Email</label>
-        <input type="email" id="registerEmail" name="Email" required />
-
-        <label for="registerPassword">Password</label>
-        <input type="password" id="registerPassword" name="Password" required />
-
-        <button type="submit">Register</button>
-        <p>Already have an account? <a href="#" id="showLogin">Login here</a></p>
-    </form>
+    <!-- Right side Image -->
+    <div class="login-image">
+        <img src="~/img/loginRegister.jpg" alt="Login Image">
+    </div>
 </div>
-
-
-<script>
-    const loginForm = document.getElementById('loginForm');
-    const registerForm = document.getElementById('registerForm');
-
-    document.getElementById('showRegister').onclick = (e) => {
-        e.preventDefault();
-        loginForm.classList.add('hidden');
-        registerForm.classList.remove('hidden');
-    };
-
-    document.getElementById('showLogin').onclick = (e) => {
-        e.preventDefault();
-        registerForm.classList.add('hidden');
-        loginForm.classList.remove('hidden');
-    };
-</script>

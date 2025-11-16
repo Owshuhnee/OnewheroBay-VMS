@@ -2,136 +2,131 @@
     ViewData["Title"] = "Park Info";
 }
 
-<h1>Plan Your Visit</h1>
-<p class="park-lead">
-    Everything you need to know before you arrive at Onewhero Bay Heritage Park –
-    opening hours, admission, directions, and visitor facilities.
-</p>
+<!-- Hero section + Today's Highlight  -->
+<section class="park-hero-wrapper">
+    <div class="park-hero">
+        <div class="park-hero-text">
+            <h1>Plan Your Visit</h1>
+            <p class="park-lead">
+                Everything you need to know before you arrive at Onewhero Bay Heritage Park –
+                opening hours, admission, directions, and visitor facilities.
+            </p>
 
-<section class="park-hero card">
-    <div class="park-hero-text">
-        <h2>Discover Onewhero Bay Heritage &amp; Nature</h2>
-        <p>
-            Stroll heritage streets, wander coastal trails, and unwind in peaceful picnic
-            areas. Whether you’re here for a family day out or a quiet retreat, we’ve got
-            you covered.
-        </p>
-
-        <div class="park-hero-actions">
-            <a asp-controller="Home" asp-action="Booking" class="btn btn-primary">
-                Book Your Visit
-            </a>
-            <a asp-controller="Home" asp-action="Events" class="btn btn-secondary">
-                View Events &amp; Attractions
-            </a>
+            <div class="park-hero-actions">
+                <a asp-controller="Home" asp-action="Events" class="btn btn-primary">
+                    View Events
+                </a>
+              </div>
         </div>
-    </div>
 
-    <div class="park-hero-highlight">
-        <h3>Today at a Glance</h3>
-        <ul>
-            <li><strong>Hours:</strong> 9:00am – 5:00pm</li>
-            <li><strong>Last entry:</strong> 4:30pm</li>
-            <li><strong>Location:</strong> 1 Onewhero Bay Road, Onewhero, NZ</li>
-        </ul>
-        <p class="note">
-            Opening hours may change for special events and public holidays.
-        </p>
+        <aside class="park-hero-highlight">
+            <h2>Today at a Glance</h2>
+            <ul>
+                <li><strong>Hours:</strong> 9:00am – 5:00pm</li>
+                <li><strong>Last entry:</strong> 4:30pm</li>
+                <li><strong>Location:</strong> 1 Onewhero Bay Road, Onewhero, NZ</li>
+            </ul>
+            <p class="note">
+                Opening hours may change for special events and public holidays.
+            </p>
+        </aside>
     </div>
 </section>
 
-<div class="park-layout">
+<!-- Additional information section -->
+<div class="park-layout-wrapper">
+    <div class="park-layout">
 
-    <!-- LEFT COLUMN – ESSENTIAL INFO -->
-    <section class="park-main card">
+        <!-- LEFT COLUMN – ESSENTIAL INFO -->
+        <section class="park-main card">
 
-        <h2>Visitor Essentials</h2>
+            <h2>Visitor Essentials</h2>
 
-        <div class="info-grid">
+            <div class="info-grid">
 
-            <article class="info-block">
-                <h3>Opening Hours</h3>
-                <p>
-                    Onewhero Bay Heritage Park is open <strong>7 days a week</strong>.
-                </p>
-                <ul>
-                    <li>Weekdays: 9:00am – 5:00pm</li>
-                    <li>Weekends &amp; holidays: 9:00am – 6:00pm</li>
-                </ul>
-                <p class="small-note">
-                    Guided tours depart at 10:00am, 1:00pm, and 3:00pm.
-                </p>
-            </article>
+                <article class="info-block">
+                    <h3>Opening Hours</h3>
+                    <p>
+                        Onewhero Bay Heritage Park is open <strong>7 days a week</strong>.
+                    </p>
+                    <ul>
+                        <li>Weekdays: 9:00am – 5:00pm</li>
+                        <li>Weekends &amp; holidays: 9:00am – 6:00pm</li>
+                    </ul>
+                    <p class="small-note">
+                        Guided tours depart at 10:00am, 1:00pm, and 3:00pm.
+                    </p>
+                </article>
 
-            <article class="info-block">
-                <h3>Admission</h3>
-                <ul>
-                    <li>Adults: $18</li>
-                    <li>Children (5–15): $10</li>
-                    <li>Under 5: Free</li>
-                    <li>Family Pass (2 adults + 2 children): $48</li>
-                </ul>
-                <p class="small-note">
-                    Group and school rates are available – contact our Visitor Information Center.
-                </p>
-            </article>
+                <article class="info-block">
+                    <h3>Getting Here</h3>
+                    <p>
+                        We’re located just outside Onewhero township, with easy access by car and local
+                        shuttle services.
+                    </p>
+                    <ul>
+                        <li>On-site parking </li>
+                        <li>EV charging stations available</li>
+                        <li>Bike racks near the main entrance</li>
+                    </ul>
+                </article>
 
-            <article class="info-block">
-                <h3>Getting Here</h3>
-                <p>
-                    We’re located just outside Onewhero township, with easy access by car and local
-                    shuttle services.
-                </p>
-                <ul>
-                    <li>On-site parking (including accessible spaces)</li>
-                    <li>EV charging stations available</li>
-                    <li>Bike racks near the main entrance</li>
-                </ul>
-            </article>
+                <article class="info-block">
+                    <h3>Accessibility </h3>
+                    <ul>
+                        <li>Wheelchair-friendly paths in key areas</li>
+                        <li>Accessible restrooms and baby-change facilities</li>
+                        <li>Picnic tables, shaded seating, and drinking fountains</li>
+                        <li>Café and gift shop near the main plaza</li>
+                    </ul>
+                </article>
 
-            <article class="info-block">
-                <h3>Accessibility &amp; Facilities</h3>
-                <ul>
-                    <li>Wheelchair-friendly paths in key areas</li>
-                    <li>Accessible restrooms and baby-change facilities</li>
-                    <li>Picnic tables, shaded seating, and drinking fountains</li>
-                    <li>Café and gift shop near the main plaza</li>
-                </ul>
-            </article>
+                <article class="info-block">
+                    <h3>Park Guidelines</h3>
+                    <p>
+                    Help us keep Onewhero Bay Heritage Park clean, safe, and enjoyable for all visitors.
+                    </p>
 
-        </div>
-    </section>
-
-    <!-- RIGHT COLUMN – MAP + CONTACT -->
-    <aside class="park-side">
-
-        <section class="card park-map-card">
-            <h3>Find Us</h3>
-            <p>1 Onewhero Bay Road, Onewhero, New Zealand</p>
-            <div class="map-placeholder">
-                <!-- swap this for an actual map image or embedded map later -->
-                <span>Map Placeholder</span>
+                    <ul>
+                        <li>Dogs must remain on a leash at all times</li>
+                        <li>No smoking in heritage zones and indoor spaces</li>
+                        <li>Please stay on marked trails and respect wildlife habitats</li>
+                    </ul>
+                </article>
             </div>
         </section>
 
-        <section class="card park-contact-card">
-            <h3>Visitor Information Center</h3>
-            <ul>
-                <li><strong>Phone:</strong> (09) 555 0123</li>
-                <li><strong>Email:</strong> visitors@onewherobayheritagepark.nz</li>
-                <li><strong>Group bookings:</strong> events@onewherobayheritagepark.nz</li>
-            </ul>
-            <p class="small-note">
-                For accessibility needs or special arrangements, please contact us before your visit.
-            </p>
-            <a asp-controller="Home" asp-action="Booking" class="btn btn-secondary full-width-btn">
-                Plan a Group Visit
-            </a>
-        </section>
+        <!-- RIGHT COLUMN – MAP + CONTACT -->
+        <aside class="park-side">
 
-    </aside>
+            <section class="card park-map-card">
+                <h3>Find Us</h3>
+                <p>1 Onewhero Bay Road, Onewhero, New Zealand</p>
+                <div class="map-placeholder">
+                    <span>Map Placeholder</span>
+                </div>
+            </section>
 
+            <section class="card park-contact-card">
+                <h3>Visitor Information Center</h3>
+                <ul>
+                    <li><strong>Phone:</strong> (09) 555 0123</li>
+                    <li><strong>Email:</strong> visitors@onewherobayheritagepark.nz</li>
+                    <li><strong>Group bookings:</strong> events@onewherobayheritagepark.nz</li>
+                </ul>
+                <p class="small-note">
+                    For accessibility needs or special arrangements, please contact us before your visit.
+                </p>
+                <a asp-controller="Home" asp-action="Booking" class="btn btn-secondary full-width-btn">
+                    Plan a Group Visit
+                </a>
+            </section>
+
+        </aside>
+
+    </div>
 </div>
+
 
 <!-- FAQ SECTION -->
 <section class="faq-section card">
