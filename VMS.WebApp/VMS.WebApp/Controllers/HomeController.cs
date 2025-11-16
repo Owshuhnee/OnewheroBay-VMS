@@ -56,7 +56,12 @@ namespace VMS.WebApp.Controllers
             return View();
         }
 
-        public IActionResult LoginRegister()
+        public IActionResult Login()
+        {
+            return View();
+        }
+
+        public IActionResult Register()
         {
             return View();
         }
