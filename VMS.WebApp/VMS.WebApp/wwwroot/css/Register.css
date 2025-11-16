@@ -1,0 +1,68 @@
+﻿/* register.css */
+
+/* 3-column grid layout */
+.register-page .register-grid-3 {
+    display: grid;
+    grid-template-columns: 1.4fr 1.4fr 1fr;
+    column-gap: 24px;
+    row-gap: 16px;
+    width: 100%;
+    align-items: flex-start;
+}
+
+.register-page .field {
+    display: flex;
+    flex-direction: column;
+}
+
+/* interests column */
+.register-page .interests-col {
+    grid-column: 3;
+    grid-row: 1 / span 3;
+}
+
+/* bottom section */
+.register-page .register-bottom {
+    margin-top: 24px;
+    text-align: center;
+}
+
+.register-page .register-btn {
+    padding: 10px 40px;
+}
+
+/* chips */
+.register-page .interest-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: 6px 0 14px;
+}
+
+.register-page .chip {
+    border: 1px solid #d0d0d0;
+    border-radius: 999px;
+    padding: 6px 12px;
+    background: white;
+    font-size: 0.8rem;
+    cursor: pointer;
+    transition: 0.15s;
+}
+
+    .register-page .chip.selected {
+        background-color: #d8e7db;
+        border-color: #315a35;
+        color: #315a35;
+    }
+
+/* mobile */
+@media (max-width: 768px) {
+    .register-page .register-grid-3 {
+        grid-template-columns: 1fr;
+    }
+
+    .register-page .interests-col {
+        grid-column: auto;
+        grid-row: auto;
+    }
+}

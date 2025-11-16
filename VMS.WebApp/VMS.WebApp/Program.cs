@@ -5,7 +5,15 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container
 builder.Services.AddControllersWithViews();
-builder.Services.AddSession();  
+
+// Add an in-memory cache for Session to use
+builder.Services.AddDistributedMemoryCache();
+
+// Enable Session
+builder.Services.AddSession();
+
+// So we can inject HttpContextAccessor into _Layout.cshtml
+builder.Services.AddHttpContextAccessor();
 
 // Add Swagger services
 builder.Services.AddEndpointsApiExplorer();
@@ -33,8 +41,12 @@ if (!app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
+
 app.UseRouting();
-app.UseSession();                
+
+// Session must be BEFORE Authorization
+app.UseSession();
+
 app.UseAuthorization();
 
 app.MapControllerRoute(

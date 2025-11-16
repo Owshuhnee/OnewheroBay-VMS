@@ -1,4 +1,4 @@
-﻿/* ===== MISSION AND VISION ===== */
+﻿/* HERO */
 .mission-landing {
     background-color: #b8c6b3;
     padding: 85px 100px;
@@ -57,7 +57,7 @@
  }
 
 
-/* ===== TEAM STATS ===== */
+/* TEAM STATS */
 .team-section {
     background-color: #f5e1c2;
     padding: 80px 100px;
@@ -179,7 +179,7 @@
 
     
     .testimonial-card::before {
-        content: "“";
+        content: "";
         position: absolute;
         top: 14px;
         left: 18px;

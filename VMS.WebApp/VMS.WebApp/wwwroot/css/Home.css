@@ -1,8 +1,8 @@
-﻿/* ========== LANDING SECTION ========== */
+﻿/* HERO */
 
 .Landing-section {
     background-color: #f5e6c8;
-    padding: 85px  100px;
+    padding: 85px 100px;
     display: flex;
     gap: 100px;
     align-items: flex-start;
@@ -105,7 +105,7 @@
 }
 
 
-/* ========== EVENTS SECTION ========== */
+/* EVENTS SECTION */
 
 .events-section {
     background-color: #b8c6b3; /* muted green */
@@ -182,7 +182,7 @@
 }
 
 
-/* ========== PARK INFO SECTION ========== */
+/* PARK INFO SECTION */
 
 .ParkInfo-section {
     background-color: #f5e6c8;
@@ -207,9 +207,7 @@
         margin: 0.2rem 0 1.4rem;
     }
 
-    /* Buttons inside ParkInfo use global .btn classes */
-
-    /* Right column text */
+       /* Right column text */
     .ParkInfo-section p {
         flex: 1 1 45%;
         font-size: 1.25rem;
@@ -219,7 +217,7 @@
 
 
 
-/* ========== EXPLORE SECTION ========== */
+/* EXPLORE SECTION */
 
 .Explore-section {
     background-color: #b8c4b1;
@@ -287,7 +285,7 @@
 
 
 
-/* ========== DISCOVER HERO SECTION ========== */
+/* DISCOVER SECTION */
 
 .Discover-section {
     position: relative;
@@ -345,7 +343,8 @@
     padding-inline: 24px;
 }
 
-/* ========== RESPONSIVE ========== */
+
+/* RESPONSIVE */
 
 @media (max-width: 900px) {
     /* Events */
@@ -384,7 +383,7 @@
             width: 100%;
         }
 
-    /* Discover hero */
+    /* Discover */
     .Discover-section {
         background-position: center;
         padding: 24px;
