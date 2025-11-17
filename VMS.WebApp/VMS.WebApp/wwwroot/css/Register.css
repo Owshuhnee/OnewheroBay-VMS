@@ -1,68 +1,110 @@
-﻿/* register.css */
-
-/* 3-column grid layout */
-.register-page .register-grid-3 {
-    display: grid;
-    grid-template-columns: 1.4fr 1.4fr 1fr;
-    column-gap: 24px;
-    row-gap: 16px;
+﻿.register-card {
+    display: flex;
     width: 100%;
-    align-items: flex-start;
+    max-width: 1200px;
+    min-height: 560px;
+    background: #b8c6b3;
+    box-shadow: 0 10px 30px rgba(0,0,0,.08);
+    margin: 20px auto;
+    overflow: hidden;
 }
 
-.register-page .field {
-    display: flex;
-    flex-direction: column;
+.register-content {
+    width: 100%;
+    max-width: 600px; 
+    margin: 0 auto; 
+    padding: 50px;
 }
 
-/* interests column */
-.register-page .interests-col {
-    grid-column: 3;
-    grid-row: 1 / span 3;
-}
-
-/* bottom section */
-.register-page .register-bottom {
-    margin-top: 24px;
-    text-align: center;
-}
-
-.register-page .register-btn {
-    padding: 10px 40px;
-}
-
-/* chips */
-.register-page .interest-group {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-    margin: 6px 0 14px;
-}
-
-.register-page .chip {
-    border: 1px solid #d0d0d0;
-    border-radius: 999px;
-    padding: 6px 12px;
-    background: white;
-    font-size: 0.8rem;
-    cursor: pointer;
-    transition: 0.15s;
-}
-
-    .register-page .chip.selected {
-        background-color: #d8e7db;
-        border-color: #315a35;
-        color: #315a35;
+    .register-content h1 {
+        margin-bottom: 16px;
+        color: #2f2b25;
+        font-size: 2.4rem;
+        font-weight: 800;
+        text-align-last: center;
     }
 
-/* mobile */
-@media (max-width: 768px) {
-    .register-page .register-grid-3 {
-        grid-template-columns: 1fr;
+    .register-content label {
+        display: block;
+        margin-bottom: 4px;
+        font-weight: 600;
+        font-size: 0.9rem;
+        color: #444;
     }
 
-    .register-page .interests-col {
-        grid-column: auto;
-        grid-row: auto;
+    .register-content input {
+        width: 100%;
+        padding: 10px 12px;
+        margin-bottom: 14px;
+        border-radius: 8px;
+        border: 1px solid #d0d0d0;
+        font-size: 0.95rem;
+        box-sizing: border-box;
     }
+
+        .register-content input:focus {
+            outline: none;
+            border-color: #315a35;
+            box-shadow: 0 0 0 1px rgba(49, 90, 53, 0.25);
+        }
+
+    .register-content button[type="submit"] {
+        width: auto;
+        padding: 10px 32px;
+        margin-top: 12px;
+        background-color: #315a35;
+        color: #fff;
+        border: none;
+        border-radius: 999px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: background-color 0.2s ease, transform 0.1s ease;
+        display: inline-block;
+    }
+
+        .register-content button[type="submit"]:hover {
+            background-color: #3f6f43;
+            transform: translateY(-1px);
+        }
+
+    .register-content p {
+        font-size: 0.85rem;
+        margin-top: 10px;
+        color: #666;
+        text-align: center;
+        width: 100%;
+    }
+
+        .register-content p a {
+            color: #315a35;
+            font-weight: 600;
+            text-decoration: none;
+            
+        }
+
+            .register-content p a:hover {
+                text-decoration: underline;
+            }
+
+    
+.register-check {
+    display: grid;
+    grid-template-columns: 22px auto;
+    align-items: center;
+    column-gap: 8px;
+    font-size: 0.9rem;
+    margin: 6px 0;
+
 }
+
+    .register-check input[type="checkbox"] {
+        width: 16px;
+        height: 16px;
+        margin: 0;
+    }
+
+    .register-check a {
+        font-size: 0.85rem;
+        margin-top: 10px;
+        color: #666;
+    }

@@ -2,103 +2,63 @@
     ViewData["Title"] = "Register";
 }
 
-<div class="auth-card">
+<div class="register-card">
+    <div class="register-content">
+        <form id="registerForm"
+              method="post"
+              asp-action="Register">
 
-    <div class="auth-content">
-        <div class="form-container">
+            <h1>Create an account</h1>
 
-            <form id="registerForm"
-                  class="auth-form register-form"
-                  method="post"
-                  asp-action="Register">
+            <!-- 2-COLUMN GRID -->
+            <div class="register-grid">
+                <div>
+                    <label for="firstName">First Name</label>
+                    <input type="text" id="firstName" name="FirstName" required />
 
-                <h2>Register</h2>
+                    <label for="lastName">Last Name</label>
+                    <input type="text" id="lastName" name="LastName" required />
 
-                <div class="register-grid-3">
-                    <!-- Column 1 + 2: fields -->
-                    <div class="field">
-                        <label for="firstName">First Name</label>
-                        <input type="text" id="firstName" name="FirstName" required />
-                    </div>
-
-                    <div class="field">
-                        <label for="lastName">Last Name</label>
-                        <input type="text" id="lastName" name="LastName" required />
-                    </div>
-
-                    <!-- Column 3: interests -->
-                    <div class="field interests-col">
-                        <label>Interest</label>
-                        <div id="interestChips" class="interest-group">
-                            <button type="button" class="chip" data-value="Music">Music</button>
-                            <button type="button" class="chip" data-value="Sports">Sports</button>
-                            <button type="button" class="chip" data-value="Conferences">Conferences</button>
-                            <button type="button" class="chip" data-value="Workshops">Workshops</button>
-                            <button type="button" class="chip" data-value="Festivals">Festivals</button>
-                        </div>
-                        <input type="hidden" id="interestHidden" name="Interest" />
-                    </div>
-
-                    <div class="field">
-                        <label for="phone">Phone</label>
-                        <input type="tel" id="phone" name="Phone" required />
-                    </div>
-
-                    <div class="field">
-                        <label for="registerEmail">Email</label>
-                        <input type="email" id="registerEmail" name="Email" required />
-                    </div>
-
-                    <div class="field">
-                        <label for="registerPassword">Password</label>
-                        <input type="password" id="registerPassword" name="Password" required />
-                    </div>
-
-                    <div class="field">
-                        <label for="confirmPassword">Verify Password</label>
-                        <input type="password" id="confirmPassword" name="ConfirmPassword" required />
-                    </div>
+                    <label for="registerEmail">Email</label>
+                    <input type="email" id="registerEmail" name="Email" required />
                 </div>
 
-                <!-- Button + link under the grid -->
-                <div class="register-bottom">
-                    <button type="submit" class="register-btn">Register</button>
-                    <p>
-                        Already have an account?
-                        <a asp-controller="Home" asp-action="Login">Login here</a>
-                    </p>
+                <div>
+                    <label for="phone">Phone</label>
+                    <input type="tel" id="phone" name="Phone" required />
+
+                    <label for="registerPassword">Create Password</label>
+                    <input type="password" id="registerPassword" name="Password" required />
+
+                    <label for="confirmPassword">Confirm Password</label>
+                    <input type="password" id="confirmPassword" name="ConfirmPassword" required />
                 </div>
+            </div> 
+
+            <!-- BOTTOM SECTION -->
+                <label class="register-check">
+                    <input type="checkbox" name="AgreeToTerms" required />
+                    I agree to the <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>
+                </label>
+
+                <label class="register-check">
+                    <input type="checkbox" name="MarketingOptIn" />
+                    Send me updates about events &amp; promotions
+                </label>
+
+                <button type="submit">Create Account</button>
+
+                <p>
+                    Already have an account?
+                    <a asp-controller="Home" asp-action="Login">Login here</a>
+                </p>
             </form>
-
-        </div>
     </div>
-
-    <!-- Optional: you *can* keep the image here too if you like -->
-    <!-- <div class="auth-image"></div> -->
 </div>
 
 @section Scripts {
     <script>
-        // Interest chips selection logic
-        const chipsContainer = document.getElementById('interestChips');
-        const interestHidden = document.getElementById('interestHidden');
-
-        chipsContainer.addEventListener('click', (e) => {
-            const chip = e.target.closest('.chip');
-            if (!chip) return;
-
-            chip.classList.toggle('selected');
-
-            const selectedValues = Array.from(
-                chipsContainer.querySelectorAll('.chip.selected')
-            ).map(c => c.dataset.value);
-
-            interestHidden.value = selectedValues.join(', ');
-        });
-
-        // Simple client-side password match check
-        const registerForm = document.getElementById('registerForm');
-        registerForm.addEventListener('submit', (e) => {
+        document.getElementById('registerForm').addEventListener('submit', function (e) {
             const pwd = document.getElementById('registerPassword').value;
             const confirm = document.getElementById('confirmPassword').value;
 

@@ -1,91 +1,129 @@
-﻿@using Microsoft.AspNetCore.Http
-@inject IHttpContextAccessor HttpContextAccessor
+﻿<!-- Call MyAccountViewModel here -->
 
 @{
     ViewData["Title"] = "My Account";
-    var firstName = HttpContextAccessor.HttpContext?.Session.GetString("UserFirstName");
 }
 
-<div class="auth-wrapper">
-    <div class="auth-card" style="flex-direction: column; max-width: 1000px;">
-        <div class="auth-content" style="width: 100%; padding: 24px 32px;">
-            <h2>My Account</h2>
+<div class="myaccount-card">
+    <div class="accountinfo-card">
 
-            @if (!string.IsNullOrEmpty(firstName))
-            {
-                <p>Welcome back, <strong>@firstName</strong>.</p>
-            }
+            <h2>Welcome back, FirstName</h2> <!-- GetName here -->
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
             <div class="account-layout">
-                <!-- LEFT: Account details -->
+                <!-- LEFT: Booking history -->
+                <div class="account-bookings">
+                    <h3>Booking history</h3>
+                    <p class="section-subtitle">
+                        Showing your active and past bookings.
+                    </p>
+
+                    @if (Model.Bookings != null && Model.Bookings.Any())
+                    {
+                        <table class="bookings-table">
+                            <thead>
+                                <tr>
+                                    <th>Booking #</th>
+                                    <th>Event Name</th>
+                                    <th>Location</th>
+                                    <th>Date &amp; Time</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var b in Model.Bookings)
+                                {
+                                    <tr class="@(b.IsActive ? "booking-active" : "booking-inactive")">
+                                        <td>@b.BookingNumber</td>
+                                        <td>@b.EventName</td>
+                                        <td>@b.Location</td>
+                                        <td>@b.DateTime.ToString("dd MMM yyyy, HH:mm")</td>
+                                        <td>@(b.IsActive ? "Active" : "Completed")</td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    }
+                    else
+                    {
+                        <p>You don’t have any bookings yet.</p>
+                    }
+                </div>
+
+                <!-- RIGHT: Account details (read-only) -->
                 <div class="account-details">
                     <h3>Account details</h3>
                     <p class="section-subtitle">
-                        (For now these can be static, you can bind them to a model later.)
+                        These details are pulled from your account in the database.
                     </p>
 
-                    <form method="post">
-                        <div class="form-group">
-                            <label>First Name</label>
-                            <input type="text" name="FirstName" class="form-control" />
+                    <div class="details-list">
+                        <div class="details-row">
+                            <span class="details-label">First Name</span>
+                            <span class="details-value">@Model.FirstName</span>
                         </div>
-
-                        <div class="form-group">
-                            <label>Last Name</label>
-                            <input type="text" name="LastName" class="form-control" />
+                        <div class="details-row">
+                            <span class="details-label">Last Name</span>
+                            <span class="details-value">@Model.LastName</span>
                         </div>
-
-                        <div class="form-group">
-                            <label>Phone</label>
-                            <input type="tel" name="Phone" class="form-control" />
+                        <div class="details-row">
+                            <span class="details-label">Phone</span>
+                            <span class="details-value">@Model.Phone</span>
                         </div>
-
-                        <div class="form-group">
-                            <label>Email</label>
-                            <input type="email" name="Email" class="form-control" />
+                        <div class="details-row">
+                            <span class="details-label">Email</span>
+                            <span class="details-value">@Model.Email</span>
                         </div>
-
-                        <div class="form-group">
-                            <label>Interest</label>
-                            <input type="text" name="Interest" class="form-control" />
+                        <div class="details-row">
+                            <span class="details-label">Interest</span>
+                            <span class="details-value">@Model.Interest</span>
                         </div>
+                    </div>
 
-                        <button type="submit" class="nav-login-btn">
-                            Save Changes
+                    <!-- Optional: link to edit page -->
+
+                    <a asp-controller="Account" asp-action="Edit" class="nav-login-btn">
+                        Edit details
+                    </a>
+
+                    <form asp-controller="Home" asp-action="Logout" method="post" style="margin-top:12px;">
+                        <button type="submit" class="logout-btn">
+                            Logout
                         </button>
+
                     </form>
-                </div>
+                    <a asp-controller="Account" asp-action="Edit" class="nav-login-btn">
+                        Edit details
 
-                <!-- RIGHT: Current active bookings -->
-                <div class="account-bookings">
-                    <h3>Current Active Bookings</h3>
-                    <p class="section-subtitle">
-                        You can move your existing bookings table here.
-                    </p>
 
-                    <!-- For now, just a placeholder table -->
-                    <table class="bookings-table">
-                        <thead>
-                            <tr>
-                                <th>Booking #</th>
-                                <th>Event Name</th>
-                                <th>Location</th>
-                                <th>Date</th>
-                                <th>Time</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>EX-12345</td>
-                                <td>Sample Event</td>
-                                <td>Sample Location</td>
-                                <td>01 Jan 2026</td>
-                                <td>10:00</td>
-                            </tr>
-                        </tbody>
-                    </table>
-
-                    <!-- Later you'll replace this tbody with your real booking rows from the DB -->
+                    </a>
                 </div>
             </div>
         </div>
