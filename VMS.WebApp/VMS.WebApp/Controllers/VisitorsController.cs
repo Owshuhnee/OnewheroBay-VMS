@@ -13,7 +13,7 @@ namespace VMS.WebApp.Controllers
         // This is a field that holds our database context
         private readonly AppDbContext _context;
 
-        // This is the constructor - runs when the controller is created
+        // This is the constructor that runs when the controller is created
         public VisitorsController(AppDbContext context)
         {
             _context = context;
@@ -56,7 +56,7 @@ namespace VMS.WebApp.Controllers
             // Add to database context (not saved yet!)
             _context.Visitors.Add(visitor);
 
-            // Save changes to database (INSERT happens here)
+            // Save changes to database
             await _context.SaveChangesAsync();
 
             // Return 201 Created with location header

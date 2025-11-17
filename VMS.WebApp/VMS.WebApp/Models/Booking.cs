@@ -6,12 +6,9 @@
         public int VisitorID { get; set; }
         public int EventID { get; set; }
         public DateTime BookingDate { get; set; }
-        public int UserID { get; set; }  // ✅ ADD THIS - it's in database
+        public int UserID { get; set; }
         public decimal TotalPrice { get; set; }
-        public string? Status { get; set; }  // ✅ ADD THIS BACK - it's in database
-
-        // REMOVE NumberOfTickets - it doesn't exist in database
-        // public int NumberOfTickets { get; set; }  ❌ Remove this
+        public string? Status { get; set; }
 
         // Navigation properties
         public Visitor Visitor { get; set; } = null!;

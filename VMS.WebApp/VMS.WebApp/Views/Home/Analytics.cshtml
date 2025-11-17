@@ -1,173 +1,112 @@
 ﻿@{
     ViewData["Title"] = "Analytics Dashboard";
+    Layout = null;
 }
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Analytics Dashboard - Onewhero Bay</title>
+    <link rel="stylesheet" href="~/css/Analytics.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+</head>
+<body>
 
-<div class="analytics-page">
-    <!-- Page Header -->
-    <div class="analytics-header">
-        <div>
-            <h1>Analytics Dashboard</h1>
-            <p class="analytics-subtitle">Onewhero Bay Heritage Park</p>
+    <div class="analytics-page">
+
+        <!-- Header Section -->
+        <div class="analytics-header">
+            <div>
+                <h1>Analytics Dashboard</h1>
+                <p class="analytics-subtitle">Onewhero Bay Heritage Park</p>
+            </div>
         </div>
-        <a href="#" class="btn btn-primary">
-            <i class="fa-solid fa-paper-plane"></i>
-            Send Promotion
-        </a>
+
+        <!-- Statistics Cards Grid -->
+        <div class="stats-grid">
+
+            <div class="stat-card">
+                <div class="stat-icon">
+                    <i class="fa-solid fa-users"></i>
+                </div>
+                <h3 class="stat-title">Total Visitors</h3>
+                <p class="stat-value" id="total-visitors">Loading...</p>
+                <p class="stat-change">Registered users</p>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-icon">
+                    <i class="fa-solid fa-calendar-check"></i>
+                </div>
+                <h3 class="stat-title">Active Bookings</h3>
+                <p class="stat-value" id="active-bookings">Loading...</p>
+                <p class="stat-change">Currently scheduled</p>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-icon">
+                    <i class="fa-solid fa-chart-line"></i>
+                </div>
+                <h3 class="stat-title">This Month</h3>
+                <p class="stat-value" id="month-bookings">Loading...</p>
+                <p class="stat-change">Monthly bookings</p>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-icon">
+                    <i class="fa-solid fa-dollar-sign"></i>
+                </div>
+                <h3 class="stat-title">Revenue</h3>
+                <p class="stat-value" id="revenue">Loading...</p>
+                <p class="stat-change">This month</p>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-icon">
+                    <i class="fa-solid fa-calendar-days"></i>
+                </div>
+                <h3 class="stat-title">Upcoming Events</h3>
+                <p class="stat-value" id="upcoming-events">Loading...</p>
+                <p class="stat-change">Next 30 days</p>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-icon">
+                    <i class="fa-solid fa-check-circle"></i>
+                </div>
+                <h3 class="stat-title">Completed Events</h3>
+                <p class="stat-value" id="completed-events">Loading...</p>
+                <p class="stat-change">This month</p>
+            </div>
+
+        </div>
+
+        <!-- Content Grid (Bookings + Events) -->
+        <div class="content-grid">
+
+            <!-- Recent Bookings Card -->
+            <div class="content-card">
+                <h2>Recent Bookings</h2>
+                <div class="booking-list" id="recent-bookings-list">
+                    <p class="no-data">Loading bookings...</p>
+                </div>
+            </div>
+
+            <!-- Popular Events Card -->
+            <div class="content-card">
+                <h2>Popular Events</h2>
+                <div class="events-list" id="popular-events-list">
+                    <p class="no-data">Loading events...</p>
+                </div>
+            </div>
+
+        </div>
+
     </div>
 
-    <!-- Stats Grid -->
-    <div class="stats-grid">
-        <div class="stat-card">
-            <div class="stat-icon">
-                <i class="fa-solid fa-users"></i>
-            </div>
-            <h3 class="stat-title">Total Visitors</h3>
-            <p class="stat-value">1,234</p>
-            <p class="stat-change positive">+12% from last month</p>
-        </div>
+    <!-- JavaScript -->
+    <script src="~/js/Analytics.js"></script>
 
-        <div class="stat-card">
-            <div class="stat-icon">
-                <i class="fa-solid fa-calendar-check"></i>
-            </div>
-            <h3 class="stat-title">Active Bookings</h3>
-            <p class="stat-value">40</p>
-            <p class="stat-change">Currently scheduled</p>
-        </div>
-
-        <div class="stat-card">
-            <div class="stat-icon">
-                <i class="fa-solid fa-chart-line"></i>
-            </div>
-            <h3 class="stat-title">This Month</h3>
-            <p class="stat-value">156</p>
-            <p class="stat-change positive">+8% from last month</p>
-        </div>
-
-        <div class="stat-card">
-            <div class="stat-icon">
-                <i class="fa-solid fa-dollar-sign"></i>
-            </div>
-            <h3 class="stat-title">Revenue</h3>
-            <p class="stat-value">$12,450</p>
-            <p class="stat-change">This month</p>
-        </div>
-
-        <div class="stat-card">
-            <div class="stat-icon">
-                <i class="fa-solid fa-calendar-days"></i>
-            </div>
-            <h3 class="stat-title">Upcoming Events</h3>
-            <p class="stat-value">16</p>
-            <p class="stat-change">Next 30 days</p>
-        </div>
-
-        <div class="stat-card">
-            <div class="stat-icon">
-                <i class="fa-solid fa-check-circle"></i>
-            </div>
-            <h3 class="stat-title">Completed Events</h3>
-            <p class="stat-value">23</p>
-            <p class="stat-change">This month</p>
-        </div>
-    </div>
-
-    <!-- Content Grid -->
-    <div class="content-grid">
-        <!-- Recent Bookings -->
-        <div class="content-card">
-            <h2>Recent Bookings</h2>
-            <div class="booking-list">
-                <div class="booking-item">
-                    <div class="booking-info">
-                        <p class="booking-name">John Cena</p>
-                        <p class="booking-event">Milford Sound Cruise</p>
-                    </div>
-                    <div class="booking-details">
-                        <p class="booking-date">11-11-2025</p>
-                        <span class="status-badge confirmed">Confirmed</span>
-                    </div>
-                </div>
-
-                <div class="booking-item">
-                    <div class="booking-info">
-                        <p class="booking-name">Sarah Johnson</p>
-                        <p class="booking-event">Heritage Walk Tour</p>
-                    </div>
-                    <div class="booking-details">
-                        <p class="booking-date">16-11-2025</p>
-                        <span class="status-badge pending">Pending</span>
-                    </div>
-                </div>
-
-                <div class="booking-item">
-                    <div class="booking-info">
-                        <p class="booking-name">Mike Chen</p>
-                        <p class="booking-event">Safety Briefing</p>
-                    </div>
-                    <div class="booking-details">
-                        <p class="booking-date">17-11-2025</p>
-                        <span class="status-badge confirmed">Confirmed</span>
-                    </div>
-                </div>
-
-                <div class="booking-item">
-                    <div class="booking-info">
-                        <p class="booking-name">Emma Wilson</p>
-                        <p class="booking-event">Visitor Orientation</p>
-                    </div>
-                    <div class="booking-details">
-                        <p class="booking-date">18-11-2025</p>
-                        <span class="status-badge confirmed">Confirmed</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Popular Events -->
-        <div class="content-card">
-            <h2>Popular Events</h2>
-            <div class="events-list">
-                <div class="event-item">
-                    <div class="event-header">
-                        <span class="event-name">Milford Sound Cruise</span>
-                        <span class="event-count">45 bookings</span>
-                    </div>
-                    <div class="progress-bar">
-                        <div class="progress-fill" style="width: 100%;"></div>
-                    </div>
-                </div>
-
-                <div class="event-item">
-                    <div class="event-header">
-                        <span class="event-name">Heritage Walk Tour</span>
-                        <span class="event-count">38 bookings</span>
-                    </div>
-                    <div class="progress-bar">
-                        <div class="progress-fill" style="width: 84%;"></div>
-                    </div>
-                </div>
-
-                <div class="event-item">
-                    <div class="event-header">
-                        <span class="event-name">Safety Briefing</span>
-                        <span class="event-count">31 bookings</span>
-                    </div>
-                    <div class="progress-bar">
-                        <div class="progress-fill" style="width: 69%;"></div>
-                    </div>
-                </div>
-
-                <div class="event-item">
-                    <div class="event-header">
-                        <span class="event-name">Visitor Orientation</span>
-                        <span class="event-count">28 bookings</span>
-                    </div>
-                    <div class="progress-bar">
-                        <div class="progress-fill" style="width: 62%;"></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+</body>
+</html>
