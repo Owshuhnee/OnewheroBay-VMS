@@ -1,4 +1,6 @@
-﻿/* Outer background behind the rounded bar */
+﻿/* NAVBAR */
+
+/* Outer background behind the rounded bar */
 .top-nav-wrapper {
     padding: 8px 0;
     background-color: #f5f5f5;
@@ -15,13 +17,26 @@
     border-radius: 12px;
     display: flex;
     align-items: center;
+    justify-content: space-between; /* logo left, nav+account right */
+    gap: 24px;
 }
 
 /* Logo on the left */
-.nav-logo img {
-    height: 55px;
+.nav-logo {
+    flex-shrink: 0;
+}
+
+.top-nav-inner .nav-logo img {
+    max-height: 60px;
     width: auto;
+    height: auto;
     display: block;
+}
+
+/* Collapse container (links + account) */
+.top-nav-inner .navbar-collapse {
+    display: flex !important;
+    align-items: center;
 }
 
 /* Nav links in the middle */
@@ -35,31 +50,34 @@
         margin: 0 24px;
     }
 
-    .nav-links .nav-link {
-        color: #333;
-        font-size: 0.95rem;
-        text-decoration: none;
-        white-space: nowrap;
+.nav-link {
+    color: #2f2b25;
+    font-weight: 600;
+    transition: color 0.2s ease;
+}
+
+    .nav-link:hover {
+        color: #315a35; /* green accent on hover */
     }
 
-        .nav-links .nav-link:hover {
-            text-decoration: underline;
-        }
+/* Account/Profile on the right */
+.nav-login {
+    margin-left: auto;
+}
 
-/* Login/Profile button on the right */
 .nav-login-btn {
-    display: inline-block;
+    background-color: #315a35; /* matches primary button */
+    color: #fff;
     padding: 8px 24px;
-    background-color: #e8e8e8;
-    color: #333;
     border-radius: 999px;
     text-decoration: none;
-    font-size: 0.9rem;
-    transition: background-color 0.2s ease;
+    font-weight: 600;
+    transition: all 0.2s ease;
 }
 
     .nav-login-btn:hover {
-        background-color: #d6d6d6;
+        background-color: #3f6f43;
+        transform: translateY(-1px);
     }
 
 /* Hamburger button styling */
@@ -67,31 +85,5 @@
     border: none;
 }
 
-/* Let Bootstrap show its default icon */
 .navbar-light .navbar-toggler-icon {
-}
-
-/* --- Responsive tweaks --- */
-
-/* Tablet and Phones */
-@media (max-width: 992px) {
-    .top-nav-inner {
-        flex-wrap: wrap;
-    }
-
-    .nav-links {
-        flex-direction: column;
-        align-items: center;
-        margin-top: 10px;
-    }
-
-        .nav-links .nav-item {
-            margin: 4px 0;
-        }
-
-    .nav-login {
-        margin-top: 10px;
-        text-align: center;
-        width: 100%;
-    }
 }

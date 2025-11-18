@@ -1,68 +1,68 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "About Us";
 }
-
-<h1>Explore Onewhero Bay</h1>
-<h4 class="subtitle">Our Mission &amp; Core Values</h4>
-
 
 <div class="page-layout">
 
     <!-- MISSION SECTION -->
-      <section class="card mission-card">
-        <h4>Onewhero Bay: Embrace History and Nature</h4>
+    <section class="mission-landing">
+        <!-- Intro -->
+        <h1>Embrace History and Nature</h1>
         <p>
-            Onewhero Bay Heritage Park combines rich history and breathtaking natural beauty.
-            Our mission is to offer visitors an immersive experience that celebrates culture and
-            provides relaxation.
+            Onewhero Bay Heritage Park blends rich history with natural beauty,
+            offering visitors an immersive experience that celebrates culture, community,
+            and sustainability. We create lasting moments of inspiration and connection,
+            fostering a shared love for heritage and nature.
         </p>
 
-        <h4>Understanding Our Mission</h4>
-        <p>
-            Every great organization thrives on a strong foundation. At Onewhero Bay, our mission
-            is to preserve the cultural heritage of the region while promoting ecological sustainability
-            and an inviting atmosphere.
-        </p>
-        <ul>
-            <li>Conservation and preservation programs</li>
-            <li>Educational workshops and tours</li>
-            <li>Community engagement initiatives</li>
-        </ul>
+        <!-- Two-column wrapper -->
+        <div class="mission-vision-grid">
 
+            <!-- Mission -->
+            <div class="mission-section">
+                <h4>Understanding Our Mission</h4>
+                <p>
+                    Every great organization thrives on a strong foundation. At Onewhero Bay, our mission
+                    is to preserve the cultural heritage of the region while promoting ecological sustainability
+                    and an inviting atmosphere.
+                </p>
+
+                <!-- Mission cards -->
+                <div class="mission-cards">
+                    <div class="values-card">Conservation and preservation programs</div>
+                    <div class="values-card">Educational workshops and tours</div>
+                    <div class="values-card">Community engagement initiatives</div>
+                </div>
+            </div>
+
+            <!-- Vision -->
+            <div class="vision-section">
+                <h4>Our Values in Action</h4>
+                <p>
+                    Preservation, education, and community are at the heart of what we do. Through meticulous
+                    planning and collaboration, our programs strive to make history and nature accessible to
+                    everyone.
+                </p>
+
+                <!-- Vision cards -->
+                <div class="vision-cards">
+                    <div class="values-card">Discovering new conservation methods</div>
+                    <div class="values-card">Promoting experiential learning</div>
+                    <div class="values-card">Collaborating with families and communities</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Additional info + Quote
         <blockquote class="mission-quote">
             “Heritage inspires us, nature rejuvenates us – Onewhero Bay is where both thrive in harmony.”
-        </blockquote>
-
-        <h2>Our Values in Action</h2>
-        <p>
-            Preservation, education, and community are at the heart of what we do. Through meticulous
-            planning and collaboration, our programs strive to make history and nature accessible to
-            everyone.
-        </p>
-
-        <ul>
-            <li>Discovering new conservation methods</li>
-            <li>Promoting experiential learning</li>
-            <li>Collaborating with families and communities</li>
-        </ul>
-
-        <p>
-            We believe in cultivating a collaborative environment, where visitors, volunteers, and
-            experts come together to create captivating experiences. Transparency and communication
-            drive everything we do.
-        </p>
-
-        <p>
-            The impact of our park extends beyond its physical space. Each visitor leaves with a
-            deeper appreciation for heritage and a renewed commitment to sustainability. <br />
-            Onewhero Bay consistently leaves a lasting impression on its visitors. Together, we create
-            moments of inspiration, exploration, and connection, fostering a love for heritage and nature.
-        </p>
+        </blockquote> -->
     </section>
 
 
-    <!-- TEAM SECTION -->
     <section class="team-section">
+
+        <!-- TEAM STATS SECTION -->
         <h2>Meet Our Dedicated Park Stewardship Team</h2>
         <p class="team-intro">
             Our team is passionately committed to preserving the natural beauty and rich history of
@@ -75,53 +75,63 @@
             <li><span>10K+</span> Visitors Annually</li>
         </ul>
 
-    <div class="team-grid">
-        <article class="team-card">
-            <!-- Image here -->
-            <h3>Dr. Eleanor Vance</h3>
-            <p class="role">Chief Park Warden</p>
+        <!-- TEAM CARDS -->
+        <div class="team-grid">
+            <article class="team-card">
+                <img src="~/img/about-eleanor.jpg" alt="Dr. Eleanor Vance" class="team-photo" />
 
-            <h5>Park Headquarters</h5>
-            <p>Reach out to our central administration for general inquiries.</p>
-            <ul>
-                <li>1 Onewhero Bay Road, Onewhero, NZ</li>
-                <li>info@onewherobayheritagepark.nz</li>
-            </ul>
-        </article>
+                <h4>Dr. Eleanor Vance</h4>
+                <p class="role">Chief Park Warden</p>
 
-        <article class="team-card">
-            <!-- Image here -->
-            <h3>Marcus Thorne</h3>
-            <p class="role">Head of Conservation</p>
+                <h6>Park Headquarters</h6>
+                <p>Reach out to our central administration for general inquiries.</p>
 
-            <h5>Visitor Information Center</h5>
-            <p>Plan your visit with help from our knowledgeable staff.</p>
-            <ul>
-                <li>2 Heritage Lane, Onewhero Bay, NZ</li>
-                <li>visitors@onewherobayheritagepark.nz</li>
-            </ul>
-        </article>
+                <ul class="team-contact">
+                    <li>1 Onewhero Bay Road, Onewhero, NZ</li>
+                    <li>info@onewherobayheritagepark.nz</li>
+                </ul>
+            </article>
 
-        <article class="team-card">
-            <!-- Image here -->
-            <h3>Sophia Chen</h3>
-            <p class="role">Community Engagement Manager</p>
+            <article class="team-card">
+                <img src="~/img/about-marcus.jpg" alt="Marcus Thorne" class="team-photo" />
 
-            <h5>Event Coordination Office</h5>
-            <p>Contact us for event bookings and special arrangements.</p>
-            <ul>
-                <li>3 Park Avenue, Onewhero Bay, NZ</li>
-                <li>events@onewherobayheritagepark.nz</li>
-            </ul>
-        </article>
+                <h4>Marcus Thorne</h4>
+                <p class="role">Head of Conservation</p>
+
+                <h6>Visitor Information Center</h6>
+                <p>Plan your visit with help from our knowledgeable staff.</p>
+
+                <ul class="team-contact">
+                    <li>2 Heritage Lane, Onewhero Bay, NZ</li>
+                    <li>visitors@onewherobayheritagepark.nz</li>
+                </ul>
+            </article>
+
+            <article class="team-card">
+                <img src="~/img/about-sophia.jpg" alt="Sophia Chen" class="team-photo" />
+
+                <h4>Sophia Chen</h4>
+                <p class="role">Community Engagement Manager</p>
+
+                <h6>Event Coordination Office</h6>
+                <p>Contact us for event bookings and special arrangements.</p>
+
+                <ul class="team-contact">
+                    <li>3 Park Avenue, Onewhero Bay, NZ </li>
+                    <li>events@onewherobayheritagepark.nz</li>
+                </ul>
+            </article>
+        </div>
+    </section>
+
 
 
     <!-- TESTIMONIAL SECTION -->
-        <section class="card visitors-card">
-            <h2>What our visitors say</h2>
+    <section class="visitors-card">
+        <h2>What our visitors say</h2>
 
-            <div class="testimonial">
-                <!-- add <img> for avatar if you have one -->
+        <div class="testimonial-grid">
+            <div class="testimonial-card">
                 <p>
                     Visiting Onewhero Bay was unforgettable. The blend of history, nature,
                     and warm staff made it a perfect day out for me and my family.
@@ -129,7 +139,7 @@
                 <p class="testimonial-name">– Emma Taylor, Auckland Resident</p>
             </div>
 
-            <div class="testimonial">
+            <div class="testimonial-card">
                 <p>
                     I left with a new appreciation for ecological preservation. Stunning scenery
                     and enriching history lessons made our trip truly special.
@@ -137,10 +147,15 @@
                 <p class="testimonial-name">– Jenn Davies, Historian</p>
             </div>
 
-            <button class="primary-btn">Plan Your Visit</button>
-        </section>
-    </div>
+            <div class="testimonial-card">
+                <p>
+                    The trip to the infinity castle was great. We finally defeated Muzan after a thousand
+                    years. But at what cost?
+                </p>
+                <p class="testimonial-name">– Tanjiro Kamada, Demon Slayer</p>
+            </div>
+        </div>
 
-
-    </div>
-</section>
+        <button class="btn btn-primary">Plan Your Visit</button>
+    </section>
+</div>

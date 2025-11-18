@@ -2,46 +2,200 @@
     ViewData["Title"] = "Park Info";
 }
 
-<h1> Unveil Wonders</h1>
-<p> Onewhero Bay Heritage Park offers a unique blend of natural beauty and historical charm, 
-    making it the perfect destination for family outings, outdoor adventures, and cultural exploration. 
-    Whether you’re interested in scenic trails, historic exhibits, or enjoying serene park landscapes, 
-    there is something for everyone to appreciate in our inviting and tranquil environment.</p>
+<!-- Hero section + Today's Highlight  -->
+<section class="park-hero-wrapper">
+    <div class="park-hero">
+        <div class="park-hero-text">
+            <h1>Plan Your Visit</h1>
+            <p class="park-lead">
+                Everything you need to know before you arrive at Onewhero Bay Heritage Park –
+                opening hours, admission, directions, and visitor facilities.
+            </p>
 
-    <div class="ParkInfoEvent1">
-        <h3> Exploring Kiwi Habitats in Depth </h3>
-        <p> Dive into the unique and fascinating world of the kiwi bird, discovering its natural habitat and preservation efforts. </p>
-        <p> MARCH 12, 2025 </p>
-        <a href="/Home/ParkInfo class=btn btn-primary1">Learn More</a>
-    </div>
-
-    <div class="ParkInfoEvent2">
-        <h3> New Trails Unveiled in Onewhero Bay </h3>
-        <p> Experience the scenic beauty of Onewhero Bay with newly opened walking and hiking trails, designed for all nature enthusiasts. </p>
-        <p> APRIL 07, 2025 </p>
-        <a href="/Home/ParkInfo class=btn btn-primary1">Explore Now</a>
+            <div class="park-hero-actions">
+                <a asp-controller="Home" asp-action="Events" class="btn btn-primary">
+                    View Events
+                </a>
+              </div>
         </div>
 
-    <div class="ParkInfoEvent3">
-        <h3> Kiwi Night Tours Introduced </h3>
-        <p> Embark on a mesmerizing night tour at the Kiwi house and see these remarkable birds come alive after dark. </p>
-        <p> MARCH 12, 2025 </p>
-        <a href="/Home/ParkInfo class=btn btn-primary1">Learn More</a>
+        <aside class="park-hero-highlight">
+            <h2>Today at a Glance</h2>
+            <ul>
+                <li><strong>Hours:</strong> 9:00am – 5:00pm</li>
+                <li><strong>Last entry:</strong> 4:30pm</li>
+                <li><strong>Location:</strong> 1 Onewhero Bay Road, Onewhero, NZ</li>
+            </ul>
+            <p class="note">
+                Opening hours may change for special events and public holidays.
+            </p>
+        </aside>
     </div>
+</section>
 
-    <div class="ParkInfoEvent4">
-        <h3> Marae: Sacred Ground </h3>
-        <p> Learn about the spiritual and cultural significance of the Marae at Onewhero Bay Heritage Park. </p>
-        <p> MARCH 12, 2025 </p>
-        <a href="/Home/ParkInfo class=btn btn-primary1">Learn More</a>
+<!-- Additional information section -->
+<div class="park-layout-wrapper">
+    <div class="park-layout">
+
+        <!-- LEFT COLUMN – ESSENTIAL INFO -->
+        <section class="park-main card">
+
+            <h2>Visitor Essentials</h2>
+
+            <div class="info-grid">
+
+                <article class="info-block">
+                    <h3>Opening Hours</h3>
+                    <p>
+                        Onewhero Bay Heritage Park is open <strong>7 days a week</strong>.
+                    </p>
+                    <ul>
+                        <li>Weekdays: 9:00am – 5:00pm</li>
+                        <li>Weekends &amp; holidays: 9:00am – 6:00pm</li>
+                    </ul>
+                    <p class="small-note">
+                        Guided tours depart at 10:00am, 1:00pm, and 3:00pm.
+                    </p>
+                </article>
+
+                <article class="info-block">
+                    <h3>Getting Here</h3>
+                    <p>
+                        We’re located just outside Onewhero township, with easy access by car and local
+                        shuttle services.
+                    </p>
+                    <ul>
+                        <li>On-site parking </li>
+                        <li>EV charging stations available</li>
+                        <li>Bike racks near the main entrance</li>
+                    </ul>
+                </article>
+
+                <article class="info-block">
+                    <h3>Accessibility </h3>
+                    <ul>
+                        <li>Wheelchair-friendly paths in key areas</li>
+                        <li>Accessible restrooms and baby-change facilities</li>
+                        <li>Picnic tables, shaded seating, and drinking fountains</li>
+                        <li>Café and gift shop near the main plaza</li>
+                    </ul>
+                </article>
+
+                <article class="info-block">
+                    <h3>Park Guidelines</h3>
+                    <p>
+                    Help us keep Onewhero Bay Heritage Park clean, safe, and enjoyable for all visitors.
+                    </p>
+
+                    <ul>
+                        <li>Dogs must remain on a leash at all times</li>
+                        <li>No smoking in heritage zones and indoor spaces</li>
+                        <li>Please stay on marked trails and respect wildlife habitats</li>
+                    </ul>
+                </article>
+            </div>
+        </section>
+
+        <!-- RIGHT COLUMN – MAP + CONTACT -->
+        <aside class="park-side">
+
+            <section class="card park-map-card">
+                <h3>Find Us</h3>
+                <p>1 Onewhero Bay Road, Onewhero, New Zealand</p>
+                <div class="map-placeholder">
+                    <span>Map Placeholder</span>
+                </div>
+            </section>
+
+            <section class="card park-contact-card">
+                <h3>Visitor Information Center</h3>
+                <ul>
+                    <li><strong>Phone:</strong> (09) 555 0123</li>
+                    <li><strong>Email:</strong> visitors@onewherobayheritagepark.nz</li>
+                    <li><strong>Group bookings:</strong> events@onewherobayheritagepark.nz</li>
+                </ul>
+                <p class="small-note">
+                    For accessibility needs or special arrangements, please contact us before your visit.
+                </p>
+                <a asp-controller="Home" asp-action="Booking" class="btn btn-secondary full-width-btn">
+                    Plan a Group Visit
+                </a>
+            </section>
+
+        </aside>
+
     </div>
+</div>
 
-    <div class="ParkInfoEvent5">
-        <h3> Onewhero Bay Park </h3>
-        <p> Discover the rich history and breathtaking natural beauty of Onewhero Bay Heritage Park. </p>
-        <p> MARCH 12, 2025 </p>
-        <a href="/Home/ParkInfo class=btn btn-primary1">Learn More</a>
+
+<!-- FAQ SECTION -->
+<section class="faq-section card">
+    <h2>Frequently Asked Questions</h2>
+    <p class="faq-intro">
+        Have a question before your visit? Here are some of the most common inquiries we receive.
+    </p>
+
+    <div class="faq-list">
+
+        <article class="faq-item">
+            <button class="faq-question">Can I bring my dog to the park?</button>
+            <div class="faq-answer">
+                <p>
+                    Yes, dogs are welcome in outdoor areas as long as they are on a leash and under control.
+                    Please clean up after your pets to help keep the park beautiful for everyone.
+                </p>
+            </div>
+        </article>
+
+        <article class="faq-item">
+            <button class="faq-question">Do I need to book in advance?</button>
+            <div class="faq-answer">
+                <p>
+                    Advance booking is recommended for guided tours, events, or group visits.
+                    General park entry does not require a reservation.
+                </p>
+            </div>
+        </article>
+
+        <article class="faq-item">
+            <button class="faq-question">Is there parking available?</button>
+            <div class="faq-answer">
+                <p>
+                    Yes. We offer free parking for visitors, including accessible and EV charging spaces.
+                    Overflow parking is available during peak weekends.
+                </p>
+            </div>
+        </article>
+
+        <article class="faq-item">
+            <button class="faq-question">What happens if it rains?</button>
+            <div class="faq-answer">
+                <p>
+                    The park remains open in light rain. Some outdoor activities may be rescheduled
+                    during heavy weather for safety reasons.
+                </p>
+            </div>
+        </article>
+
     </div>
+</section>
 
 
-</footer>
+<!-- FAQ - Javascript (Accordion Logic) -->
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const faqItems = document.querySelectorAll(".faq-item");
+
+        faqItems.forEach(item => {
+            const question = item.querySelector(".faq-question");
+            question.addEventListener("click", () => {
+                // Close all others
+                faqItems.forEach(i => {
+                    if (i !== item) i.classList.remove("active");
+                });
+                // Toggle current one
+                item.classList.toggle("active");
+            });
+        });
+    });
+</script>

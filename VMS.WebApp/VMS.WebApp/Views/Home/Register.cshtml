@@ -1,0 +1,71 @@
+﻿@{
+    ViewData["Title"] = "Register";
+}
+
+<div class="register-card">
+    <div class="register-content">
+        <form id="registerForm"
+              method="post"
+              asp-action="Register">
+
+            <h1>Create an account</h1>
+
+            <!-- 2-COLUMN GRID -->
+            <div class="register-grid">
+                <div>
+                    <label for="firstName">First Name</label>
+                    <input type="text" id="firstName" name="FirstName" required />
+
+                    <label for="lastName">Last Name</label>
+                    <input type="text" id="lastName" name="LastName" required />
+
+                    <label for="registerEmail">Email</label>
+                    <input type="email" id="registerEmail" name="Email" required />
+                </div>
+
+                <div>
+                    <label for="phone">Phone</label>
+                    <input type="tel" id="phone" name="Phone" required />
+
+                    <label for="registerPassword">Create Password</label>
+                    <input type="password" id="registerPassword" name="Password" required />
+
+                    <label for="confirmPassword">Confirm Password</label>
+                    <input type="password" id="confirmPassword" name="ConfirmPassword" required />
+                </div>
+            </div> 
+
+            <!-- BOTTOM SECTION -->
+                <label class="register-check">
+                    <input type="checkbox" name="AgreeToTerms" required />
+                    I agree to the <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>
+                </label>
+
+                <label class="register-check">
+                    <input type="checkbox" name="MarketingOptIn" />
+                    Send me updates about events &amp; promotions
+                </label>
+
+                <button type="submit">Create Account</button>
+
+                <p>
+                    Already have an account?
+                    <a asp-controller="Home" asp-action="Login">Login here</a>
+                </p>
+            </form>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        document.getElementById('registerForm').addEventListener('submit', function (e) {
+            const pwd = document.getElementById('registerPassword').value;
+            const confirm = document.getElementById('confirmPassword').value;
+
+            if (pwd !== confirm) {
+                e.preventDefault();
+                alert('Passwords do not match. Please re-enter.');
+            }
+        });
+    </script>
+}
