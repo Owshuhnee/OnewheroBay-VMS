@@ -1,34 +1,218 @@
-﻿.account-layout {
-    display: grid;
-    grid-template-columns: 2fr 1.4fr; /* bookings left, details right */
-    gap: 32px;
+﻿/* Outer container – same idea as Booking page */
+.myaccount-card {
+    background-color: #f5e6c8;
+    padding: 85px 100px;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    margin: 0 auto 60px;
+    max-width: 1300px;
+    align-items: flex-start;
+    justify-content: space-between;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    margin-bottom: 60px;
 }
 
-.details-list {
+.myaccount-title {
+    font-size: 2.4rem;
+    font-weight: 800;
+    margin-bottom: 2rem;
+}
+
+/* Two-column layout */
+.account-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1.1fr) minmax(0, 1.4fr);
+    gap: 32px;
+    align-items: flex-start;
+}
+
+/* Cards */
+.account-summary,
+.account-bookings {
+    background: #ffffff;
+    border-radius: 12px;
+    border: 1px solid #dedede;
+    padding: 24px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+    height: 100%;
+}
+
+/* Headings */
+.section-title {
+    margin: 0 0 8px;
+    font-size: 1.3rem;
+    color: #1a3a2a;
+}
+
+.section-subtitle {
+    margin: 0 0 16px;
+    font-size: 0.9rem;
+    color: #555;
+}
+
+/* PROFILE CARD HEADER (avatar + name) */
+.profile-card-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 18px;
+}
+
+/* Avatar circle */
+.profile-avatar {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    background: #4f7c55;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    flex-shrink: 0;
+}
+
+/* Avatar initials (fallback) */
+.avatar-initials {
+    color: #fff;
+    font-weight: 600;
+    font-size: 1.4rem;
+}
+
+/* If you use an image instead of initials */
+.profile-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Name + email next to avatar */
+.profile-main {
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: 2px;
 }
 
-.details-row {
+.profile-name {
+    margin: 0;
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #1a3a2a;
+}
+
+.profile-email {
+    margin: 0;
+    font-size: 0.9rem;
+    color: #555;
+}
+
+/* Fields list */
+.account-fields {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin: 8px 0 18px;
+    border-top: 1px solid #ececec;
+    padding-top: 10px;
+}
+
+.field-row {
     display: flex;
     justify-content: space-between;
-    gap: 16px;
+    border-bottom: 1px solid #f2f2f2;
+    padding: 6px 0;
 }
 
-.details-label {
+.field-label {
     font-weight: 600;
+    color: #333;
+    font-size: 0.95rem;
+}
+
+.field-value {
     color: #444;
+    font-size: 0.95rem;
+    text-align: right;
 }
 
-.details-value {
-    color: #222;
+/* Buttons under account info */
+.account-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 20px;
+    justify-content: center;
 }
 
-.booking-active td {
-    font-weight: 600;
+.btn-secondary {
+    display: inline-block;
+    padding: 8px 16px;
+    border-radius: 6px;
+    border: 1px solid #4f7c55;
+    background: #4f7c55;
+    color: #fff;
+    font-size: 0.9rem;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background 0.2s ease;
 }
 
-.booking-inactive td {
-    color: #777;
+    .btn-secondary:hover {
+        background: #3e6644;
+    }
+
+/* Booking history table */
+.bookings-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.9rem;
+}
+
+    .bookings-table thead {
+        background: #f5f7f5;
+    }
+
+    .bookings-table th,
+    .bookings-table td {
+        padding: 8px 10px;
+        text-align: left;
+        border-bottom: 1px solid #e2e2e2;
+    }
+
+    .bookings-table th {
+        font-weight: 600;
+        color: #444;
+    }
+
+    .bookings-table::-webkit-scrollbar {
+        width: 6px;
+    }
+
+    .bookings-table::-webkit-scrollbar-thumb {
+        background: #b9c5b9;
+        border-radius: 4px;
+    }
+
+
+.booking-active {
+    background: rgba(79, 124, 85, 0.04);
+}
+
+
+
+/* Responsive */
+@media (max-width: 900px) {
+    .account-layout {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 600px) {
+    .field-row {
+        flex-direction: column;
+        gap: 2px;
+        text-align: left;
+    }
+
+    .field-value {
+        text-align: left;
+    }
 }
