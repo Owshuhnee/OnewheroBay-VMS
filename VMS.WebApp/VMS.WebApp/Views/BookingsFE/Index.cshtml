@@ -1,0 +1,137 @@
+﻿@model VMS.WebApp.Models.BookingStartViewModel
+
+@{
+    ViewData["Title"] = "Booking";
+}
+
+<div class="myaccount-card">
+
+    <!-- TWO COLUMN GRID: EVENT CARD (LEFT) + FORM (RIGHT) -->
+    <section class="booking-layout">
+
+        <!-- LEFT: Event card from DB -->
+        <article class="event-card">
+
+            <div class="event-media">
+                <img src="@(string.IsNullOrWhiteSpace(Model.EventImage)
+                                                   ? "/img/homepage1.png"
+                                                   : Model.EventImage)"
+                     alt="@Model.EventName" />
+
+                <span class="event-interest-tag">
+                    @(!string.IsNullOrWhiteSpace(Model.Schedule) ? "Schedule" : "Event")
+                </span>
+            </div>
+
+            <div class="event-body">
+
+                <h3 class="event-title">@Model.EventName</h3>
+
+                <p class="event-schedule-day">
+                    @(string.IsNullOrWhiteSpace(Model.Schedule)
+                                        ? "Schedule to be confirmed"
+                                        : Model.Schedule)
+                </p>
+
+                <p class="event-desc">
+                    @Model.Description
+                </p>
+
+                <div class="event-footer">
+                    <div class="event-info-row">
+                        @if (Model.TicketPrice.HasValue)
+                        {
+                            <span class="event-price">
+                                @Model.TicketPrice.Value.ToString("C")
+                            </span>
+                        }
+                        else
+                        {
+                            <span class="event-price">Not yet priced</span>
+                        }
+
+                        <span class="event-slots">
+                            🔸 Available: @(Model.AvailableSlots ?? 0)
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </article>
+
+        <!-- RIGHT: Booking Details form -->
+        <section class="bookingcard-right">
+            <h2>Booking Details</h2>
+            <p>
+                Please provide your booking information. You’ll receive a confirmation once complete.
+            </p>
+
+            <form asp-action="Start" method="post">
+                @Html.AntiForgeryToken()
+
+                <!-- keep track of event -->
+                <input type="hidden" asp-for="EventID" />
+
+                <div class="two-col">
+                    <div>
+                        <label asp-for="PreferredDate"></label>
+                        <input asp-for="PreferredDate" type="date" />
+                        <span asp-validation-for="PreferredDate" class="text-danger"></span>
+                    </div>
+                    <div>
+                        <label asp-for="PreferredTime"></label>
+                        <input asp-for="PreferredTime" type="time" />
+                        <span asp-validation-for="PreferredTime" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div>
+                    <label asp-for="GuestCount"></label>
+                    <input asp-for="GuestCount" type="number" min="1" />
+                    <span asp-validation-for="GuestCount" class="text-danger"></span>
+                </div>
+
+                <div>
+                    <label asp-for="SpecialRequest"></label>
+                    <textarea asp-for="SpecialRequest" rows="3"></textarea>
+                </div>
+
+                <div class="total-row">
+                    <span>Estimated Total</span>
+                    <strong id="totalPrice">
+                        @Model.TotalPrice.ToString("C")
+                    </strong>
+                </div>
+
+                <button type="submit" class="primary-btn">Confirm Booking</button>
+            </form>
+        </section>
+
+        <a asp-controller="EventsFE"
+           asp-action="Index"
+           class="back-link">
+            ← Back to all Events
+        </a>
+
+    </section>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+
+    <script>
+        (function () {
+            const guestsInput = document.getElementById("GuestCount");
+            const totalSpan = document.getElementById("estimatedTotal");
+            const pricePer = @((Model.TicketPrice ?? 0).ToString(System.Globalization.CultureInfo.InvariantCulture));
+
+            function updateTotal() {
+                const qty = Number(guestsInput.value) || 1;
+                const total = qty * pricePer;
+                totalSpan.textContent = total.toLocaleString(undefined,
+                    { style: "currency", currency: "NZD" }); // adjust currency if needed
+            }
+
+            guestsInput.addEventListener("input", updateTotal);
+        })();
+    </script>
+}

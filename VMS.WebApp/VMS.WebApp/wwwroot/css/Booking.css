@@ -107,6 +107,18 @@
     }
 
 
+.back-link {
+    font-size: 16px;
+    font-weight: 600;
+    color: #2a5b3d;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+    .back-link:hover {
+        color: #1d402a;
+    }
+
 /* Responsive: stack columns on smaller screens */
 @media (max-width: 900px) {
     .booking-layout {

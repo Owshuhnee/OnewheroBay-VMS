@@ -114,30 +114,32 @@ namespace VMS.WebApp.Controllers
         }
 
         // LOGIN ACTION
+       
         [HttpPost]
         public async Task<IActionResult> Login(LoginViewModel model)
         {
             if (!ModelState.IsValid)
-                return View("LoginRegister", model);   // or "Index"
+                return View("LoginRegister", model);   // or "Login"
 
             var user = await _context.Users
                 .FirstOrDefaultAsync(u =>
                     u.Email == model.Email &&
-                    u.Password == model.Password);     // TODO: hash compare later
+                    u.Password == model.Password);     // TODO: hash later
 
             if (user == null)
             {
                 TempData["Error"] = "Invalid email or password.";
-                // back to login/register page
-                return RedirectToAction("LoginRegister");  // or RedirectToAction("Index")
+                return RedirectToAction("LoginRegister");
             }
 
-            // ? Store first name in session (navbar uses this)
+            // Store user info in Session
+            HttpContext.Session.SetInt32("UserID", user.UserId);
             HttpContext.Session.SetString("UserFirstName", user.FirstName);
+            HttpContext.Session.SetString("UserRole", user.Role);
 
-            // ? Redirect to homepage (Account button will now say Welcome, FirstName!)
             return RedirectToAction("Index", "Home");
         }
+
 
     }
 }
