@@ -3,13 +3,13 @@
 /* Outer background behind the rounded bar */
 .top-nav-wrapper {
     padding: 8px 0;
-    background-color: #f5f5f5;
+    background-color: #fff;
 }
 
 /* Main rounded navbar container */
 .top-nav-inner {
     width: 90%;
-    max-width: 1400px;
+    max-width: 1300px;
     margin: 0 auto;
     padding: 10px 30px;
     background-color: #ffffff;

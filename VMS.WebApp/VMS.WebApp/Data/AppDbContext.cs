@@ -73,29 +73,22 @@ namespace VMS.WebApp.Data
             modelBuilder.Entity<Event>(entity =>
             {
                 entity.ToTable("events");  // Postgres table name
+                    entity.HasKey(e => e.EventID);
+                    entity.Property(e => e.EventID).HasColumnName("event_id");
+                    entity.Property(e => e.EventName).HasColumnName("event_name");
+                    entity.Property(e => e.Description).HasColumnName("description");
+                    entity.Property(e => e.EventImage).HasColumnName("event_image");
+                    entity.Property(e => e.IsActive).HasColumnName("is_active");
+                    entity.Property(e => e.TicketPrice).HasColumnName("ticket_price");
+                    entity.Property(e => e.AvailableSlots).HasColumnName("available_slots");
+                    entity.Property(e => e.Schedule).HasColumnName("schedule");
+                    entity.Property(e => e.Interest).HasColumnName("interest");
 
-                entity.HasKey(e => e.EventID);
-
-                entity.Property(e => e.EventID)
-                      .HasColumnName("event_id");
-
-                entity.Property(e => e.EventName)
-                      .HasColumnName("title");
-
-                entity.Property(e => e.Description)
-                      .HasColumnName("description");
-
-                entity.Property(e => e.Location)
-                      .HasColumnName("location");
-
-                entity.Property(e => e.IsActive)
-                      .HasColumnName("is_active");
-
-                entity.HasMany(e => e.Sessions) // 1 Event -> many Event Sessions
-                      .WithOne(s => s.Event)
-                      .HasForeignKey(s => s.EventID);
-
+                // We are NOT using Location or Sessions anymore:
+                // entity.Property(e => e.Location).HasColumnName("location");
+                // entity.HasMany(e => e.Sessions)...  // removed
             });
+
 
             // EVENT SESSIONS TABLE
             modelBuilder.Entity<EventSession>(entity =>
