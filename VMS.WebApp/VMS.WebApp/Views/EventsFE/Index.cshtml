@@ -91,9 +91,9 @@
                         </span>
                     </div>
 
-                    <a asp-controller="Booking"
-                       asp-action="Start"
-                       asp-route-id="@evt.EventID"
+                    <a asp-controller="BookingsFE"
+                       asp-action="Index"
+                       asp-route-eventId="@evt.EventID"
                        class="event-book-btn">
                         Book Now
                     </a>
