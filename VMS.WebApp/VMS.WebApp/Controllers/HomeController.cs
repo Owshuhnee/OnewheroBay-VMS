@@ -74,47 +74,50 @@ namespace VMS.WebApp.Controllers
         {
             if (!ModelState.IsValid)
             {
-                // Reload the login/register page if validation fails
-                return View("LoginRegister", model);   // use "Index" if that's where your form is
+                return View("LoginRegister", model);
             }
 
-            // Optional: prevent duplicate email
             var emailExists = await _context.Users
                 .AnyAsync(u => u.Email == model.Email);
 
             if (emailExists)
             {
                 ModelState.AddModelError("", "Email is already registered.");
-                return View("LoginRegister", model);   // or "Index"
+                return View("LoginRegister", model);
             }
+
+            // make a comma-separated string, e.g. "tours,nature"
+            var interestsCsv = (model.SelectedInterests != null && model.SelectedInterests.Any())
+                ? string.Join(",", model.SelectedInterests)
+                : null;
 
             var user = new User
             {
-                Role = "Visitor",               // default role
+                Role = "Visitor",
                 FirstName = model.FirstName,
                 LastName = model.LastName,
                 Phone = model.Phone,
                 Email = model.Email,
-                Password = model.Password,      // TODO: hash later
+                Password = model.Password,  // TODO: hash later
                 CreatedDate = DateTime.UtcNow,
-                IsActive = true
+                IsActive = true,
+                Interests = interestsCsv   // Structured interests
             };
 
             _context.Users.Add(user);
             await _context.SaveChangesAsync();
 
-            // ?? Auto-login after successful registration
             HttpContext.Session.SetString("UserFirstName", user.FirstName);
+            HttpContext.Session.SetInt32("UserID", user.UserId);
+            HttpContext.Session.SetString("UserRole", user.Role);
 
-            // Optional message (if you still want it)
             TempData["Registered"] = "Account created successfully.";
-
-            // ?? Send them to home so navbar can now show "Welcome, FirstName!"
             return RedirectToAction("Index", "Home");
         }
 
+
         // LOGIN ACTION
-       
+
         [HttpPost]
         public async Task<IActionResult> Login(LoginViewModel model)
         {
