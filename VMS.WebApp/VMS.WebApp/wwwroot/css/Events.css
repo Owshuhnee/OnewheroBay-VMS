@@ -1,6 +1,4 @@
-﻿/* Hero */
-
-/* Hero Section */
+﻿/* Hero Section */
 .events-hero {
     background-color: #b8c6b3;
     padding: 70px 100px;
@@ -12,7 +10,7 @@
     display: grid;
     grid-template-columns: 1.2fr 1fr;
     align-items: center;
-    gap: 40px;
+    gap: 20px;
 }
 
 /* Left text */
@@ -68,7 +66,7 @@
 
     .chip:hover {
         background-color: #f4e2c1;
-        transform: translateY(-1px);
+        transform: translateY(2px);
     }
 
     .chip.is-active {
@@ -96,7 +94,8 @@
     overflow: hidden;
     display: flex;
     flex-direction: column;
-    height: 520px;
+    max-height: 520px;
+    height: auto;
 }
 
 /* Media with fixed aspect ratio */
@@ -225,38 +224,95 @@
     }
 
 
-/* Responsive */
-@media (max-width: 900px) {
+/* MOBILE (0–767px) */
+@media (max-width: 767px) {
     .events-hero {
-        padding: 50px 24px;
+        padding: 40px 20px;
+        text-align: center;
     }
+
+    .events-header h1 {
+        font-size: 2rem;
+    }
+
+    .events-header p {
+        font-size: 1rem;
+    }
+
 
     .events-hero-grid {
         grid-template-columns: 1fr;
         gap: 24px;
-        text-align: center;
     }
 
     .events-hero-img img {
         margin: 0 auto;
-        max-width: 80%;
+        max-width: 90%;
     }
 
-    .events-hero {
-        padding: 40px 0;
+    .event-card {
+        height: auto;
+    }
+
+    .event-body {
+        padding: 16px 20px;
+    }
+
+    .event-book-btn {
+        width: 160px;
     }
 
     .chips {
-        justify-content: center;
+        justify-content: flex-start;
+        padding-left: 16px;
+    }
+
+    .chip {
+        flex: 0 0 auto;
+        min-width: 100px;
     }
 
     .events-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns: 1fr; /* ONE COLUMN on mobile */
+        gap: 20px;
     }
-
-    .events-grid {
-        grid-template-columns: repeat(2, minmax(0,1fr));
+    .event-book-btn {
+        width: 100%; 
+        display: block;
+        padding: 12px 0;
+        max-width: none;
+        margin: 0; 
+        border-radius: 10px;
+        font-size: 1rem;
     }
 }
-  
+
+/* TABLET (768–1023px) */
+@media (min-width: 768px) and (max-width: 1023px) {
+    .events-hero {
+        padding: 60px 40px;
+    }
+
+    .events-hero-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 32px;
+    }
+
+    .events-grid {
+        grid-template-columns: repeat(2, minmax(0,1fr)); /* TWO COLUMNS */
+        gap: 24px;
+    }
+}
+
+/* DESKTOP (1024px+) */
+@media (min-width: 1024px) {
+    .events-hero {
+        padding: 70px 100px;
+    }
+
+    .events-grid {
+        grid-template-columns: repeat(3, minmax(0,1fr)); /* THREE COLUMNS */
+        gap: 26px;
+    }
+}
 

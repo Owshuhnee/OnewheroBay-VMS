@@ -4,13 +4,12 @@
 
 <div class="register-card">
     <div class="register-content">
-        <form id="registerForm"
-              method="post"
-              asp-action="Register">
+
+        <form id="registerForm" method="post" asp-action="Register">
 
             <h1>Create an account</h1>
 
-            <!-- 2-COLUMN GRID -->
+            <!-- TWO COLUMN GRID -->
             <div class="register-grid">
                 <div>
                     <label for="firstName">First Name</label>
@@ -35,34 +34,47 @@
                 </div>
             </div>
 
-            <!-- BOTTOM SECTION -->
-            <div class="form-group" style="margin-top: 20px;">
-                <p style="font-weight:600; margin-bottom:8px;">What are you most interested in?</p>
+            <!-- INTEREST SECTION -->
+            <div class="form-group interests">
+                <p class="interest-title">What are you most interested in?</p>
 
                 <label class="register-check">
                     <input type="checkbox" name="SelectedInterests" value="tours" />
-                    Tours
+                    <span>Tours</span>
                 </label>
 
                 <label class="register-check">
                     <input type="checkbox" name="SelectedInterests" value="nature" />
-                    Nature & walks
+                    <span>Nature & walks</span>
                 </label>
 
                 <label class="register-check">
                     <input type="checkbox" name="SelectedInterests" value="workshops" />
-                    Workshops
+                    <span>Workshops</span>
                 </label>
 
                 <label class="register-check">
                     <input type="checkbox" name="SelectedInterests" value="special" />
-                    Special events
+                    <span>Special events</span>
                 </label>
             </div>
 
-            </form>
+            <!-- SUBMIT BUTTON -->
+            <button type="submit" class="register-submit">Create Account</button>
+
+            <!-- LOGIN LINK -->
+            <p class="login-link">
+                Already have an account?
+                <a asp-controller="Home" asp-action="Login">Login here</a>
+            </p>
+
+        </form>
+
+
+
     </div>
 </div>
+
 
 @section Scripts {
     <script>

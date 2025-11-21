@@ -1,218 +1,244 @@
-﻿/* Outer container – same idea as Booking page */
-.myaccount-card {
-    background-color: #f5e6c8;
-    padding: 85px 100px;
+﻿/* =========================
+   ACCOUNT PAGE
+   ========================= */
+
+.account-page {
+    background-color: #f5e6c8; /* same as home hero */
+    padding: 60px 100px;
     font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-    margin: 0 auto 60px;
-    max-width: 1300px;
-    align-items: flex-start;
-    justify-content: space-between;
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-    margin-bottom: 60px;
 }
 
-.myaccount-title {
-    font-size: 2.4rem;
-    font-weight: 800;
-    margin-bottom: 2rem;
+/* Hero */
+.account-hero {
+    margin: 0 0 32px;
 }
 
-/* Two-column layout */
+    .account-hero h1 {
+        font-size: 2.3rem;
+        font-weight: 800;
+        margin: 0 0 0.4rem;
+        color: #2f2b25;
+    }
+
+    .account-hero p {
+        margin: 0;
+        max-width: 640px;
+        line-height: 1.5;
+        color: #443a32;
+    }
+
+/* Main 2-column layout */
 .account-layout {
     display: grid;
-    grid-template-columns: minmax(0, 1.1fr) minmax(0, 1.4fr);
+    grid-template-columns: minmax(0, 1.2fr) minmax(0, 1.5fr);
     gap: 32px;
-    align-items: flex-start;
 }
 
-/* Cards */
-.account-summary,
-.account-bookings {
-    background: #ffffff;
-    border-radius: 12px;
-    border: 1px solid #dedede;
-    padding: 24px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
-    height: 100%;
+/* Generic card */
+.account-card {
+    background-color: #ffffff;
+    border-radius: 16px;
+    padding: 24px 28px;
+    box-shadow: 0 8px 22px rgba(0,0,0,0.08);
 }
 
-/* Headings */
-.section-title {
-    margin: 0 0 8px;
-    font-size: 1.3rem;
-    color: #1a3a2a;
-}
-
-.section-subtitle {
-    margin: 0 0 16px;
-    font-size: 0.9rem;
-    color: #555;
-}
-
-/* PROFILE CARD HEADER (avatar + name) */
-.profile-card-header {
+/* PROFILE CARD */
+.account-header {
     display: flex;
     align-items: center;
     gap: 16px;
     margin-bottom: 18px;
 }
 
-/* Avatar circle */
-.profile-avatar {
-    width: 64px;
-    height: 64px;
-    border-radius: 50%;
-    background: #4f7c55;
+.initials-circle {
+    width: 56px;
+    height: 56px;
+    border-radius: 999px;
+    background-color: #315a35;
+    color: #fff;
     display: flex;
     align-items: center;
     justify-content: center;
-    overflow: hidden;
-    flex-shrink: 0;
+    font-weight: 700;
+    font-size: 1.1rem;
 }
 
-/* Avatar initials (fallback) */
-.avatar-initials {
-    color: #fff;
-    font-weight: 600;
-    font-size: 1.4rem;
-}
-
-/* If you use an image instead of initials */
-.profile-avatar img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-/* Name + email next to avatar */
-.profile-main {
-    display: flex;
-    flex-direction: column;
-    gap: 2px;
-}
-
-.profile-name {
+.account-header h2 {
     margin: 0;
-    font-size: 1.2rem;
-    font-weight: 600;
-    color: #1a3a2a;
+    font-size: 1.3rem;
+    font-weight: 700;
 }
 
-.profile-email {
-    margin: 0;
+.account-tagline {
+    margin: 4px 0 0;
     font-size: 0.9rem;
-    color: #555;
+    color: #666;
 }
 
-/* Fields list */
-.account-fields {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    margin: 8px 0 18px;
-    border-top: 1px solid #ececec;
-    padding-top: 10px;
+/* Definition list (details) */
+.account-details {
+    margin: 0 0 18px;
 }
 
-.field-row {
-    display: flex;
-    justify-content: space-between;
-    border-bottom: 1px solid #f2f2f2;
+.detail-row {
+    display: grid;
+    grid-template-columns: 130px minmax(0,1fr);
+    column-gap: 24px;
     padding: 6px 0;
-}
-
-.field-label {
-    font-weight: 600;
-    color: #333;
+    border-bottom: 1px solid #eee;
     font-size: 0.95rem;
 }
 
-.field-value {
-    color: #444;
-    font-size: 0.95rem;
-    text-align: right;
-}
+    .detail-row:last-child {
+        border-bottom: none;
+    }
 
-/* Buttons under account info */
+    .detail-row dt {
+        font-weight: 600;
+        color: #555;
+    }
+
+    .detail-row dd {
+        margin: 0;
+        color: #333;
+    }
+
+/* Profile actions */
 .account-actions {
+    margin-top: 10px;
     display: flex;
     flex-wrap: wrap;
     gap: 10px;
-    margin-top: 20px;
-    justify-content: center;
 }
 
-.btn-secondary {
-    display: inline-block;
-    padding: 8px 16px;
-    border-radius: 6px;
-    border: 1px solid #4f7c55;
-    background: #4f7c55;
-    color: #fff;
-    font-size: 0.9rem;
-    text-decoration: none;
-    cursor: pointer;
-    transition: background 0.2s ease;
+/* BOOKINGS CARD */
+.account-bookings-header h2 {
+    margin: 0 0 4px;
+    font-size: 1.3rem;
 }
 
-    .btn-secondary:hover {
-        background: #3e6644;
-    }
+.account-bookings-header p {
+    margin: 0 0 16px;
+    color: #666;
+    font-size: 0.95rem;
+}
 
-/* Booking history table */
-.bookings-table {
+/* Table */
+.account-table-wrapper {
+    width: 100%;
+    overflow-x: auto;
+    margin-bottom: 18px;
+}
+
+.account-table {
     width: 100%;
     border-collapse: collapse;
-    font-size: 0.9rem;
+    font-size: 0.95rem;
 }
 
-    .bookings-table thead {
-        background: #f5f7f5;
-    }
-
-    .bookings-table th,
-    .bookings-table td {
-        padding: 8px 10px;
+    .account-table th,
+    .account-table td {
+        padding: 10px 12px;
         text-align: left;
-        border-bottom: 1px solid #e2e2e2;
+        border-bottom: 1px solid #eee;
     }
 
-    .bookings-table th {
+    .account-table th {
         font-weight: 600;
-        color: #444;
+        color: #555;
+        background-color: #faf7f0;
     }
 
-    .bookings-table::-webkit-scrollbar {
-        width: 6px;
+    .account-table tr:last-child td {
+        border-bottom: none;
     }
 
-    .bookings-table::-webkit-scrollbar-thumb {
-        background: #b9c5b9;
-        border-radius: 4px;
-    }
-
-
-.booking-active {
-    background: rgba(79, 124, 85, 0.04);
+/* Status badge */
+.status-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 4px 10px;
+    border-radius: 999px;
+    font-size: 0.8rem;
+    font-weight: 600;
 }
 
+.status-active {
+    background-color: #e0f2e4;
+    color: #315a35;
+}
 
+/* CTA at bottom */
+.account-bookings-cta {
+    margin-top: 8px;
+    padding-top: 10px;
+    border-top: 1px solid #f0f0f0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    font-size: 0.95rem;
+}
 
-/* Responsive */
-@media (max-width: 900px) {
+    .account-bookings-cta p {
+        margin: 0;
+    }
+
+/* =========================
+   RESPONSIVE
+   ========================= */
+
+@media (max-width: 1023px) {
+    .account-page {
+        padding: 40px 24px;
+    }
+
     .account-layout {
-        grid-template-columns: 1fr;
+        grid-template-columns: 1fr; /* stack profile + bookings */
+    }
+
+    .account-bookings-cta {
+        flex-direction: column;
+        align-items: flex-start;
     }
 }
 
 @media (max-width: 600px) {
-    .field-row {
-        flex-direction: column;
-        gap: 2px;
-        text-align: left;
+    .account-page {
+        padding: 32px 16px;
     }
 
-    .field-value {
-        text-align: left;
+    .account-hero h1 {
+        font-size: 1.9rem;
     }
+
+    .detail-row {
+        grid-template-columns: 1fr;
+        row-gap: 2px;
+    }
+
+    .account-header {
+        flex-direction: row;
+        align-items: center;
+    }
+
+    .account-actions {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+        .account-actions .btn {
+            width: 100%;
+            justify-content: center;
+        }
+
+    .account-bookings-cta {
+        align-items: stretch;
+    }
+
+        .account-bookings-cta .btn {
+            width: 100%;
+            justify-content: center;
+        }
 }

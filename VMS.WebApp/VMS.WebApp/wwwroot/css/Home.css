@@ -1,98 +1,113 @@
-﻿/* HERO */
+﻿/* =========================
+   HOME PAGE (MOBILE FIRST)
+   Breakpoints:
+   - Mobile: 0–767px
+   - Tablet: 768–1023px
+   - Desktop: 1024px+
+   ========================= */
 
+.homepage-layout {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+
+/* Hero Mobile */
 .Landing-section {
     background-color: #f5e6c8;
-    padding: 85px 100px;
+    padding: 40px 20px;
     display: flex;
-    gap: 100px;
+    flex-direction: column;
+    gap: 32px;
     align-items: flex-start;
-    justify-content: space-between;
+    justify-content: flex-start;
     font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-    margin-bottom: 60px;
+    margin-bottom: 40px;
 }
 
 .landing-left {
-    flex: 1;
+    width: 100%;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    max-width: 425px;
+    max-width: 100%;
 }
 
-.landing-left h1 {
-    font-size: 2.4rem;
-    font-weight: 800;
-    margin-bottom: 0.8rem;
-}
+    .landing-left h1 {
+        font-size: 1.9rem;
+        font-weight: 800;
+        margin-bottom: 0.8rem;
+    }
 
-.landing-left p {
-    line-height: 1.6;
-    margin-bottom: 1.6rem;
-}
+    .landing-left p {
+        line-height: 1.6;
+        margin-bottom: 1.6rem;
+    }
 
 .landing-actions {
-    margin-top: 40px; /* space below paragraph */
+    margin-top: 24px;
     display: flex;
-    gap: 16px;
+    flex-wrap: wrap;
+    gap: 12px;
+    justify-content: center;
 }
 
 .landing-socials {
-    margin-top: 60px;
+    margin-top: 32px;
     display: flex;
     gap: 16px;
- }
-
-.landing-socials a svg {
-    width: 20px;
-    height: 20px;
-    color: #333;
-    transition: color 0.2s ease;
+    justify-content: center;
 }
 
-.landing-socials a:hover svg {
-    color: white;
-}
+    .landing-socials a svg {
+        width: 20px;
+        height: 20px;
+        color: #333;
+        transition: color 0.2s ease;
+    }
+
+    .landing-socials a:hover svg {
+        color: white;
+    }
 
 .landing-cards {
+    width: 100%;
     display: flex;
-    gap: 24px;
-    flex: 1;
-    justify-content: space-between;
+    flex-direction: column;
+    gap: 20px;
 }
 
 .landing-card {
-    flex: 1;
     background-color: #ffffff;
     border-radius: 12px;
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
     padding: 16px 16px 20px;
     display: flex;
     flex-direction: column;
-    max-width: 360px;
+    width: 100%;
 }
 
-.landing-card img {
-    width: 100%;
-    height: 160px;
-    border-radius: 8px;
-    object-fit: cover;
-    margin-bottom: 12px;
-}
+    .landing-card img {
+        width: 100%;
+        height: 160px;
+        border-radius: 8px;
+        object-fit: cover;
+        margin-bottom: 12px;
+    }
 
 .landing-card-body {
     flex: 1;
 }
 
-.landing-card-body h4 {
-    font-size: 0.95rem;
-    font-weight: 600;
-    margin-bottom: 6px;
-}
+    .landing-card-body h4 {
+        font-size: 0.95rem;
+        font-weight: 600;
+        margin-bottom: 6px;
+    }
 
-.landing-card-body p {
-    font-size: 0.9rem;
-    line-height: 1.4;
-}
+    .landing-card-body p {
+        font-size: 0.9rem;
+        line-height: 1.4;
+    }
 
 .landing-card .btn {
     align-self: flex-start;
@@ -100,203 +115,22 @@
 }
 
 .landing-card-link {
-    align-self: flex-end; 
+    align-self: flex-end;
     margin-top: 10px;
 }
 
 
-/* EVENTS SECTION */
-
-.events-section {
-    background-color: #b8c6b3; /* muted green */
-    padding: 60px 80px 80px;
-    text-align: center;
-}
-
-/* Title & subtitle */
-.events-title {
-    font-size: 2rem;
-    margin: 0 0 0.5rem;
-}
-
-.events-subtitle {
-    max-width: 1200px;
-    margin: 0 auto 40px;
-    line-height: 1.5;
-}
-
-/* Tabs row */
-.events-nav {
-    list-style: none;
-    margin: 0 auto;
-    padding: 18px 40px;
-    max-width: 1000px;
-    display: flex;
-    justify-content: space-between;
-    border-top: 1px solid #333;
-    border-bottom: 1px solid #333;
-}
-
-    .events-nav li {
-        flex: 1;
-        text-align: center;
-    }
-
-.events-link {
-    text-decoration: none;
-    color: #000;
-    font-weight: 600;
-    font-size: 1rem;
-}
-
-/* Event card */
-.events-card {
-    background-color: #fff;
-    max-width: 1100px;
-    margin: 40px auto 0;
-    padding: 40px;
-    border: 1px solid #555;
-    display: flex;
-    gap: 40px;
-    align-items: center;
-}
-
-.events-image {
-    width: 50%;
-    height: auto;
-    object-fit: cover;
-}
-
-.events-info {
-    text-align: left;
-    flex: 1;
-}
-
-.events-info-title {
-    font-size: 1.8rem;
-    margin-bottom: 1rem;
-}
-
-.events-info-text {
-    line-height: 1.6;
-}
-
-
-/* PARK INFO SECTION */
-
-.ParkInfo-section {
-    background-color: #f5e6c8;
-    padding: 80px 100px;
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    flex-wrap: wrap;
-    color: #2f2b25;
-}
-
-    /* Left column */
-    .ParkInfo-section h4 {
-        font-weight: 600;
-        margin: 0;
-        font-size: 1.4rem;
-    }
-
-    .ParkInfo-section h3 {
-        font-size: 2.4rem;
-        font-weight: 800;
-        margin: 0.2rem 0 1.4rem;
-    }
-
-       /* Right column text */
-    .ParkInfo-section p {
-        flex: 1 1 45%;
-        font-size: 1.25rem;
-        line-height: 1.5;
-        max-width: 600px;
-    }
-
-
-
-/* EXPLORE SECTION */
-
-.Explore-section {
-    background-color: #b8c4b1;
-    padding: 80px 100px;
-    text-align: center;
-    color: #222;
-}
-
-    .Explore-section h3 {
-        font-size: 2rem;
-        font-weight: 800;
-        margin-bottom: 10px;
-    }
-
-    .Explore-section > p {
-        font-size: 1rem;
-        color: #333;
-        max-width: 750px;
-        margin: 0 auto 50px;
-        line-height: 1.5;
-    }
-
-/* Explore cards */
-.explore-cards {
-    display: flex;
-    flex-direction: column;
-    gap: 30px;
-}
-
-.explore-card {
-    background-color: #fff;
-    border-radius: 10px;
-    padding: 30px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 30px;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.08);
-    text-align: left;
-}
-
-    .explore-card img {
-        width: 45%;
-        height: auto;
-        border-radius: 8px;
-    }
-
-.explore-text {
-    flex: 1;
-}
-
-    .explore-text h4 {
-        font-size: 1.25rem;
-        font-weight: 700;
-        margin-bottom: 10px;
-        display: flex;
-        align-items: center;
-        gap: 10px;
-    }
-
-    .explore-text p {
-        font-size: 1rem;
-        margin-bottom: 20px;
-    }
-
-
-
-/* DISCOVER SECTION */
-
+/* Discover Section Mobile */
 .Discover-section {
     position: relative;
-    min-height: 600px;
-    padding: 40px 0px;
+    min-height: 400px;
+    padding: 32px 20px;
     display: flex;
     align-items: stretch;
-    justify-content: flex-start;
-    background-image: url("/img/home-discover.jpg"); /* adjust path */
+    justify-content: center;
+    background-image: url("/img/home-discover.jpg");
     background-size: cover;
-    background-position: center right;
+    background-position: center;
     background-repeat: no-repeat;
     margin-bottom: 40px;
 }
@@ -304,9 +138,9 @@
 .discover-card {
     background-color: #ffffff;
     border-radius: 18px;
+    width: 100%;
     max-width: 460px;
-    margin-left: 40px;
-    padding: 40px 48px;
+    padding: 28px 24px;
     box-shadow: 0 18px 40px rgba(0,0,0,0.15);
     display: flex;
     flex-direction: column;
@@ -322,13 +156,13 @@
 
 .discover-card h2 {
     margin: 0;
-    font-size: 2.1rem;
+    font-size: 1.8rem;
     line-height: 1.2;
     color: #315a35;
 }
 
 .discover-bottom {
-    margin-top: 80px;
+    margin-top: 40px;
 }
 
     .discover-bottom p {
@@ -344,57 +178,412 @@
 }
 
 
-/* RESPONSIVE */
+/* Explore Section Mobile */
+.Explore-section {
+    background-color: #b8c4b1;
+    padding: 48px 20px;
+    text-align: center;
+    color: #222;
+}
 
-@media (max-width: 900px) {
-    /* Events */
-    .events-section {
-        padding: 40px 20px 60px;
+    .Explore-section h3 {
+        font-size: 1.8rem;
+        font-weight: 800;
+        margin-bottom: 10px;
     }
 
-    .events-card {
-        flex-direction: column;
+    .Explore-section > p {
+        font-size: 0.95rem;
+        color: #333;
+        max-width: 750px;
+        margin: 0 auto 40px;
+        line-height: 1.5;
     }
 
-    .events-image {
+    /* Explore cards stack on mobile */
+    .explore-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.explore-card {
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+    text-align: left;
+}
+
+    .explore-card img {
         width: 100%;
+        height: auto;
+        border-radius: 8px;
     }
 
-    /* Park info */
-    .ParkInfo-section {
-        flex-direction: column;
+.explore-text {
+    flex: 1;
+}
+
+    .explore-text h4 {
+        font-size: 1.2rem;
+        font-weight: 700;
+        margin-bottom: 10px;
+        display: flex;
         align-items: center;
-        text-align: center;
-        padding: 50px 24px;
+        gap: 10px;
     }
 
-        .ParkInfo-section p {
-            margin-top: 1.5rem;
-            max-width: 100%;
-        }
+    .explore-text p {
+        font-size: 0.95rem;
+        margin-bottom: 20px;
+    }
 
-    /* Explore */
-    .explore-card {
-        flex-direction: column;
+/* Park Info Section Mobile */
+
+.ParkInfo-section {
+    background-color: #f5e6c8;
+    padding: 60px 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+    color: #2f2b25;
+}
+
+.ParkInfo-left {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    align-items: center;
+    text-align: center;
+}
+
+.ParkInfo-right {
+    text-align: left;
+}
+
+.ParkInfo-section h4 {
+    font-weight: 600;
+    margin: 0;
+    font-size: 1.3rem;
+}
+
+.ParkInfo-section h3 {
+    font-size: 2rem;
+    font-weight: 800;
+    margin: 0.2rem 0 1rem;
+}
+
+.ParkInfo-section p {
+    font-size: 1rem;
+    line-height: 1.5;
+    max-width: 100%;
+}
+
+
+/* Events section Mobile */
+.events-section {
+    background-color: #b8c6b3;
+    padding: 48px 20px 60px;
+    text-align: center;
+}
+
+.events-title {
+    font-size: 1.8rem;
+    margin: 0 0 0.5rem;
+}
+
+.events-subtitle {
+    max-width: 900px;
+    margin: 0 auto 32px;
+    line-height: 1.5;
+}
+
+.events-nav {
+    list-style: none;
+    margin: 0 auto;
+    padding: 14px 16px;
+    max-width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    justify-content: center;
+    border-top: 1px solid #333;
+    border-bottom: 1px solid #333;
+}
+
+    .events-nav li {
+        flex: 0 0 auto;
         text-align: center;
     }
 
-        .explore-card img {
-            width: 100%;
-        }
+.events-link {
+    text-decoration: none;
+    color: #000;
+    font-weight: 600;
+    font-size: 0.95rem;
+}
 
-    /* Discover */
-    .Discover-section {
-        background-position: center;
-        padding: 24px;
+/* Event card */
+.events-card {
+    background-color: #fff;
+    max-width: 900px;
+    margin: 32px auto 0;
+    padding: 24px;
+    border: 1px solid #555;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: flex-start;
+}
+
+.events-image {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+}
+
+.events-info {
+    text-align: left;
+    flex: 1;
+}
+
+.events-info-title {
+    font-size: 1.6rem;
+    margin-bottom: 0.75rem;
+}
+
+.events-info-text {
+    line-height: 1.6;
+}
+
+/* =========================================================
+   TABLET STYLES (768px–1023px)
+   ========================================================= */
+
+@media (min-width: 768px) and (max-width: 1023px) {
+
+    .Landing-section {
+        padding: 60px 40px;
+        gap: 40px;
+    }
+
+    .landing-left h1 {
+        font-size: 2.1rem;
+    }
+
+    /* Use grid for cards on tablet to better use space */
+    .landing-cards {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 24px;
     }
 
     .discover-card {
-        margin: 0 auto;
-        max-width: 100%;
+        padding: 36px 32px;
     }
 
-    .discover-bottom {
+    .Explore-section {
+        padding: 64px 40px;
+    }
+
+        .Explore-section h3 {
+            font-size: 2rem;
+        }
+
+    /* Explore cards can be side-by-side on tablet */
+    .explore-card {
+        flex-direction: row;
+        align-items: center;
+    }
+
+        .explore-card img {
+            width: 40%;
+        }
+
+    .ParkInfo-section {
+        padding: 60px 40px;
+        flex-direction: row;
+        align-items: flex-start;
+        justify-content: space-between;
+    }
+
+        .ParkInfo-section p {
+            flex: 1 1 45%;
+            max-width: 480px;
+            font-size: 1.1rem;
+        }
+
+    .ParkInfo-left {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        align-items: center;
+        text-align: center;
+    }
+
+    .events-section {
+        padding: 60px 40px 80px;
+    }
+
+    .events-card {
+        padding: 32px;
+    }
+}
+/* =========================================================
+   DESKTOP STYLES (1024px+)
+   ========================================================= */
+
+@media (min-width: 1024px) {
+
+    /* Hero Desktop */
+    .Landing-section {
+        background-color: #f5e6c8;
+        padding: 85px 100px;
+        display: flex;
+        flex-direction: row;
+        gap: 100px;
+        align-items: flex-start;
+        justify-content: space-between;
+        margin-bottom: 60px;
+    }
+
+    .landing-left {
+        flex: 1;
+        max-width: 425px;
+    }
+
+        .landing-left h1 {
+            font-size: 2.4rem;
+        }
+
+    .landing-actions {
         margin-top: 40px;
+        gap: 16px;
+        justify-content: flex-start;
+    }
+
+    .landing-socials {
+        margin-top: 60px;
+        justify-content: flex-start;
+    }
+
+    .landing-cards {
+        display: flex;
+        flex-direction: row;
+        gap: 24px;
+        flex: 1;
+        justify-content: space-between;
+    }
+
+    .landing-card {
+        max-width: 360px;
+    }
+
+    /* Discover section desktop */
+    .Discover-section {
+        min-height: 600px;
+        padding: 40px 0px;
+        justify-content: flex-start;
+        background-position: center right;
+    }
+
+    .discover-card {
+        margin-left: 40px;
+        padding: 40px 48px;
+    }
+
+        .discover-card h2 {
+            font-size: 2.1rem;
+        }
+
+    .discover-bottom {
+        margin-top: 80px;
+    }
+
+    /* Explore section desktop */
+    .Explore-section {
+        padding: 80px 100px;
+    }
+
+        .Explore-section h3 {
+            font-size: 2rem;
+        }
+
+        .Explore-section > p {
+            margin-bottom: 50px;
+        }
+
+    .explore-cards {
+        gap: 30px;
+    }
+
+    .explore-card {
+        flex-direction: row;
+        padding: 30px;
+        align-items: center;
+    }
+
+        .explore-card img {
+            width: 45%;
+        }
+
+    /* Park info desktop */
+    .ParkInfo-section {
+        display: flex;
+        flex-direction: row;
+        align-items: flex-start;
+        gap: 60px;
+        padding: 80px 100px;
+    }
+
+    .ParkInfo-left {
+        flex: 0 0 420px; 
+        align-items: flex-start;
+        text-align: left;
+        gap: 16px;
+    }
+
+    .ParkInfo-right {
+        flex: 1; 
+        max-width: 600px;
+    }
+
+    /* Events desktop */
+    .events-section {
+        padding: 60px 80px 80px;
+    }
+
+    .events-subtitle {
+        max-width: 1200px;
+        margin-bottom: 40px;
+    }
+
+    .events-nav {
+        max-width: 1000px;
+        padding: 18px 40px;
+        justify-content: space-between;
+        flex-wrap: nowrap;
+    }
+
+    .events-card {
+        max-width: 1100px;
+        margin-top: 40px;
+        padding: 40px;
+        flex-direction: row;
+        gap: 40px;
+        align-items: center;
+    }
+
+    .events-image {
+        width: 50%;
+    }
+
+    .events-info-title {
+        font-size: 1.8rem;
     }
 }

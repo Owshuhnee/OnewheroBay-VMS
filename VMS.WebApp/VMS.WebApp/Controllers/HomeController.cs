@@ -36,11 +36,6 @@ namespace VMS.WebApp.Controllers
             return View();
         }
 
-        public IActionResult Account()
-        {
-            return View();
-        }
-
         public IActionResult About()
         {
             return View();
@@ -57,6 +52,11 @@ namespace VMS.WebApp.Controllers
         }
 
         public IActionResult Register()
+        {
+            return View();
+        }
+
+        public IActionResult ForgotPassword()
         {
             return View();
         }
@@ -101,7 +101,7 @@ namespace VMS.WebApp.Controllers
                 Password = model.Password,  // TODO: hash later
                 CreatedDate = DateTime.UtcNow,
                 IsActive = true,
-                Interests = interestsCsv   // Structured interests
+                Interests = interestsCsv   
             };
 
             _context.Users.Add(user);
@@ -143,6 +143,8 @@ namespace VMS.WebApp.Controllers
             return RedirectToAction("Index", "Home");
         }
 
+
+    // TICKETS
         public IActionResult Tickets()
         {
             var userId = HttpContext.Session.GetInt32("UserID");

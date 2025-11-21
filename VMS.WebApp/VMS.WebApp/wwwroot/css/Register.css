@@ -1,110 +1,134 @@
-﻿.register-card {
-    display: flex;
+﻿/* ============================
+   REGISTER CARD LAYOUT
+============================ */
+.register-card {
     width: 100%;
-    max-width: 1200px;
-    min-height: 560px;
+    max-width: 900px;
+    margin: 30px auto;
     background: #b8c6b3;
+    padding: 40px;
     box-shadow: 0 10px 30px rgba(0,0,0,.08);
-    margin: 20px auto;
-    overflow: hidden;
 }
 
 .register-content {
-    width: 100%;
-    max-width: 600px; 
-    margin: 0 auto; 
-    padding: 50px;
+    max-width: 650px;
+    margin: 0 auto;
 }
 
+    /* HEADER */
     .register-content h1 {
-        margin-bottom: 16px;
-        color: #2f2b25;
-        font-size: 2.4rem;
-        font-weight: 800;
-        text-align-last: center;
-    }
-
-    .register-content label {
-        display: block;
-        margin-bottom: 4px;
-        font-weight: 600;
-        font-size: 0.9rem;
-        color: #444;
-    }
-
-    .register-content input {
-        width: 100%;
-        padding: 10px 12px;
-        margin-bottom: 14px;
-        border-radius: 8px;
-        border: 1px solid #d0d0d0;
-        font-size: 0.95rem;
-        box-sizing: border-box;
-    }
-
-        .register-content input:focus {
-            outline: none;
-            border-color: #315a35;
-            box-shadow: 0 0 0 1px rgba(49, 90, 53, 0.25);
-        }
-
-    .register-content button[type="submit"] {
-        width: auto;
-        padding: 10px 32px;
-        margin-top: 12px;
-        background-color: #315a35;
-        color: #fff;
-        border: none;
-        border-radius: 999px;
-        font-weight: 600;
-        cursor: pointer;
-        transition: background-color 0.2s ease, transform 0.1s ease;
-        display: inline-block;
-    }
-
-        .register-content button[type="submit"]:hover {
-            background-color: #3f6f43;
-            transform: translateY(-1px);
-        }
-
-    .register-content p {
-        font-size: 0.85rem;
-        margin-top: 10px;
-        color: #666;
         text-align: center;
-        width: 100%;
+        font-size: 2rem;
+        font-weight: 800;
+        color: #2f2b25;
+        margin-bottom: 24px;
     }
 
-        .register-content p a {
-            color: #315a35;
-            font-weight: 600;
-            text-decoration: none;
-            
-        }
-
-            .register-content p a:hover {
-                text-decoration: underline;
-            }
-
-    
-.register-check {
+/* ============================
+   TWO COLUMN GRID
+============================ */
+.register-grid {
     display: grid;
-    grid-template-columns: 22px auto;
-    align-items: center;
-    column-gap: 8px;
-    font-size: 0.9rem;
-    margin: 6px 0;
-
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
 }
 
-    .register-check input[type="checkbox"] {
-        width: 16px;
-        height: 16px;
+/* LABELS & INPUTS */
+.register-content label {
+    display: block;
+    margin-bottom: 4px;
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+.register-content input {
+    width: 100%;
+    padding: 10px 12px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    margin-bottom: 14px;
+    font-size: 0.95rem;
+}
+
+    .register-content input:focus {
+        outline: none;
+        border-color: #315a35;
+        box-shadow: 0 0 0 1px rgba(49, 90, 53, 0.3);
+    }
+
+/* ============================
+   INTEREST CHECKBOXES
+============================ */
+.interests {
+    margin-top: 25px;
+}
+
+.interest-title {
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.register-check {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 6px;
+}
+
+    .register-check input {
+        width: 18px;
+        height: 18px;
         margin: 0;
     }
 
-    .register-check a {
-        font-size: 0.85rem;
-        margin-top: 10px;
-        color: #666;
+/* ============================
+   SUBMIT BUTTON
+============================ */
+.register-submit {
+    display: block;
+    width: 100%;
+    padding: 12px;
+    background: #315a35;
+    color: white;
+    font-weight: 700;
+    border: none;
+    border-radius: 999px;
+    margin: 25px 0 10px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+    .register-submit:hover {
+        background: #274b2c;
     }
+
+/* Login link */
+.login-link {
+    text-align: center;
+    font-size: 0.9rem;
+    margin-top: 10px;
+}
+
+    .login-link a {
+        color: #2f4f2f;
+        font-weight: 600;
+    }
+
+/* ============================
+   MOBILE RESPONSIVE
+============================ */
+@media (max-width: 768px) {
+    .register-card {
+        padding: 30px 20px;
+    }
+
+    .register-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .register-content h1 {
+        font-size: 1.7rem;
+    }
+}

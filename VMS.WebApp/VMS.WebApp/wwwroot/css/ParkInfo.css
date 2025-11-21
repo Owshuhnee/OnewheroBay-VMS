@@ -285,13 +285,101 @@
     margin-top: 6px;
 }
 
-/* RESPONSIVE */
-@media (max-width: 992px) {
+
+/* =========================
+   MOBILE (0–767px)
+   ========================= */
+@media (max-width: 767px) {
+
+    .park-hero-wrapper {
+        padding: 40px 20px;
+        margin-bottom: 40px;
+        gap: 24px;
+    }
+
     .park-hero {
-        grid-template-columns: 1fr;
+        grid-template-columns: 1fr; /* stack text + highlight */
+        gap: 24px;
+    }
+
+    .park-hero-text h1 {
+        font-size: 2rem;
+        text-align: left;
+    }
+
+    .park-lead {
+        font-size: 0.95rem;
+    }
+
+    .park-hero-actions {
+        margin-top: 24px;
+        justify-content: flex-start;
+    }
+
+    .park-hero-highlight {
+        margin-top: 8px;
+    }
+
+    .park-layout-wrapper {
+        padding: 0 20px 40px;
     }
 
     .park-layout {
-        grid-template-columns: 1fr;
+        grid-template-columns: 1fr; /* stack left + right columns */
+        gap: 24px;
+    }
+
+    .park-hero-actions .btn {
+        width: 100%;
+        display: block;
+        text-align: center;
+    }
+
+    .faq-section {
+        margin-top: 40px;
+        padding: 32px 20px;
+    }
+
+    .faq-list {
+        grid-template-columns: 1fr; /* one column FAQs */
+        gap: 16px;
     }
 }
+
+/* =========================
+   TABLET (768–1023px)
+   ========================= */
+@media (min-width: 768px) and (max-width: 1023px) {
+
+    .mission-landing {
+        padding: 60px 40px;
+    }
+
+    .mission-vision-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 40px;
+    }
+
+    .mission-cards,
+    .vision-cards {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .contact-section {
+        padding: 50px 40px;
+    }
+
+    .team-section {
+        padding: 60px 40px;
+    }
+
+    .team-stats {
+        gap: 1.5rem;
+    }
+
+    .visitors-card {
+        padding: 50px 40px;
+    }
+}
+
+
