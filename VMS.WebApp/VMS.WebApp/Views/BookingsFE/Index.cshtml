@@ -73,30 +73,30 @@
 
                 <div class="two-col">
                     <div>
-                        <label asp-for="PreferredDate"></label>
+                        <label asp-for="PreferredDate">Preferred Date</label>
                         <input asp-for="PreferredDate" type="date" />
                         <span asp-validation-for="PreferredDate" class="text-danger"></span>
                     </div>
                     <div>
-                        <label asp-for="PreferredTime"></label>
+                        <label asp-for="PreferredTime">Preferred Time</label>
                         <input asp-for="PreferredTime" type="time" />
                         <span asp-validation-for="PreferredTime" class="text-danger"></span>
                     </div>
                 </div>
 
                 <div>
-                    <label asp-for="GuestCount"></label>
+                    <label asp-for="GuestCount">Guests</label>
                     <input asp-for="GuestCount" type="number" min="1" />
                     <span asp-validation-for="GuestCount" class="text-danger"></span>
                 </div>
 
                 <div>
-                    <label asp-for="SpecialRequest"></label>
+                    <label asp-for="SpecialRequest">Special Request</label>
                     <textarea asp-for="SpecialRequest" rows="3"></textarea>
                 </div>
 
                 <div class="total-row">
-                    <span>Estimated Total</span>
+                    <span>Total Price</span>
                     <strong id="totalPrice">
                         @Model.TotalPrice.ToString("C")
                     </strong>
@@ -115,23 +115,33 @@
     </section>
 </div>
 
+
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
 
     <script>
         (function () {
             const guestsInput = document.getElementById("GuestCount");
-            const totalSpan = document.getElementById("estimatedTotal");
-            const pricePer = @((Model.TicketPrice ?? 0).ToString(System.Globalization.CultureInfo.InvariantCulture));
+            const totalSpan = document.getElementById("totalPrice");
 
-            function updateTotal() {
-                const qty = Number(guestsInput.value) || 1;
-                const total = qty * pricePer;
-                totalSpan.textContent = total.toLocaleString(undefined,
-                    { style: "currency", currency: "NZD" }); // adjust currency if needed
-            }
+            // price per ticket pulled from server model (as a JS number)
+            const pricePer = @((Model.TicketPrice ?? 0)
+                            .ToString(System.Globalization.CultureInfo.InvariantCulture));
 
+        function updateTotal() {
+            const qty = Number(guestsInput.value) || 0;
+            const total = qty * pricePer;
+            totalSpan.textContent = total.toLocaleString(undefined, {
+                style: "currency",
+                currency: "NZD"   // change if you need a different currency
+            });
+        }
+
+            // update when guest count changes
             guestsInput.addEventListener("input", updateTotal);
+
+            // run once on page load to sync with default value
+            updateTotal();
         })();
     </script>
 }

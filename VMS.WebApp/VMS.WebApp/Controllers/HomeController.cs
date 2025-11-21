@@ -140,6 +140,18 @@ namespace VMS.WebApp.Controllers
             return RedirectToAction("Index", "Home");
         }
 
+        public IActionResult Tickets()
+        {
+            var userId = HttpContext.Session.GetInt32("UserID");
+
+            if (userId == null)
+            {
+                return RedirectToAction("Login", "Home");
+            }
+
+            // Redirect to My Bookings page
+            return RedirectToAction("MyBookings", "BookingsFE");
+        }
 
     }
 }

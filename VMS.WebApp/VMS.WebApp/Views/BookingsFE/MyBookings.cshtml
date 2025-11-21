@@ -1,0 +1,63 @@
+﻿@model IEnumerable<VMS.WebApp.Models.Booking>
+
+@{
+    ViewData["Title"] = "My Bookings";
+}
+
+<div class="myaccount-card">
+    <h2>My Bookings</h2>
+
+    @if (!Model.Any())
+    {
+        <p>You don’t have any bookings yet.</p>
+        <a asp-controller="EventsFE" asp-action="Index" class="primary-btn">
+            Browse Events
+        </a>
+    }
+    else
+    {
+        <div class="bookings-list">
+            @foreach (var b in Model)
+            {
+                <article class="booking-item-card">
+                    <div class="booking-item-header">
+                        <h3>@b.Event.EventName</h3>
+                        <span class="booking-status">@b.BookingStatus</span>
+                    </div>
+
+                    <p class="booking-meta">
+                        <strong>Date:</strong> @b.BookingDate.ToString("dd MMM yyyy")<br />
+                        <strong>Time:</strong> @b.BookingTime<br />
+                        <strong>Guests:</strong> @b.GuestCount
+                    </p>
+
+                    @if (!string.IsNullOrWhiteSpace(b.SpecialRequest))
+                    {
+                        <p class="booking-notes">
+                            <strong>Special Requests:</strong> @b.SpecialRequest
+                        </p>
+                    }
+
+                    <div class="booking-footer-row" style="display:flex;align-items:center;gap:16px;flex-wrap:wrap;">
+                        <span class="booking-total">
+                            Total: @b.TotalPrice.ToString("C")
+                        </span>
+
+                        <div class="booking-qr">
+                            <img src="@Url.Action("TicketQr", "BookingsFE", new { id = b.BookingId })"
+                                 alt="Ticket QR for booking @b.BookingId"
+                                 style="width:120px;height:120px;border:1px solid #ccc;border-radius:8px;padding:4px;background:#fff;" />
+                        </div>
+
+                        <a class="secondary-btn"
+                           href="@Url.Action("TicketQr", "BookingsFE", new { id = b.BookingId })"
+                           download="booking-@b.BookingId-qr.png">
+                            Download QR
+                        </a>
+                    </div>
+
+                </article>
+            }
+        </div>
+    }
+</div>
