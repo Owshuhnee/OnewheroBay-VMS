@@ -24,7 +24,7 @@ namespace VMS.WebApp.Controllers
         {
             // Include related Visitor and Event data
             var bookings = await _context.Bookings
-                .Include(b => b.Visitor)
+                // .Include(b => b.Visitor) removed for now - Jove
                 .Include(b => b.Event)
                 .ToListAsync();
 
@@ -36,9 +36,9 @@ namespace VMS.WebApp.Controllers
         public async Task<ActionResult<Booking>> GetBooking(int id)
         {
             var booking = await _context.Bookings
-                .Include(b => b.Visitor)
+                //.Include(b => b.Visitor) removed for now - Jove
                 .Include(b => b.Event)
-                .FirstOrDefaultAsync(b => b.BookingID == id);
+                .FirstOrDefaultAsync(b => b.BookingId == id);
 
             if (booking == null)
                 return NotFound($"Booking with ID {id} not found");
@@ -56,14 +56,14 @@ namespace VMS.WebApp.Controllers
             _context.Bookings.Add(booking);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction(nameof(GetBooking), new { id = booking.BookingID }, booking);
+            return CreatedAtAction(nameof(GetBooking), new { id = booking.BookingId }, booking);
         }
 
         // PUT: api/bookings/5
         [HttpPut("{id}")]
         public async Task<IActionResult> UpdateBooking(int id, Booking booking)
         {
-            if (id != booking.BookingID)
+            if (id != booking.BookingId)
                 return BadRequest("ID mismatch");
 
             _context.Entry(booking).State = EntityState.Modified;
@@ -100,7 +100,7 @@ namespace VMS.WebApp.Controllers
         // Helper method
         private async Task<bool> BookingExists(int id)
         {
-            return await _context.Bookings.AnyAsync(b => b.BookingID == id);
+            return await _context.Bookings.AnyAsync(b => b.BookingId == id);
         }
     }
 }

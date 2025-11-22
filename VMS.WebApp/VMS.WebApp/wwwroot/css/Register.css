@@ -1,68 +1,134 @@
-﻿/* register.css */
-
-/* 3-column grid layout */
-.register-page .register-grid-3 {
-    display: grid;
-    grid-template-columns: 1.4fr 1.4fr 1fr;
-    column-gap: 24px;
-    row-gap: 16px;
+﻿/* ============================
+   REGISTER CARD LAYOUT
+============================ */
+.register-card {
     width: 100%;
-    align-items: flex-start;
+    max-width: 900px;
+    margin: 30px auto;
+    background: #b8c6b3;
+    padding: 40px;
+    box-shadow: 0 10px 30px rgba(0,0,0,.08);
 }
 
-.register-page .field {
-    display: flex;
-    flex-direction: column;
+.register-content {
+    max-width: 650px;
+    margin: 0 auto;
 }
 
-/* interests column */
-.register-page .interests-col {
-    grid-column: 3;
-    grid-row: 1 / span 3;
-}
-
-/* bottom section */
-.register-page .register-bottom {
-    margin-top: 24px;
-    text-align: center;
-}
-
-.register-page .register-btn {
-    padding: 10px 40px;
-}
-
-/* chips */
-.register-page .interest-group {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-    margin: 6px 0 14px;
-}
-
-.register-page .chip {
-    border: 1px solid #d0d0d0;
-    border-radius: 999px;
-    padding: 6px 12px;
-    background: white;
-    font-size: 0.8rem;
-    cursor: pointer;
-    transition: 0.15s;
-}
-
-    .register-page .chip.selected {
-        background-color: #d8e7db;
-        border-color: #315a35;
-        color: #315a35;
+    /* HEADER */
+    .register-content h1 {
+        text-align: center;
+        font-size: 2rem;
+        font-weight: 800;
+        color: #2f2b25;
+        margin-bottom: 24px;
     }
 
-/* mobile */
+/* ============================
+   TWO COLUMN GRID
+============================ */
+.register-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+}
+
+/* LABELS & INPUTS */
+.register-content label {
+    display: block;
+    margin-bottom: 4px;
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+.register-content input {
+    width: 100%;
+    padding: 10px 12px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    margin-bottom: 14px;
+    font-size: 0.95rem;
+}
+
+    .register-content input:focus {
+        outline: none;
+        border-color: #315a35;
+        box-shadow: 0 0 0 1px rgba(49, 90, 53, 0.3);
+    }
+
+/* ============================
+   INTEREST CHECKBOXES
+============================ */
+.interests {
+    margin-top: 25px;
+}
+
+.interest-title {
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.register-check {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 6px;
+}
+
+    .register-check input {
+        width: 18px;
+        height: 18px;
+        margin: 0;
+    }
+
+/* ============================
+   SUBMIT BUTTON
+============================ */
+.register-submit {
+    display: block;
+    width: 100%;
+    padding: 12px;
+    background: #315a35;
+    color: white;
+    font-weight: 700;
+    border: none;
+    border-radius: 999px;
+    margin: 25px 0 10px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+    .register-submit:hover {
+        background: #274b2c;
+    }
+
+/* Login link */
+.login-link {
+    text-align: center;
+    font-size: 0.9rem;
+    margin-top: 10px;
+}
+
+    .login-link a {
+        color: #2f4f2f;
+        font-weight: 600;
+    }
+
+/* ============================
+   MOBILE RESPONSIVE
+============================ */
 @media (max-width: 768px) {
-    .register-page .register-grid-3 {
+    .register-card {
+        padding: 30px 20px;
+    }
+
+    .register-grid {
         grid-template-columns: 1fr;
     }
 
-    .register-page .interests-col {
-        grid-column: auto;
-        grid-row: auto;
+    .register-content h1 {
+        font-size: 1.7rem;
     }
 }

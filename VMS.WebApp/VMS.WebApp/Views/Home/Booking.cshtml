@@ -2,144 +2,91 @@
     ViewData["Title"] = "Booking";
 }
 
-<!-- HEADER -->
-<section class="hero">
-    <h1>Booking</h1>
-    <p> Make your visit truly memorable. Discover our exceptional experiences from guided 
-        heritage tours and scenic nature cruises to hands-on workshops for all ages.</p>
-</section>
-    
+<div class="myaccount-card">
 
-<!-- BOOKING LAYOUT -->
-<section class="booking-layout">
+    <!-- TWO COLUMN GRID: EVENT CARD (LEFT) + FORM (RIGHT) -->
+    <section class="booking-layout">
 
-    <!-- LEFT SIDE: Event summary -->
-    <div class="booking-left">      
+        <!-- LEFT: Event card reused from Events page -->
+        <article class="event-card" data-cat="nature,tours">
 
-        <!-- Event Summary -->
-        <div class="booking-summary">
-            <article class="booking-card">
-                <img src="~/img/homepage1.png")" alt="Milford Sound Cruise">
+            <div class="event-media">
+                <img src="~/img/homepage1.png" alt="Kiwi habitat tour" />
 
-                <div class="booking-card-content">
-                    <h2>Milford Sound Cruise</h2>
-                    <p class="booking-meta">Monday to Friday · 8:00 AM – 5:00 PM</p>
-                    <p class="booking-desc">
-                        Sail through the stunning fjords surrounded by waterfalls, lush native forest,
-                        and towering cliffs. This full-day guided cruise includes refreshments and photo
-                        opportunities along the way.
-                    </p>
-                    <p class="booking-price">
-                        From $250.00 per adult · $125.00 per child
-                    </p>
+                <!-- TOP-RIGHT INTEREST TAG -->
+                <span class="event-interest-tag">Workshops</span>
+            </div>
+
+            <div class="event-body">
+
+                <h3 class="event-title">Exploring Kiwi Habitats in Depth</h3>
+
+                <p class="event-schedule-day">Monday to Friday</p>
+                <p class="event-schedule-times">1:00 PM • 2:00 PM • 3:00 PM</p>
+
+                <p class="event-desc">
+                    Dive into the unique world of kiwi birds, discovering their habitat
+                    and conservation efforts.
+                </p>
+
+                <div class="event-footer">
+                    <div class="event-info-row">
+                        <span class="event-price">$250.00</span>
+                        <span class="event-slots">🔸 Available: 10</span>
+                    </div>
+
                 </div>
-            </article>
-
-            <a href="events.html" class="back-link">← Back to all events</a>
-        </div>
-
-    </div>
-
-
-    <!-- RIGHT SIDE: Booking Details form -->
-    <div class="booking-form-wrapper">
-        <h2>Booking Details</h2>
-        <p>
-            Please provide your booking information. You’ll receive a confirmation email once complete.
-        </p>
-
-        <form>
-            <div>
-                <label for="name">Full Name</label>
-                <input id="name" type="text" required />
             </div>
+        </article>
 
-            <div>
-                <label for="email">Email</label>
-                <input id="email" type="email" required />
-            </div>
+        <!-- RIGHT: Booking Details form -->
+        <!-- TODO: Name and Email should be a autofilled from database
+            or just remove to make the cards smaller? -->
+        <section class="bookingcard-right">
+            <h2>Booking Details</h2>
+            <p>
+                Please provide your booking information. You’ll receive a confirmation email once complete.
+            </p>
 
+            <form>
             <div class="two-col">
-                <div>
-                    <label for="date">Preferred Date</label>
-                    <input id="date" type="date" required />
+                    <div>
+                        <label for="date">Preferred Date</label>
+                        <input id="date" type="date" required />
+                    </div>
+                    <div>
+                        <label for="time">Preferred Time</label>
+                        <select id="time" required>
+                            <option value="">Select a time</option>
+                            <option>8:00 AM</option>
+                            <option>10:00 AM</option>
+                            <option>1:00 PM</option>
+                        </select>
+                    </div>
                 </div>
+
                 <div>
-                    <label for="time">Preferred Time</label>
-                    <select id="time" required>
-                        <option value="">Select a time</option>
-                        <option>8:00 AM</option>
-                        <option>10:00 AM</option>
-                        <option>1:00 PM</option>
-                    </select>
+                    <label for="guests">Number of Guests</label>
+                    <input id="guests" type="number" min="1" value="1" />
                 </div>
-            </div>
 
-            <div class="two-col">
+
                 <div>
-                    <label for="adults">Adults</label>
-                    <input id="adults" type="number" min="1" value="1" />
+                    <label for="notes">Special Requests</label>
+                    <textarea id="notes" rows="3"></textarea>
                 </div>
-                <div>
-                    <label for="children">Children</label>
-                    <input id="children" type="number" min="0" value="0" />
+
+                <div class="total-row">
+                    <span>Total Price</span>
+                    <strong>$250.00</strong>
                 </div>
-            </div>
 
-            <div>
-                <label for="notes">Special Requests</label>
-                <textarea id="notes" rows="3"></textarea>
-            </div>
+                <button type="submit" class="primary-btn">Confirm Booking</button>
+            </form>
+        </section>
 
-            <div class="total-row">
-                <span>Estimated Total</span>
-                <strong>$250.00</strong>
-            </div>
-
-            <button type="submit" class="primary-btn">Confirm Booking</button>
-        </form>
-    </div>
-</section>
-
-
-<!-- Current Active Bookings -->
-<div class="active-bookings">
-    <h2>Current Active Bookings</h2>
-    <p class="active-bookings-intro">
-        Here are your upcoming bookings at Onewhero Bay Heritage Park.
-    </p>
-
-    <div class="active-bookings-table-wrapper">
-        <table class="active-bookings-table">
-            <thead>
-                <tr>
-                    <th>Booking ID</th>
-                    <th>Event</th>
-                    <th>Date</th>
-                    <th>Guests</th>
-                    <th>Status</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>#OB-10234</td>
-                    <td>Milford Sound Cruise</td>
-                    <td>12 Nov 2025</td>
-                    <td>2 Adults</td>
-                    <td><span class="status-pill status-confirmed">Confirmed</span></td>
-                </tr>
-                <tr>
-                    <td>#OB-10218</td>
-                    <td>Heritage Walk Tour</td>
-                    <td>20 Nov 2025</td>
-                    <td>3 Guests</td>
-                    <td><span class="status-pill status-pending">Pending</span></td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
+    </section>
 </div>
-
 
 <!-- FAQ  -->
 <section class="faq-section">
@@ -157,3 +104,12 @@
         </div>
     </div>
 </section>
+
+<!-- Auto-update total price  -->
+<script>
+    document.getElementById("guests").addEventListener("input", function () {
+        let qty = Number(this.value) || 1;
+        let price = 250; // your event price
+        document.querySelector(".total-row strong").textContent = "$" + (qty * price).toFixed(2);
+    });
+</script>

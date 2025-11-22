@@ -1,5 +1,6 @@
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using VMS.WebApp.Data;
+using Npgsql;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -21,7 +22,11 @@ builder.Services.AddSwaggerGen();
 
 // Add Database Context for PostgreSQL
 builder.Services.AddDbContext<AppDbContext>(options =>
-    options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
+{
+    options.UseNpgsql(
+        builder.Configuration.GetConnectionString("DefaultConnection"));
+});
+
 
 var app = builder.Build();
 
@@ -32,7 +37,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-// Configure the HTTP request pipeline
+// Configure the HTTP request pipeline 
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Home/Error");

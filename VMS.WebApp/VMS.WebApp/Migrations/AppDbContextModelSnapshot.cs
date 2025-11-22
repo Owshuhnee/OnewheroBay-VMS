@@ -185,6 +185,57 @@ namespace VMS.WebApp.Migrations
                     b.ToTable("users", (string)null);
                 });
 
+            modelBuilder.Entity("VMS.WebApp.Models.User", b =>
+                {
+                    b.Property<int>("UserId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .HasColumnName("user_id");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("UserId"));
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("created_date");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("email");
+
+                    b.Property<string>("FirstName")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("first_name");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("boolean")
+                        .HasColumnName("is_active");
+
+                    b.Property<string>("LastName")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("last_name");
+
+                    b.Property<string>("Password")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("password");
+
+                    b.Property<string>("Phone")
+                        .HasColumnType("text")
+                        .HasColumnName("phone");
+
+                    b.Property<string>("Role")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("role");
+
+                    b.HasKey("UserId");
+
+                    b.ToTable("users", (string)null);
+                });
+
             modelBuilder.Entity("VMS.WebApp.Models.Visitor", b =>
                 {
                     b.Property<int>("VisitorID")

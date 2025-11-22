@@ -1,4 +1,7 @@
-﻿.login-card {
+﻿/* ============================
+   DESKTOP (1024px+)
+   ============================ */
+.login-card {
     display: flex;
     width: 100%;
     max-width: 1200px;
@@ -35,7 +38,7 @@
     .login-content input {
         width: 100%;
         padding: 10px 12px;
-        margin-bottom: 14px;
+        margin-bottom: 6px;
         border-radius: 8px;
         border: 1px solid #d0d0d0;
         font-size: 0.95rem;
@@ -51,7 +54,6 @@
     .login-content button[type="submit"] {
         width: auto;
         padding: 10px 32px;
-        margin-top: 12px;
         background-color: #315a35;
         color: #fff;
         border: none;
@@ -59,7 +61,9 @@
         font-weight: 600;
         cursor: pointer;
         transition: background-color 0.2s ease, transform 0.1s ease;
-        display: inline-block;
+        display: block;
+        margin: 16px auto 10px;
+        width: auto;
     }
 
     .login-content button[type="submit"]:hover {
@@ -68,15 +72,17 @@
     }
 
     .login-content p {
-        font-size: 0.85rem; /* adjust as needed */
-        margin-top: 10px; /* optional: tighten spacing */
+        text-align: center;
+        font-size: 0.85rem;
+        margin-top: 6px;
         color: #666;
     }
 
         .login-content p a {
-            color: #315a35; /* same green as your buttons */
+            color: #315a35;
             font-weight: 600;
-            text-decoration: none;
+            text-decoration: underline;
+            font-size: 0.85rem;
         }
 
             .login-content p a:hover {
@@ -96,4 +102,119 @@
         object-fit: cover;
         display: block;
     }
+
+.forgot-password {
+    text-align: center; /* not centered */
+    margin-top: 2px; /* closer to password */
+    margin-bottom: 16px;
+}
+
+    .forgot-password a {
+        font-size: 0.8rem; /* smaller text */
+        font-weight: 600;
+        color: #315a35;
+    }
+
+
+
+/* ============================
+   MOBILE (0–767px)
+   ============================ */
+@media (max-width: 767px) {
+
+    /* Make entire login screen fullscreen */
+    .login-card {
+        flex-direction: column;
+        justify-content: center; /* vertical center */
+        align-items: center; /* horizontal center */
+        height: 100vh;
+        background-image: url('/img/loginRegister.jpg');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        position: relative;
+        padding: 0 20px;
+    }
+
+        /* Soft dark overlay */
+        .login-card::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: rgba(0,0,0,0.4);
+            z-index: 1;
+        }
+
+    /* Centered login form */
+    .login-content {
+        position: relative;
+        z-index: 2;
+        width: 100%;
+        max-width: 380px;
+        text-align: center;
+        background: none;
+        padding: 20px 0;
+    }
+
+        /* White text */
+        .login-content h1,
+        .login-content label,
+        .login-content p,
+        .login-content a {
+            color: #fff;
+        }
+
+        /* Inputs: translucent */
+        .login-content input {
+            background: rgba(255,255,255,0.85);
+            border: none;
+        }
+
+        /* Full width button */
+        .login-content button[type="submit"] {
+            width: 100%;
+        }
+
+    /* Hide the right image container */
+    .login-image {
+        display: none;
+    }
+
+    /* Make small text & links readable on mobile */
+    .login-content p,
+    .login-content p a,
+    .forgot-password a {
+        color: #f5e6c8 !important; /* force white */
+        text-shadow: 0 1px 3px rgba(0,0,0,0.8);
+        font-weight: 600;
+    }
+
+    .forgot-password {
+        margin-top: 4px;
+        margin-bottom: 12px;
+    }
+}
+
+
+
+/* ============================
+   TABLET (768–1023px)
+   ============================ */
+@media (min-width: 768px) and (max-width: 1023px) {
+    .login-card {
+        flex-direction: row;
+        max-width: 900px;
+        min-height: 500px;
+    }
+
+    .login-content {
+        flex: 0 0 40%;
+        padding: 40px 32px;
+    }
+
+    .login-image {
+        flex: 0 0 60%;
+        height: auto;
+    }
+}
 

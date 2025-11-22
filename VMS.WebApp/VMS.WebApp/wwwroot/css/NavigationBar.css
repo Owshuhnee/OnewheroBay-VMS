@@ -1,24 +1,24 @@
-﻿/* NAVBAR */
+﻿/* ========== NAVBAR (MOBILE FIRST, 3 BREAKPOINTS) ========== */
 
 /* Outer background behind the rounded bar */
 .top-nav-wrapper {
     padding: 8px 0;
-    background-color: #f5f5f5;
+    background-color: #fff;
 }
 
 /* Main rounded navbar container */
 .top-nav-inner {
-    width: 90%;
-    max-width: 1400px;
+    width: 100%;
+    max-width: 1300px;
     margin: 0 auto;
-    padding: 10px 30px;
+    padding: 8px 16px;
     background-color: #ffffff;
     border: 1px solid #e0e0e0;
     border-radius: 12px;
     display: flex;
     align-items: center;
-    justify-content: space-between; /* logo left, nav+account right */
-    gap: 24px;
+    justify-content: space-between;
+    gap: 16px;
 }
 
 /* Logo on the left */
@@ -33,21 +33,37 @@
     display: block;
 }
 
-/* Collapse container (links + account) */
-.top-nav-inner .navbar-collapse {
-    display: flex !important;
-    align-items: center;
+/* Hamburger button styling (mobile) */
+.navbar-toggler {
+    border: none;
+    padding: 4px 8px;
 }
 
-/* Nav links in the middle */
+.navbar-light .navbar-toggler-icon {
+    /* use Bootstrap's default icon */
+}
+
+/* Collapse container (links + account)
+   NOTE: don't force display here, let Bootstrap control it
+   (collapse hidden vs .show visible) */
+.top-nav-inner .navbar-collapse {
+    flex-basis: 100%;
+    flex-grow: 1;
+    margin-top: 8px;
+}
+
+/* Nav links container (mobile = stacked) */
 .nav-links {
-    flex: 1;
+    width: 100%;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 8px;
 }
 
     .nav-links .nav-item {
-        margin: 0 24px;
+        margin: 0;
     }
 
 .nav-link {
@@ -60,9 +76,10 @@
         color: #315a35; /* green accent on hover */
     }
 
-/* Account/Profile on the right */
+/* Account/Profile on the bottom in mobile (full width) */
 .nav-login {
-    margin-left: auto;
+    width: 100%;
+    text-align: center;
 }
 
 .nav-login-btn {
@@ -73,6 +90,7 @@
     text-decoration: none;
     font-weight: 600;
     transition: all 0.2s ease;
+    display: inline-block;
 }
 
     .nav-login-btn:hover {
@@ -80,10 +98,65 @@
         transform: translateY(-1px);
     }
 
-/* Hamburger button styling */
-.navbar-toggler {
-    border: none;
+/* ================= TABLET = 768–1023px ================= */
+
+@media (min-width: 768px) and (max-width: 1023px) {
+    .top-nav-inner {
+        padding: 10px 24px;
+        gap: 20px;
+    }
+
+        /* Still using the collapsed hamburger on tablet because of navbar-expand-lg,
+       but with a bit more breathing room */
+        .top-nav-inner .navbar-collapse {
+            margin-top: 10px;
+        }
+
+    .nav-links {
+        gap: 8px;
+    }
 }
 
-.navbar-light .navbar-toggler-icon {
+/* ================= DESKTOP = 1024px+ ================= */
+
+@media (min-width: 1024px) {
+    .top-nav-inner {
+        width: 90%;
+        padding: 10px 30px;
+        border-radius: 12px;
+        gap: 24px;
+    }
+
+        /* When expanded (Bootstrap does this at 992px with navbar-expand-lg),
+       we want links centered and login on the right in a single row */
+        .top-nav-inner .navbar-collapse {
+            flex-basis: auto;
+            flex-grow: 1;
+            margin-top: 0;
+            display: flex; /* safe here because on desktop it should be visible */
+            align-items: center;
+        }
+
+    .nav-links {
+        flex: 1;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        gap: 24px;
+        margin-bottom: 0;
+    }
+
+        .nav-links .nav-item {
+            margin: 0;
+        }
+
+    .nav-login {
+        width: auto;
+        margin-left: auto;
+        text-align: right;
+    }
+
+    .nav-login-btn {
+        padding: 8px 28px;
+    }
 }

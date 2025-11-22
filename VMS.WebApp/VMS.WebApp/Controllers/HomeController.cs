@@ -4,14 +4,12 @@ using System.Diagnostics;
 using VMS.WebApp.Data;
 using VMS.WebApp.Models;
 
-
 namespace VMS.WebApp.Controllers
 {
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
         private readonly AppDbContext _context;
-
 
         public HomeController(
             ILogger<HomeController> logger,
@@ -36,22 +34,12 @@ namespace VMS.WebApp.Controllers
             return View();
         }
 
-        public IActionResult Account()
-        {
-            return View();
-        }
-
         public IActionResult About()
         {
             return View();
         }
 
         public IActionResult ParkInfo()
-        {
-            return View();
-        }
-
-        public IActionResult Events()
         {
             return View();
         }
@@ -66,12 +54,16 @@ namespace VMS.WebApp.Controllers
             return View();
         }
 
+        public IActionResult ForgotPassword()
+        {
+            return View();
+        }
+
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
-
 
         // REGISTER ACTION
         [HttpPost]
@@ -79,69 +71,92 @@ namespace VMS.WebApp.Controllers
         {
             if (!ModelState.IsValid)
             {
-                // Reload the login/register page if validation fails
-                return View("LoginRegister", model);   // use "Index" if that's where your form is
+                return View("LoginRegister", model);
             }
 
-            // Optional: prevent duplicate email
             var emailExists = await _context.Users
                 .AnyAsync(u => u.Email == model.Email);
 
             if (emailExists)
             {
                 ModelState.AddModelError("", "Email is already registered.");
-                return View("LoginRegister", model);   // or "Index"
+                return View("LoginRegister", model);
             }
+
+            // make a comma-separated string, e.g. "tours,nature"
+            var interestsCsv = (model.SelectedInterests != null && model.SelectedInterests.Any())
+                ? string.Join(",", model.SelectedInterests)
+                : null;
 
             var user = new User
             {
-                Role = "Visitor",               // default role
+                Role = "Visitor",
                 FirstName = model.FirstName,
                 LastName = model.LastName,
                 Phone = model.Phone,
                 Email = model.Email,
-                Password = model.Password,      // TODO: hash later
+                Password = model.Password,  // TODO: hash later
                 CreatedDate = DateTime.UtcNow,
-                IsActive = true
+                IsActive = true,
+                Interests = interestsCsv   
             };
 
             _context.Users.Add(user);
             await _context.SaveChangesAsync();
 
-            // ?? Auto-login after successful registration
+            // Auto-login after successful registration
             HttpContext.Session.SetString("UserFirstName", user.FirstName);
+            HttpContext.Session.SetInt32("UserID", user.UserId);
+            HttpContext.Session.SetString("UserRole", user.Role);
 
-            // Optional message (if you still want it)
             TempData["Registered"] = "Account created successfully.";
-
-            // ?? Send them to home so navbar can now show "Welcome, FirstName!"
             return RedirectToAction("Index", "Home");
         }
 
+
         // LOGIN ACTION
+
         [HttpPost]
         public async Task<IActionResult> Login(LoginViewModel model)
         {
             if (!ModelState.IsValid)
-                return View("LoginRegister", model);   // or "Index"
+                return View("LoginRegister", model);   // or "Login"
 
             var user = await _context.Users
                 .FirstOrDefaultAsync(u =>
                     u.Email == model.Email &&
-                    u.Password == model.Password);     // TODO: hash compare later
+                    u.Password == model.Password);     // TODO: hash later
 
             if (user == null)
             {
                 TempData["Error"] = "Invalid email or password.";
-                // back to login/register page
-                return RedirectToAction("LoginRegister");  // or RedirectToAction("Index")
+                return RedirectToAction("LoginRegister");
             }
 
-            // ? Store first name in session (navbar uses this)
+            // Store user info in Session
+            HttpContext.Session.SetInt32("UserID", user.UserId);
             HttpContext.Session.SetString("UserFirstName", user.FirstName);
+            HttpContext.Session.SetString("UserRole", user.Role);
 
-            // ? Redirect to homepage (Account button will now say Welcome, FirstName!)
+            // Redirect to homepage (Account button will now say Welcome, FirstName!)
             return RedirectToAction("Index", "Home");
+        }
+            return RedirectToAction("Index", "Home");
+        }
+
+
+    // TICKETS
+        public IActionResult Tickets()
+        {
+            var userId = HttpContext.Session.GetInt32("UserID");
+
+            if (userId == null)
+            {
+                return RedirectToAction("Login", "Home");
+            }
+
+            // Redirect to My Bookings page
+            return RedirectToAction("MyBookings", "BookingsFE");
         }
 
     }
