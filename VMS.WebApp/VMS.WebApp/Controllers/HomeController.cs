@@ -179,6 +179,14 @@ namespace VMS.WebApp.Controllers
             return RedirectToAction("Index", "Home");
         }
 
+        //LOGOUT ACTION
+        [HttpPost]
+        public async Task<IActionResult> Logout()
+        {
+            await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+            HttpContext.Session.Clear();
+            return RedirectToAction("Index", "Home");
+        }
 
         // TICKETS
         public IActionResult Tickets()
@@ -194,14 +202,7 @@ namespace VMS.WebApp.Controllers
                 return RedirectToAction("MyBookings", "BookingsFE");
         }
 
-        //LOGOUT
-        [HttpPost]
-        public async Task<IActionResult> Logout()
-        {
-            await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
-            HttpContext.Session.Clear();
-            return RedirectToAction("Index", "Home");
-        }
+       
 
     }
 }

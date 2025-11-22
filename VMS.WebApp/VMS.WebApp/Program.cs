@@ -67,22 +67,24 @@ app.UseRouting();
 
 app.UseSession();
 
+app.UseAuthentication();   
+
 app.Use(async (context, next) =>
 {
-    // If the auth cookie says the user is authenticated
-    // BUT the Session says the user is NOT logged in,
-    // then force a logout to avoid inconsistent state.
     if (context.User?.Identity?.IsAuthenticated == true &&
         context.Session.GetInt32("UserID") == null)
     {
         await context.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+
+            context.User = new System.Security.Claims.ClaimsPrincipal(
+            new System.Security.Claims.ClaimsIdentity());
     }
 
     await next();
 });
 
-app.UseAuthentication();
 app.UseAuthorization();
+
 
 app.MapControllerRoute(
     name: "default",
