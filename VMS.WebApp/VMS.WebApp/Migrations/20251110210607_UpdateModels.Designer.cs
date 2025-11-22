@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using VMS.WebApp.Data;
@@ -11,9 +12,11 @@ using VMS.WebApp.Data;
 namespace VMS.WebApp.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20251110210607_UpdateModels")]
+    partial class UpdateModels
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -62,127 +65,34 @@ namespace VMS.WebApp.Migrations
                 {
                     b.Property<int>("EventID")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("integer")
-                        .HasColumnName("event_id");
+                        .HasColumnType("integer");
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("EventID"));
 
+                    b.Property<int>("AvailableTickets")
+                        .HasColumnType("integer");
+
                     b.Property<string>("Description")
                         .IsRequired()
-                        .HasColumnType("text")
-                        .HasColumnName("description");
-
-                    b.Property<string>("EventImage")
                         .HasColumnType("text");
+
+                    b.Property<DateTime>("EventDate")
+                        .HasColumnType("timestamp with time zone");
 
                     b.Property<string>("EventName")
                         .IsRequired()
-                        .HasColumnType("text")
-                        .HasColumnName("title");
-
-                    b.Property<bool>("IsActive")
-                        .HasColumnType("boolean")
-                        .HasColumnName("is_active");
+                        .HasColumnType("text");
 
                     b.Property<string>("Location")
                         .IsRequired()
-                        .HasColumnType("text")
-                        .HasColumnName("location");
+                        .HasColumnType("text");
+
+                    b.Property<decimal>("TicketPrice")
+                        .HasColumnType("numeric");
 
                     b.HasKey("EventID");
 
-                    b.ToTable("events", (string)null);
-                });
-
-            modelBuilder.Entity("VMS.WebApp.Models.EventSession", b =>
-                {
-                    b.Property<int>("SessionID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer")
-                        .HasColumnName("session_id");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("SessionID"));
-
-                    b.Property<int>("Capacity")
-                        .HasColumnType("integer")
-                        .HasColumnName("capacity");
-
-                    b.Property<DateTime>("Date")
-                        .HasColumnType("timestamp with time zone")
-                        .HasColumnName("date");
-
-                    b.Property<int>("EventID")
-                        .HasColumnType("integer")
-                        .HasColumnName("event_id");
-
-                    b.Property<bool>("IsActive")
-                        .HasColumnType("boolean")
-                        .HasColumnName("is_active");
-
-                    b.Property<decimal>("Price")
-                        .HasColumnType("numeric")
-                        .HasColumnName("price");
-
-                    b.Property<TimeSpan>("StartTime")
-                        .HasColumnType("interval")
-                        .HasColumnName("start_time");
-
-                    b.HasKey("SessionID");
-
-                    b.HasIndex("EventID");
-
-                    b.ToTable("event_sessions", (string)null);
-                });
-
-            modelBuilder.Entity("VMS.WebApp.Models.User", b =>
-                {
-                    b.Property<int>("UserId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer")
-                        .HasColumnName("user_id");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("UserId"));
-
-                    b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("timestamp with time zone")
-                        .HasColumnName("created_date");
-
-                    b.Property<string>("Email")
-                        .IsRequired()
-                        .HasColumnType("text")
-                        .HasColumnName("email");
-
-                    b.Property<string>("FirstName")
-                        .IsRequired()
-                        .HasColumnType("text")
-                        .HasColumnName("first_name");
-
-                    b.Property<bool>("IsActive")
-                        .HasColumnType("boolean")
-                        .HasColumnName("is_active");
-
-                    b.Property<string>("LastName")
-                        .IsRequired()
-                        .HasColumnType("text")
-                        .HasColumnName("last_name");
-
-                    b.Property<string>("Password")
-                        .IsRequired()
-                        .HasColumnType("text")
-                        .HasColumnName("password");
-
-                    b.Property<string>("Phone")
-                        .HasColumnType("text")
-                        .HasColumnName("phone");
-
-                    b.Property<string>("Role")
-                        .IsRequired()
-                        .HasColumnType("text")
-                        .HasColumnName("role");
-
-                    b.HasKey("UserId");
-
-                    b.ToTable("users", (string)null);
+                    b.ToTable("Events");
                 });
 
             modelBuilder.Entity("VMS.WebApp.Models.User", b =>
@@ -275,7 +185,7 @@ namespace VMS.WebApp.Migrations
             modelBuilder.Entity("VMS.WebApp.Models.Booking", b =>
                 {
                     b.HasOne("VMS.WebApp.Models.Event", "Event")
-                        .WithMany()
+                        .WithMany("Bookings")
                         .HasForeignKey("EventID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -291,20 +201,9 @@ namespace VMS.WebApp.Migrations
                     b.Navigation("Visitor");
                 });
 
-            modelBuilder.Entity("VMS.WebApp.Models.EventSession", b =>
-                {
-                    b.HasOne("VMS.WebApp.Models.Event", "Event")
-                        .WithMany("Sessions")
-                        .HasForeignKey("EventID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Event");
-                });
-
             modelBuilder.Entity("VMS.WebApp.Models.Event", b =>
                 {
-                    b.Navigation("Sessions");
+                    b.Navigation("Bookings");
                 });
 
             modelBuilder.Entity("VMS.WebApp.Models.Visitor", b =>

@@ -28,6 +28,8 @@ namespace VMS.WebApp.Models
         [Column("total_price")]
         public decimal TotalPrice { get; set; }
 
+        public string? Status { get; set; }
+
         [Column("guest_count")]
         public int GuestCount { get; set; }
 
