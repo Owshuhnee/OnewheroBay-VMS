@@ -22,7 +22,10 @@ namespace VMS.WebApp.Controllers
         [HttpGet("stats")]
         public async Task<IActionResult> GetStats()
         {
-            var totalVisitors = await _context.Visitors.CountAsync();
+            // Count users with 'customer' role (visitors)
+            var totalVisitors = await _context.Users
+                .Where(u => u.Role == "customer")
+                .CountAsync();
             var activeBookings = await _context.Bookings.CountAsync();
 
             var now = DateTime.UtcNow;
@@ -37,12 +40,14 @@ namespace VMS.WebApp.Controllers
                 .Where(b => b.BookingDate >= startOfMonth && b.BookingDate < endOfMonth)
                 .SumAsync(b => (decimal?)b.TotalPrice) ?? 0;
 
-            var upcomingEvents = await _context.Events
-                .Where(e => e.EventDate > now && e.EventDate <= now.AddDays(30))
+            // Count upcoming bookings (next 30 days)
+            var upcomingBookings = await _context.Bookings
+                .Where(b => b.BookingDate > now && b.BookingDate <= now.AddDays(30))
                 .CountAsync();
 
-            var completedEvents = await _context.Events
-                .Where(e => e.EventDate >= startOfMonth && e.EventDate < endOfMonth && e.EventDate < now)
+            // Count completed bookings this month
+            var completedBookings = await _context.Bookings
+                .Where(b => b.BookingDate >= startOfMonth && b.BookingDate < now)
                 .CountAsync();
 
             return Ok(new
@@ -51,11 +56,10 @@ namespace VMS.WebApp.Controllers
                 activeBookings,
                 thisMonthBookings,
                 revenue,
-                upcomingEvents,
-                completedEvents
+                upcomingBookings,
+                completedBookings 
             });
         }
-
 
         // GET: api/analytics/recent-bookings
         [HttpGet("recent-bookings")]

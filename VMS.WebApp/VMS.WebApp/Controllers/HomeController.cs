@@ -76,7 +76,7 @@ namespace VMS.WebApp.Controllers
                 LastName = model.LastName,
                 Phone = model.Phone,
                 Email = model.Email,
-                Password = model.Password,     // we’ll hash later
+                Password = model.Password,
                 CreatedDate = DateTime.UtcNow,
                 IsActive = true
             };

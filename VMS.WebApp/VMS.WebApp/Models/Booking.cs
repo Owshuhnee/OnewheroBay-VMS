@@ -13,5 +13,6 @@
         // Navigation properties
         public Visitor Visitor { get; set; } = null!;
         public Event Event { get; set; } = null!;
+        public User User { get; set; } = null!;  // ← ADD THIS LINE
     }
 }
