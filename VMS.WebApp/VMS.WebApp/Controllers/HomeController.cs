@@ -4,14 +4,12 @@ using System.Diagnostics;
 using VMS.WebApp.Data;
 using VMS.WebApp.Models;
 
-
 namespace VMS.WebApp.Controllers
 {
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
         private readonly AppDbContext _context;
-
 
         public HomeController(
             ILogger<HomeController> logger,
@@ -67,7 +65,6 @@ namespace VMS.WebApp.Controllers
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
 
-
         // REGISTER ACTION
         [HttpPost]
         public async Task<IActionResult> Register(RegisterViewModel model)
@@ -107,6 +104,7 @@ namespace VMS.WebApp.Controllers
             _context.Users.Add(user);
             await _context.SaveChangesAsync();
 
+            // Auto-login after successful registration
             HttpContext.Session.SetString("UserFirstName", user.FirstName);
             HttpContext.Session.SetInt32("UserID", user.UserId);
             HttpContext.Session.SetString("UserRole", user.Role);
@@ -140,6 +138,9 @@ namespace VMS.WebApp.Controllers
             HttpContext.Session.SetString("UserFirstName", user.FirstName);
             HttpContext.Session.SetString("UserRole", user.Role);
 
+            // Redirect to homepage (Account button will now say Welcome, FirstName!)
+            return RedirectToAction("Index", "Home");
+        }
             return RedirectToAction("Index", "Home");
         }
 

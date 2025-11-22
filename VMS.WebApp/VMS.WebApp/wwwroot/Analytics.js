@@ -1,6 +1,4 @@
-﻿// Analytics.js - Complete file
-
-document.addEventListener('DOMContentLoaded', function () {
+﻿document.addEventListener('DOMContentLoaded', function () {
     console.log('Analytics page loaded');
     loadStats();
     loadRecentBookings();
