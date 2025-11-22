@@ -4,13 +4,12 @@
 
 <div class="register-card">
     <div class="register-content">
-        <form id="registerForm"
-              method="post"
-              asp-action="Register">
+
+        <form id="registerForm" method="post" asp-action="Register">
 
             <h1>Create an account</h1>
 
-            <!-- 2-COLUMN GRID -->
+            <!-- TWO COLUMN GRID -->
             <div class="register-grid">
                 <div>
                     <label for="firstName">First Name</label>
@@ -33,28 +32,49 @@
                     <label for="confirmPassword">Confirm Password</label>
                     <input type="password" id="confirmPassword" name="ConfirmPassword" required />
                 </div>
-            </div> 
+            </div>
 
-            <!-- BOTTOM SECTION -->
+            <!-- INTEREST SECTION -->
+            <div class="form-group interests">
+                <p class="interest-title">What are you most interested in?</p>
+
                 <label class="register-check">
-                    <input type="checkbox" name="AgreeToTerms" required />
-                    I agree to the <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>
+                    <input type="checkbox" name="SelectedInterests" value="tours" />
+                    <span>Tours</span>
                 </label>
 
                 <label class="register-check">
-                    <input type="checkbox" name="MarketingOptIn" />
-                    Send me updates about events &amp; promotions
+                    <input type="checkbox" name="SelectedInterests" value="nature" />
+                    <span>Nature & walks</span>
                 </label>
 
-                <button type="submit">Create Account</button>
+                <label class="register-check">
+                    <input type="checkbox" name="SelectedInterests" value="workshops" />
+                    <span>Workshops</span>
+                </label>
 
-                <p>
-                    Already have an account?
-                    <a asp-controller="Home" asp-action="Login">Login here</a>
-                </p>
-            </form>
+                <label class="register-check">
+                    <input type="checkbox" name="SelectedInterests" value="special" />
+                    <span>Special events</span>
+                </label>
+            </div>
+
+            <!-- SUBMIT BUTTON -->
+            <button type="submit" class="register-submit">Create Account</button>
+
+            <!-- LOGIN LINK -->
+            <p class="login-link">
+                Already have an account?
+                <a asp-controller="Home" asp-action="Login">Login here</a>
+            </p>
+
+        </form>
+
+
+
     </div>
 </div>
+
 
 @section Scripts {
     <script>

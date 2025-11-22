@@ -1,15 +1,41 @@
-﻿namespace VMS.WebApp.Models
+﻿using System;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
+namespace VMS.WebApp.Models
 {
+    [Table("users")]
     public class User
     {
-        public int UserId { get; set; }         
+        [Key]
+        [Column("user_id")]
+        public int UserId { get; set; }
+
+        [Column("role")]
         public string Role { get; set; } = "Visitor";
-        public string FirstName { get; set; } = null!;
-        public string LastName { get; set; } = null!;
+
+        [Column("first_name")]
+        public string FirstName { get; set; } = string.Empty;
+
+        [Column("last_name")]
+        public string LastName { get; set; } = string.Empty;
+
+        [Column("phone")]
         public string? Phone { get; set; }
-        public string Email { get; set; } = null!;
-        public string Password { get; set; } = null!; 
-        public DateTime CreatedDate { get; set; }
-        public bool IsActive { get; set; }
+
+        [Column("email")]
+        public string Email { get; set; } = string.Empty;
+
+        [Column("password")]
+        public string Password { get; set; } = string.Empty;
+
+        [Column("created_date")]
+        public DateTime CreatedDate { get; set; } = DateTime.UtcNow;
+
+        [Column("is_active")]
+        public bool IsActive { get; set; } = true;
+
+        [Column("interests")]
+        public string? Interests { get; set; }
     }
 }

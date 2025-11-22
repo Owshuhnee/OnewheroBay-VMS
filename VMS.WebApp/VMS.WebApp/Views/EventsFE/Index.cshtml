@@ -1,0 +1,128 @@
+﻿@model IEnumerable<VMS.WebApp.Models.Event>
+@using System
+@using System.Linq
+
+@{
+    ViewData["Title"] = "Events";
+}
+
+<!-- HERO -->
+<section class="events-hero">
+    <div class="events-hero-grid">
+        <div class="events-header">
+            <h1>Unveil Wonders</h1>
+            <p>
+                Onewhero Bay Heritage Park offers a unique blend of natural beauty and historical charm.
+                Plan your visit and explore guided tours, nature walks, and special events for all ages.
+            </p>
+        </div>
+
+        <div class="events-hero-img">
+            <img src="/img/homepage1.png" alt="Kiwi forest at sunrise">
+        </div>
+    </div>
+</section>
+
+<!-- FILTER BAR -->
+<nav class="events-filterbar" aria-label="Filter events">
+    <div class="container">
+        <div class="chips">
+            <button class="chip is-active" data-filter="all">All</button>
+            <button class="chip" data-filter="tours">Tours</button>
+            <button class="chip" data-filter="nature">Nature</button>
+            <button class="chip" data-filter="workshops">Workshops</button>
+            <button class="chip" data-filter="special">Special</button>
+        </div>
+    </div>
+</nav>
+
+<!-- RESPONSIVE EVENTS GRID -->
+<div class="events-grid">
+
+    @foreach (var evt in Model.Where(e => e.IsActive))
+    {
+        // Event category for filtering
+        string category = string.IsNullOrWhiteSpace(evt.Interest)
+        ? "tours"   // default category
+        : evt.Interest.ToLowerInvariant();
+
+        <article class="event-card" data-cat="@category">
+
+            <div class="event-media">
+                <img src="@(string.IsNullOrWhiteSpace(evt.EventImage) ? "/img/homepage1.png" : evt.EventImage)"
+                     alt="@evt.EventName" />
+
+                <!-- TOP-RIGHT INTEREST TAG -->
+                <span class="event-interest-tag">
+                    @char.ToUpper(category[0])@category.Substring(1)
+                </span>
+            </div>
+
+            <div class="event-body">
+
+                <h3 class="event-title">@evt.EventName</h3>
+
+                <p class="event-schedule-day">
+                    @(string.IsNullOrWhiteSpace(evt.Schedule)
+                                    ? "Schedule to be confirmed"
+                                    : evt.Schedule)
+            </p>
+
+                <p class="event-desc">
+                    @evt.Description
+                </p>
+
+                <div class="event-footer">
+                    <div class="event-info-row">
+
+                    @if (evt.TicketPrice.HasValue)
+                        {
+                            <span class="event-price">
+                                @evt.TicketPrice.Value.ToString("C")
+                            </span>
+                        }
+                        else
+                        {
+                            <span class="event-price">Not yet priced</span>
+                        }
+
+                        <span class="event-slots">
+                            🔸 Available: @(evt.AvailableSlots ?? 0)
+                        </span>
+                    </div>
+
+                    <a asp-controller="BookingsFE"
+                       asp-action="Index"
+                       asp-route-eventId="@evt.EventID"
+                       class="event-book-btn">
+                        Book Now
+                    </a>
+                </div>
+            </div>
+        </article>
+    }
+
+</div>
+
+
+
+<script>
+    document.addEventListener('click', (e) => {
+        const btn = e.target.closest('.chip');
+        if (!btn) return;
+
+        // Activate the clicked chip
+        btn.parentElement.querySelectorAll('.chip')
+            .forEach(c => c.classList.remove('is-active'));
+        btn.classList.add('is-active');
+
+        const filter = btn.dataset.filter;
+        const cards = document.querySelectorAll('.event-card');
+
+        cards.forEach(card => {
+            const cats = card.dataset.cat.split(',');
+            const show = filter === 'all' || cats.includes(filter);
+            card.style.display = show ? '' : 'none';
+        });
+    });
+</script>

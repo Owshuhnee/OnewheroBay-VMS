@@ -1,0 +1,98 @@
+﻿@model VMS.WebApp.Models.Booking
+
+@{
+    ViewData["Title"] = "Booking Confirmed";
+}
+
+<div class="myaccount-card">
+    <section class="booking-layout">
+
+        <!-- LEFT: Event summary -->
+        <article class="event-card">
+            <div class="event-media">
+                <img src="@(string.IsNullOrWhiteSpace(Model.Event.EventImage)
+                                         ? "/img/homepage1.png"
+                                         : Model.Event.EventImage)"
+                     alt="@Model.Event.EventName" />
+
+                <span class="event-interest-tag">Booked</span>
+            </div>
+
+            <div class="event-body">
+                <h3 class="event-title">@Model.Event.EventName</h3>
+
+                <p class="event-schedule-day">
+                    @Model.Event.Schedule
+                </p>
+
+                <p class="event-desc">
+                    @Model.Event.Description
+                </p>
+
+                <div class="event-footer">
+                    <div class="event-info-row">
+                        <span class="event-price">
+                            @Model.TotalPrice.ToString("C")
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </article>
+
+        <!-- RIGHT: Confirmation details -->
+        <section class="bookingcard-right">
+            <h2>Booking Confirmed</h2>
+            <p>
+                Thank you, @Model.User.FirstName! Your booking has been received.
+            </p>
+
+            <dl class="booking-summary">
+                <dt>Booking Number</dt>
+                <dd>#@Model.BookingId</dd>
+
+                <dt>Date</dt>
+                <dd>@Model.BookingDate.ToString("dd MMM yyyy")</dd>
+
+                <dt>Time</dt>
+                <dd>@Model.BookingTime</dd>
+
+                <dt>Guests</dt>
+                <dd>@Model.GuestCount</dd>
+
+                @if (!string.IsNullOrWhiteSpace(Model.SpecialRequest))
+                {
+                    <dt>Special Requests</dt>
+                    <dd>@Model.SpecialRequest</dd>
+                }
+
+                <dt>Total Price</dt>
+                <dd>@Model.TotalPrice.ToString("C")</dd>
+
+                <dt>Status</dt>
+                <dd>@Model.BookingStatus</dd>
+            </dl>
+
+            <div style="margin-top: 16px;">
+                <h3>Your Entry QR</h3>
+                <img src="@Url.Action("TicketQr", "BookingsFE", new { id = Model.BookingId })"
+                     alt="Ticket QR"
+                     style="width:140px;height:140px;border:1px solid #ccc;border-radius:8px;padding:4px;background:#fff;" />
+                <p style="font-size: 0.9rem; color: #555;">
+                    Show this QR code at the park entrance for verification.
+                </p>
+            </div>
+
+
+            <div class="booking-actions">
+                <a asp-controller="EventsFE" asp-action="Index" class="secondary-btn">
+                    ← Back to Events
+                </a>
+
+                <a asp-controller="BookingsFE" asp-action="Index" class="primary-btn" style="margin-left: 8px;">
+                    View More Bookings
+                </a>
+            </div>
+        </section>
+
+    </section>
+</div>

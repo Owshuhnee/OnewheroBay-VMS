@@ -1,5 +1,5 @@
 
-/* ===== GLOBAL BUTTON DESIGN (REUSABLE) ==== */
+/* GLOBAL BUTTON DESIGN (REUSABLE)  */
 /* Primary = Button.Green */
 /* Secondary = Button.Beige */
 /* Tertiary = Link.Green */
@@ -20,29 +20,35 @@
     background-color: #315a35;
     color: #fff;
     border: 2px solid #27482a;
+    padding: 10px 24px;
 }
 
     .btn-primary:hover {
-        background-color: #3f6f43; /* slightly lighter on hover */
+        background-color: #3f6f43; 
         transform: translateY(-1px);
     }
 
-/* --- Secondary (outlined or alternative) --- */
 .btn-secondary {
-    background-color: #fff8ec; /* creamy ivory */
-    color: #2f2b25;
-    border: 1.8px solid #2f2b25;
+    background-color: #fff8ec;
+    color: #315a35;
+    border: 2px solid #315a35;
+    padding: 10px 24px;
 }
 
     .btn-secondary:hover {
-        background-color: #e8d7b9; /* warm tint */
+        background-color: #e8d7b9;
         transform: translateY(-1px);
+        border-color: #3f6f43; /* slightly darker green hover border */
     }
 
 /* --- Tertiary (for links like “Read More”) --- */
 .btn-tertiary {
     background: none;
     border: none;
+    padding: 0; 
+    border-radius: 0;
+    display: inline-flex;
+    align-items: center;
     color: #315a35;
     font-weight: 700;
     font-size: 0.95rem;
@@ -74,18 +80,4 @@ html {
 html {
     position: relative;
     min-height: 100%;
-}
-
-body {
-    margin-bottom: 60px;
-}
-
-footer.footer {
-    background-color: #f8f9fa; /* Light neutral tone */
-    color: #555; /* Softer text */
-    padding: 20px 0;
-    text-align: center;
-    border-top: 1px solid #ddd;
-    margin-top: 40px; /* Space above footer */
-    position: relative; /* ensure it sits normally */
 }
