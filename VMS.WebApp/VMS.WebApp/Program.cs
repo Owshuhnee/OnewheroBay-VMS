@@ -1,6 +1,11 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using VMS.WebApp.Data;
 using Npgsql;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Http;
+
+
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -27,6 +32,17 @@ builder.Services.AddDbContext<AppDbContext>(options =>
         builder.Configuration.GetConnectionString("DefaultConnection"));
 });
 
+// Configure Cookie authentication
+builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+    .AddCookie(options =>
+    {
+        options.LoginPath = "/Account/Login";      // <-- change if your login URL is different
+        options.AccessDeniedPath = "/Account/AccessDenied"; // optional
+    });
+
+builder.Services.AddAuthorization();
+
+
 
 var app = builder.Build();
 
@@ -49,9 +65,23 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
-// Session must be BEFORE Authorization
 app.UseSession();
 
+app.Use(async (context, next) =>
+{
+    // If the auth cookie says the user is authenticated
+    // BUT the Session says the user is NOT logged in,
+    // then force a logout to avoid inconsistent state.
+    if (context.User?.Identity?.IsAuthenticated == true &&
+        context.Session.GetInt32("UserID") == null)
+    {
+        await context.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+    }
+
+    await next();
+});
+
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllerRoute(

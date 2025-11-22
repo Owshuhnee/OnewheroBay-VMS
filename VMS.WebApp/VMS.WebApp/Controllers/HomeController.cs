@@ -3,6 +3,10 @@ using Microsoft.EntityFrameworkCore;
 using System.Diagnostics;
 using VMS.WebApp.Data;
 using VMS.WebApp.Models;
+using System.Security.Claims;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authorization;
 
 namespace VMS.WebApp.Controllers
 {
@@ -21,6 +25,10 @@ namespace VMS.WebApp.Controllers
 
         public IActionResult Index()
         {
+            bool isAdmin = User.IsInRole("Admin");
+
+            Console.WriteLine("User admin check: " + isAdmin); // output in debug window
+
             return View();
         }
 
@@ -58,6 +66,13 @@ namespace VMS.WebApp.Controllers
         {
             return View();
         }
+
+        [Authorize(Roles = "Admin")]
+        public IActionResult Analytics()
+        {
+            return View();
+        }
+
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
@@ -115,17 +130,16 @@ namespace VMS.WebApp.Controllers
 
 
         // LOGIN ACTION
-
         [HttpPost]
         public async Task<IActionResult> Login(LoginViewModel model)
         {
             if (!ModelState.IsValid)
-                return View("LoginRegister", model);   // or "Login"
+                return View("LoginRegister", model);
 
             var user = await _context.Users
                 .FirstOrDefaultAsync(u =>
                     u.Email == model.Email &&
-                    u.Password == model.Password);     // TODO: hash later
+                    u.Password == model.Password);  // TODO hash later
 
             if (user == null)
             {
@@ -133,30 +147,60 @@ namespace VMS.WebApp.Controllers
                 return RedirectToAction("LoginRegister");
             }
 
-            // Store user info in Session
+
+            // Store user info Session
             HttpContext.Session.SetInt32("UserID", user.UserId);
             HttpContext.Session.SetString("UserFirstName", user.FirstName);
             HttpContext.Session.SetString("UserRole", user.Role);
 
-            // Redirect to homepage (Account button will now say Welcome, FirstName!)
-            return RedirectToAction("Index", "Home");
-        }
-            return RedirectToAction("Index", "Home");
-        }
-
-
-    // TICKETS
-        public IActionResult Tickets()
-        {
-            var userId = HttpContext.Session.GetInt32("UserID");
-
-            if (userId == null)
+            
+            // Create claims for cookie authentication
+            var claims = new List<Claim>
             {
-                return RedirectToAction("Login", "Home");
-            }
+                new Claim(ClaimTypes.NameIdentifier, user.UserId.ToString()),
+                new Claim(ClaimTypes.Name, user.Email),
+                new Claim(ClaimTypes.Role, user.Role)
+            };
 
-            // Redirect to My Bookings page
-            return RedirectToAction("MyBookings", "BookingsFE");
+            var identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+
+            var principal = new ClaimsPrincipal(identity);
+
+           // Sign user in using cookie
+            await HttpContext.SignInAsync(
+                CookieAuthenticationDefaults.AuthenticationScheme,
+                principal,
+                new AuthenticationProperties
+                {
+                    IsPersistent = false,
+                });
+
+            // Redirect after login
+            return RedirectToAction("Index", "Home");
+        }
+
+
+        // TICKETS
+        public IActionResult Tickets()
+            {
+                var userId = HttpContext.Session.GetInt32("UserID");
+
+                if (userId == null)
+                {
+                    return RedirectToAction("Login", "Home");
+                }
+
+                // Redirect to My Bookings page
+                return RedirectToAction("MyBookings", "BookingsFE");
+        }
+
+        //LOGOUT
+        [HttpPost]
+        public async Task<IActionResult> Logout()
+        {
+            await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+            HttpContext.Session.Clear();
+            return RedirectToAction("Index", "Home");
         }
 
     }

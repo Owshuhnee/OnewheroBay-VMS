@@ -52,6 +52,12 @@
                 <a asp-controller="Home" asp-action="ChangePassword" class="btn btn-secondary">
                     Change password
                 </a>
+
+                <form asp-controller="Home" asp-action="Logout" method="post" class="d-inline">
+                    <button type="submit" class="btn btn-outline-danger">
+                        Log out
+                    </button>
+                </form>
             </div>
         </article>
 

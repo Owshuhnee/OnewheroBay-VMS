@@ -1,4 +1,6 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace VMS.WebApp.Models
@@ -28,12 +30,13 @@ namespace VMS.WebApp.Models
         [Column("available_slots")]
         public int? AvailableSlots { get; set; }
 
-        //"Monday to Friday", "Any day 9am–5pm"
         [Column("schedule")]
         public string? Schedule { get; set; }
 
-        // All, Tours, Workshop, Nature, Special
-        [Column("interest")] 
+        [Column("interest")]
         public string? Interest { get; set; }
+
+        // OPTIONAL but useful for analytics – doesn’t change DB schema
+        public ICollection<Booking> Bookings { get; set; } = new List<Booking>();
     }
 }
