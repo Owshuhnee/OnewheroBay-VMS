@@ -1,0 +1,99 @@
+﻿.login-card {
+    display: flex;
+    width: 100%;
+    max-width: 1200px;
+    min-height: 560px;
+    background: #b8c6b3;
+    box-shadow: 0 10px 30px rgba(0,0,0,.08);
+    margin: 20px auto;
+    overflow: hidden;
+}
+
+.login-content {
+    flex: 0 0 30%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 40px;
+}
+
+    .login-content h1 {
+        margin-bottom: 16px;
+        color: #2f2b25;
+        font-size: 2.4rem;
+        font-weight: 800;
+    }
+
+    .login-content label {
+        display: block;
+        margin-bottom: 4px;
+        font-weight: 600;
+        font-size: 0.9rem;
+        color: #444;
+    }
+
+    .login-content input {
+        width: 100%;
+        padding: 10px 12px;
+        margin-bottom: 14px;
+        border-radius: 8px;
+        border: 1px solid #d0d0d0;
+        font-size: 0.95rem;
+        box-sizing: border-box;
+    }
+
+    .login-content input:focus {
+        outline: none;
+        border-color: #315a35;
+        box-shadow: 0 0 0 1px rgba(49, 90, 53, 0.25);
+    }
+
+    .login-content button[type="submit"] {
+        width: auto;
+        padding: 10px 32px;
+        margin-top: 12px;
+        background-color: #315a35;
+        color: #fff;
+        border: none;
+        border-radius: 999px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: background-color 0.2s ease, transform 0.1s ease;
+        display: inline-block;
+    }
+
+    .login-content button[type="submit"]:hover {
+        background-color: #3f6f43;
+        transform: translateY(-1px);
+    }
+
+    .login-content p {
+        font-size: 0.85rem; /* adjust as needed */
+        margin-top: 10px; /* optional: tighten spacing */
+        color: #666;
+    }
+
+        .login-content p a {
+            color: #315a35; /* same green as your buttons */
+            font-weight: 600;
+            text-decoration: none;
+        }
+
+            .login-content p a:hover {
+                text-decoration: underline;
+            }
+
+
+.login-image {
+    flex: 0 0 70%;
+    height: 100%;
+    position: relative;
+}
+
+    .login-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+    }
+

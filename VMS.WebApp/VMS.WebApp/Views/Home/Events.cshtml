@@ -1,0 +1,120 @@
+﻿@{
+    ViewData["Title"] = "Events";
+}
+
+<!-- HERO -->
+<section class="events-hero">
+    <div class="events-hero-grid">
+        <div class="events-header">
+            <h1>Unveil Wonders</h1>
+            <p>
+                Onewhero Bay Heritage Park offers a unique blend of natural beauty and historical charm.
+                Plan your visit and explore guided tours, nature walks, and special events for all ages.
+            </p>
+        </div>
+
+        <div class="events-hero-img">
+            <img src="/img/homepage1.png" alt="Kiwi forest at sunrise">
+        </div>
+    </div>
+</section>
+
+
+
+<!-- FILTER BAR -->
+<nav class="events-filterbar" aria-label="Filter events">
+    <div class="container">
+        <div class="chips">
+            <button class="chip is-active" data-filter="all">All</button>
+            <button class="chip" data-filter="tours">Tours</button>
+            <button class="chip" data-filter="nature">Nature</button>
+            <button class="chip" data-filter="workshops">Workshops</button>
+            <button class="chip" data-filter="special">Special</button>
+        </div>
+    </div>
+</nav>
+
+
+
+
+<!-- RESPONSIVE EVENTS GRID -->
+
+<div class="events-grid">
+
+    <!-- CARD -->
+    <article class="event-card" data-cat="nature,tours">
+
+        <div class="event-media">
+            <img src="~/img/homepage1.png" alt="Kiwi habitat tour" />
+            <span class="event-date">Mar 12, 2025</span>
+        </div>
+
+        <div class="event-body">
+            <h3 class="event-title">Exploring Kiwi Habitats in Depth</h3>
+            <p class="event-desc">
+                Dive into the unique world of the kiwi bird, discovering its habitat and preservation efforts.
+            </p>
+            <div class="event-actions">
+                <a asp-controller="Booking" asp-action="Start" asp-route-id="1" class="btn btn-primary">Book Now</a>
+            </div>
+        </div>
+    </article>
+
+    <article class="event-card" data-cat="nature,tours">
+        <div class="event-media">
+            <img src="~/img/homepage1.png" alt="New trails at Onewhero Bay" />
+            <span class="event-date">Apr 07, 2025</span>
+        </div>
+        <div class="event-body">
+            <h3 class="event-title">New Trails Unveiled in Onewhero Bay</h3>
+            <p class="event-desc">
+                Enjoy newly opened walking and hiking trails designed for every nature enthusiast.
+            </p>
+            <div class="event-actions">
+                <a asp-controller="Events" asp-action="Details" asp-route-id="2" class="btn btn-secondary">Explore</a>
+                <a asp-controller="Booking" asp-action="Start" asp-route-id="2" class="btn btn-tertiary">Book</a>
+            </div>
+        </div>
+    </article>
+
+    <article class="event-card" data-cat="tours,special">
+        <div class="event-media">
+            <img src="~/img/homepage1.png" alt="Kiwi night tours" />
+            <span class="event-date">May 15, 2025</span>
+        </div>
+        <div class="event-body">
+            <h3 class="event-title">Kiwi Night Tours Introduced</h3>
+            <p class="event-desc">
+                Experience a mesmerizing night tour and see these remarkable birds come alive after dark.
+            </p>
+            <div class="event-actions">
+                <a asp-controller="Booking" asp-action="Start" asp-route-id="3" class="btn btn-primary">Book Tickets</a>
+                <a asp-controller="Events" asp-action="Details" asp-route-id="3" class="btn btn-tertiary">Details</a>
+            </div>
+        </div>
+    </article>
+
+    <!-- Add more placeholder cards as needed -->
+</div>
+
+
+<script>
+    document.addEventListener('click', (e) => {
+        const btn = e.target.closest('.chip');
+        if (!btn) return;
+
+        // toggle active state
+        btn.parentElement.querySelectorAll('.chip')
+            .forEach(c => c.classList.remove('is-active'));
+        btn.classList.add('is-active');
+
+        const filter = btn.dataset.filter; // "all", "tours", etc.
+        const cards = document.querySelectorAll('.event-card');
+
+        cards.forEach(card => {
+            const cats = card.dataset.cat.split(',');
+            const show = filter === 'all' || cats.includes(filter);
+            card.style.display = show ? '' : 'none';
+        });
+    });
+</script>

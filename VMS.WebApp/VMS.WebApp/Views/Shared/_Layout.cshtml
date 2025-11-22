@@ -1,11 +1,16 @@
-﻿<!DOCTYPE html>
-@using Microsoft.AspNetCore.Http
+﻿@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor HttpContextAccessor
+
 @{
-    var userFirstName = Context.Session.GetString("UserFirstName");
+    var firstName = HttpContextAccessor.HttpContext?.Session.GetString("UserFirstName");
 }
+
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - VMS.WebApp</title>
 
@@ -13,9 +18,13 @@
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/css/NavigationBar.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/css/Home.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/Events.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/css/Booking.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/ParkInfo.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/About.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/css/Account.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/css/ParkInfo.css" asp-append-version="true" />    
+    <link rel="stylesheet" href="~/css/Login.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/Register.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/VMS.WebApp.styles.css" asp-append-version="true" />
 </head>
 
@@ -28,7 +37,7 @@
                 <!-- Logo (left) -->
                 <div class="nav-logo">
                     <a asp-controller="Home" asp-action="Index">
-                        <img src="~/images/logo.png" alt="Onewhero Bay Logo" />
+                        <img src="~/img/Logo.png" alt="Onewhero Bay Logo" />
                     </a>
                 </div>
 
@@ -48,36 +57,39 @@
                             <a class="nav-link" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" asp-controller="Home" asp-action="ParkInfo">Park Info</a>
+                            <a class="nav-link" asp-controller="Home" asp-action="Events">Events</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" asp-controller="Home" asp-action="Booking">Booking</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" asp-controller="Home" asp-action="About">About Us</a>
+                            <a class="nav-link" asp-controller="Home" asp-action="ParkInfo">Park Info</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" asp-controller="Home" asp-action="Promotions">Promotions</a>
+                            <a class="nav-link" asp-controller="Home" asp-action="About">About Us</a>
                         </li>
-
                     </ul>
 
-                    <!-- Account/Profile (right) -->
-                    <div class="nav-login ms-lg-3">
-                        @if (string.IsNullOrEmpty(userFirstName))
+                    <div class="nav-login">
+                        @if (string.IsNullOrEmpty(firstName))
                         {
-                            <a asp-controller="Home" asp-action="Login" class="nav-login-btn">
-                                Account
+                            <!-- NOT logged in: go to Login/Register page -->
+                            <a class="nav-login-btn"
+                               asp-controller="Home"
+                               asp-action="Login">
+                                Login
                             </a>
                         }
                         else
                         {
-                            <span class="nav-login-btn">
-                                Welcome, @userFirstName!
-                            </span>
+                            <!-- Logged in: show welcome + go to Account page -->
+                            <a class="nav-login-btn"
+                               asp-controller="Home"
+                               asp-action="Account">
+                                Welcome, @firstName!
+                            </a>
                         }
                     </div>
-
 
                 </div>
 
@@ -90,7 +102,6 @@
             @RenderBody()
         </main>
     </div>
-
 
     <!-- FOOTER -->
     <footer class="site-footer">
@@ -134,5 +145,6 @@
         </div>
     </footer>
 
+    @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

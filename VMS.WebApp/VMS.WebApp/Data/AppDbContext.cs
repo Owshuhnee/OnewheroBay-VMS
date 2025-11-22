@@ -1,4 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
+using System.Collections.Generic;
 using VMS.WebApp.Models;
 
 namespace VMS.WebApp.Data
@@ -9,69 +11,122 @@ namespace VMS.WebApp.Data
         {
         }
 
-        // DbSets
-        public DbSet<Event> Events { get; set; } = null!;
+        // DBSET HERE
+
+        // These DbSet properties represent the tables in the database.
+        // Each DbSet maps a model class to a database table so EF Core can
+        // query, insert, update, and delete records for that entity.
+
         public DbSet<Visitor> Visitors { get; set; } = null!;
         public DbSet<Booking> Bookings { get; set; } = null!;
         public DbSet<User> Users { get; set; } = null!;
+        public DbSet<Event> Events { get; set; } = null!;
+        public DbSet<EventSession> EventSessions { get; set; } = null!;
 
-        // public DbSet<User> Penguin { get; set; } = null!;
-        
+
+        // MODEL BUILDER HERE
+        // Configure entity-to-table mappings and column settings.
+        // This section customizes how each model maps to the database schema,
+        // including table names, column names, relationships, and constraints.
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
 
-            // Map entity classes to actual table names (CASE-SENSITIVE!)
-            modelBuilder.Entity<Event>().ToTable("events");        // lowercase in database
-            modelBuilder.Entity<Visitor>().ToTable("Visitors");    // Capital V in database
-            modelBuilder.Entity<Booking>().ToTable("Bookings");    // Capital B in database
-            modelBuilder.Entity<User>().ToTable("users");          // lowercase in database
-                                                               
-            // ===== EVENTS TABLE MAPPINGS =====
-            modelBuilder.Entity<Event>()
-                .Property(e => e.EventID).HasColumnName("event_id");
-            modelBuilder.Entity<Event>()
-                .Property(e => e.EventName).HasColumnName("title");
-            modelBuilder.Entity<Event>()
-                .Property(e => e.EventDate).HasColumnName("event_date");
-            modelBuilder.Entity<Event>()
-                .Property(e => e.AvailableTickets).HasColumnName("available_tickets");
-            modelBuilder.Entity<Event>()
-                .Property(e => e.TicketPrice).HasColumnName("ticket_price");
-            modelBuilder.Entity<Event>()
-                .Property(e => e.Description).HasColumnName("description");
-            modelBuilder.Entity<Event>()
-                .Property(e => e.Location).HasColumnName("location");
+            // USERS TABLE
+            modelBuilder.Entity<User>(entity =>
+            {
+                entity.ToTable("users");   // Postgres table name
 
-            // ===== BOOKINGS TABLE MAPPINGS =====
-            modelBuilder.Entity<Booking>().Property(b => b.BookingID).HasColumnName("BookingID");
-            modelBuilder.Entity<Booking>().Property(b => b.VisitorID).HasColumnName("VisitorID");
-            modelBuilder.Entity<Booking>().Property(b => b.EventID).HasColumnName("EventID");
-            modelBuilder.Entity<Booking>().Property(b => b.BookingDate).HasColumnName("BookingDate");
-            modelBuilder.Entity<Booking>().Property(b => b.UserID).HasColumnName("UserID");
-            modelBuilder.Entity<Booking>().Property(b => b.TotalPrice).HasColumnName("TotalPrice");
-            modelBuilder.Entity<Booking>().Property(b => b.Status).HasColumnName("Status");
-            // ===== VISITORS TABLE MAPPINGS =====
-            modelBuilder.Entity<Visitor>()
-                .Property(v => v.VisitorID).HasColumnName("VisitorID");
-            modelBuilder.Entity<Visitor>()
-                .Property(v => v.FirstName).HasColumnName("FirstName");
-            modelBuilder.Entity<Visitor>()
-                .Property(v => v.LastName).HasColumnName("LastName");
-            modelBuilder.Entity<Visitor>()
-                .Property(v => v.Email).HasColumnName("Email");
-            modelBuilder.Entity<Visitor>()
-                .Property(v => v.Phone).HasColumnName("Phone");
-            modelBuilder.Entity<Visitor>()
-                .Property(v => v.Interests).HasColumnName("Interests");
-            modelBuilder.Entity<Visitor>()
-                .Property(v => v.RegistrationDate).HasColumnName("RegistrationDate");
+                entity.HasKey(u => u.UserId);
 
-            // ===== USERS TABLE MAPPINGS =====
-            // Note: You'll need to verify the actual column names in users table
-            modelBuilder.Entity<User>()
-                .Property(u => u.UserId).HasColumnName("UserId");
-            // Add other User column mappings as needed
+                entity.Property(u => u.UserId)
+                      .HasColumnName("user_id");
+
+                entity.Property(u => u.Role)
+                      .HasColumnName("role");
+
+                entity.Property(u => u.FirstName)
+                      .HasColumnName("first_name");
+
+                entity.Property(u => u.LastName)
+                      .HasColumnName("last_name");
+
+                entity.Property(u => u.Phone)
+                      .HasColumnName("phone");
+
+                entity.Property(u => u.Email)
+                      .HasColumnName("email");
+
+                entity.Property(u => u.Password)
+                      .HasColumnName("password");
+
+                entity.Property(u => u.CreatedDate)
+                      .HasColumnName("created_date");
+
+                entity.Property(u => u.IsActive)
+                      .HasColumnName("is_active");
+            });
+
+            // EVENTS TABLE
+            modelBuilder.Entity<Event>(entity =>
+            {
+                entity.ToTable("events");  // Postgres table name
+
+                entity.HasKey(e => e.EventID);
+
+                entity.Property(e => e.EventID)
+                      .HasColumnName("event_id");
+
+                entity.Property(e => e.EventName)
+                      .HasColumnName("title");
+
+                entity.Property(e => e.Description)
+                      .HasColumnName("description");
+
+                entity.Property(e => e.Location)
+                      .HasColumnName("location");
+
+                entity.Property(e => e.IsActive)
+                      .HasColumnName("is_active");
+
+                entity.HasMany(e => e.Sessions) // 1 Event -> many Event Sessions
+                      .WithOne(s => s.Event)
+                      .HasForeignKey(s => s.EventID);
+
+            });
+
+            // EVENT SESSIONS TABLE
+            modelBuilder.Entity<EventSession>(entity =>
+            {
+                entity.ToTable("event_sessions"); // Postgres table name
+
+                entity.HasKey(e => e.SessionID);
+
+                entity.Property(e => e.SessionID)
+                      .HasColumnName("session_id");
+
+                entity.Property(e => e.EventID)
+                      .HasColumnName("event_id");
+
+                entity.Property(e => e.Date)
+                      .HasColumnName("date");
+
+                entity.Property(e => e.StartTime)
+                      .HasColumnName("start_time");
+
+                entity.Property(e => e.Capacity)
+                      .HasColumnName("capacity");
+
+                entity.Property(e => e.Price)
+                      .HasColumnName("price");
+
+                entity.Property(e => e.IsActive)
+                      .HasColumnName("is_active");
+            });
+
+
+            // ADD Visitor / Booking mappings here later. Visitors
         }
     }
 }
