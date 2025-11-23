@@ -25,7 +25,10 @@
     <link rel="stylesheet" href="~/css/Account.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/css/Login.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/css/Register.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/Analytics.css" asp-append-version="true" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
     <link rel="stylesheet" href="~/VMS.WebApp.styles.css" asp-append-version="true" />
+
 </head>
 
 <body>
@@ -68,28 +71,45 @@
                         <li class="nav-item">
                             <a class="nav-link" asp-controller="Home" asp-action="About">About Us</a>
                         </li>
+
+                        <!-- Only shows up on Admin access -->
+                        @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link" asp-controller="Home" asp-action="Analytics">
+                                    Analytics
+                                </a>
+                            </li>
+                        }
+
                     </ul>
 
+                    <!-- Login/Account button on top right -->
                     <div class="nav-login">
-                        @if (string.IsNullOrEmpty(firstName))
+                        @if (User.Identity.IsAuthenticated && !string.IsNullOrEmpty(firstName))
                         {
-                            <!-- NOT logged in: go to Login/Register page -->
-                            <a class="nav-login-btn"
-                               asp-controller="Home"
-                               asp-action="Login">
-                                Login
-                            </a>
-                        }
-                        else
-                        {
-                            <!-- Logged in: show welcome + go to Account page -->
+                            <!-- Logged in: go to account page -->
                             <a class="nav-login-btn"
                                asp-controller="Account"
                                asp-action="Account">
                                 Welcome, @firstName!
                             </a>
                         }
+                        else
+                        {
+                            <!-- NOT logged in -->
+                            <a class="nav-login-btn"
+                               asp-controller="Home"
+                               asp-action="Login">
+                                Login
+                            </a>
+                        }
                     </div>
+
+
+
+
+
 
                 </div>
 
