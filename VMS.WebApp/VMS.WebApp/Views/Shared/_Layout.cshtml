@@ -92,7 +92,7 @@
                             <a class="nav-login-btn"
                                asp-controller="Account"
                                asp-action="Account">
-                                Welcome, @firstName!
+                                Haere Mae, @firstName!
                             </a>
                         }
                         else
@@ -105,14 +105,7 @@
                             </a>
                         }
                     </div>
-
-
-
-
-
-
                 </div>
-
             </div>
         </div>
     </header>
@@ -165,6 +158,9 @@
         </div>
     </footer>
 
-    @await RenderSectionAsync("Scripts", required: false)
+
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+        @await RenderSectionAsync("Scripts", required: false)
+
 </body>
 </html>
