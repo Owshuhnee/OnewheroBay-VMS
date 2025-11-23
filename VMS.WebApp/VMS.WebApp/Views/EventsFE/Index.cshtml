@@ -49,7 +49,7 @@
         <article class="event-card" data-cat="@category">
 
             <div class="event-media">
-                <img src="@(string.IsNullOrWhiteSpace(evt.EventImage) ? "/img/homepage1.png" : evt.EventImage)"
+                <img src="@Url.Content(string.IsNullOrWhiteSpace(evt.EventImage) ? "/img/homepage1.png" : evt.EventImage)"
                      alt="@evt.EventName" />
 
                 <!-- TOP-RIGHT INTEREST TAG -->
