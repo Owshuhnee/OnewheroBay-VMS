@@ -38,13 +38,13 @@ namespace VMS.WebApp.Controllers
         {
             _context.Events.Add(evt);
             await _context.SaveChangesAsync();
-            return CreatedAtAction(nameof(GetEvent), new { id = evt.EventID }, evt);
+            return CreatedAtAction(nameof(GetEvent), new { id = evt.EventId }, evt);
         }
 
         [HttpPut("{id}")]
         public async Task<IActionResult> UpdateEvent(int id, Event evt)
         {
-            if (id != evt.EventID)
+            if (id != evt.EventId)
                 return BadRequest("ID mismatch");
 
             _context.Entry(evt).State = EntityState.Modified;

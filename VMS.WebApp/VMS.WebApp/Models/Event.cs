@@ -10,7 +10,7 @@ namespace VMS.WebApp.Models
     {
         [Key]
         [Column("event_id")]
-        public int EventID { get; set; }
+        public int EventId { get; set; }
 
         [Column("event_name")]
         public string EventName { get; set; } = string.Empty;

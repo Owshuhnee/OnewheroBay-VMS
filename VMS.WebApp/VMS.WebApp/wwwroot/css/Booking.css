@@ -1,4 +1,8 @@
-﻿/* Outer wrapper (same as My Account style) */
+﻿/* =====================================
+   BASE STYLES (shared across all sizes)
+   ===================================== */
+
+/* Outer wrapper (same as My Account style) */
 .myaccount-card {
     background-color: #f5e6c8;
     padding: 85px 100px;
@@ -7,13 +11,14 @@
     font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 }
 
- .booking-layout {
+.booking-layout {
     display: grid;
     grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
     gap: 32px;
     align-items: stretch; /* stretch cards to equal height */
     margin-bottom: 20px;
 }
+
     .booking-layout .event-card {
         height: 100%;
     }
@@ -80,7 +85,6 @@
             flex: 1;
         }
 
-
 .total-row {
     display: flex;
     justify-content: space-between;
@@ -106,7 +110,6 @@
         background: #3e6644;
     }
 
-
 .back-link {
     font-size: 16px;
     font-weight: 600;
@@ -119,9 +122,80 @@
         color: #1d402a;
     }
 
-/* Responsive: stack columns on smaller screens */
-@media (max-width: 900px) {
+
+
+/* ============================
+   DESKTOP (1024px+)
+   ============================ */
+
+@media (min-width: 1024px) {
+    .myaccount-card {
+        padding: 85px 100px;
+        max-width: 1300px;
+    }
+
     .booking-layout {
-        grid-template-columns: 1fr;
+        grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+        gap: 32px;
+    }
+}
+
+
+
+/* ============================
+   TABLET (768px–1023px)
+   ============================ */
+
+@media (min-width: 768px) and (max-width: 1023px) {
+    .myaccount-card {
+        padding: 60px 40px;
+        margin: 30px auto 50px;
+        max-width: 1000px;
+    }
+
+    .booking-layout {
+        grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+        gap: 24px;
+    }
+
+    .bookingcard-right {
+        padding: 24px 22px;
+    }
+}
+
+
+
+/* ============================
+   MOBILE (0–767px)
+   ============================ */
+
+@media (max-width: 767px) {
+    .myaccount-card {
+        padding: 40px 20px;
+        margin: 20px auto 40px;
+        max-width: 100%;
+    }
+
+    .booking-layout {
+        grid-template-columns: 1fr; /* stack event card and form */
+        gap: 20px;
+    }
+
+    .bookingcard-right {
+        padding: 22px 18px;
+        border-radius: 12px;
+    }
+
+        .bookingcard-right h2 {
+            font-size: 1.4rem;
+        }
+
+        .bookingcard-right .two-col {
+            flex-direction: column; /* stack date/time vertically on phones */
+        }
+
+    .back-link {
+        display: inline-block;
+        margin-top: 10px;
     }
 }
