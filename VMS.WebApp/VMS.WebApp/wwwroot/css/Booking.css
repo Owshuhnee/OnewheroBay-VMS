@@ -1,39 +1,45 @@
-﻿/* Outer wrapper (same as My Account style) */
+﻿/* =====================================
+   BASE STYLES (shared across all sizes)
+   ===================================== */
+
+/* Outer wrapper */
 .myaccount-card {
     background-color: #f5e6c8;
-    padding: 85px 100px;
-    margin: 40px auto 60px;
+    padding: 40px 20px;
+    margin: 20px auto 40px;
     max-width: 1300px;
     font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 }
 
- .booking-layout {
-    display: grid;
-    grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
-    gap: 32px;
-    align-items: stretch; /* stretch cards to equal height */
-    margin-bottom: 20px;
+/* Layout wrapper – default mobile: stack */
+.booking-layout {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: stretch;
+    margin-bottom: 10px;
 }
+
+    /* Reuse event-card from Events page, but let it grow */
     .booking-layout .event-card {
-        height: 100%;
+        height: auto;
     }
 
-/* Right-hand booking details card */
+/* Booking details card (right column) */
 .bookingcard-right {
     background: #ffffff;
     border-radius: 14px;
     border: 1px solid #dedede;
-    padding: 28px 26px;
+    padding: 22px 18px;
     box-shadow: 0 4px 16px rgba(0,0,0,0.06);
     display: flex;
     flex-direction: column;
 }
 
-    /* Heading + intro */
     .bookingcard-right h2 {
         margin: 0 0 8px;
         color: #1a3a2a;
-        font-size: 1.7rem;
+        font-size: 1.6rem;
     }
 
     .bookingcard-right > p {
@@ -70,7 +76,7 @@
         resize: vertical;
     }
 
-    /* Two-column rows inside form */
+    /* Two-column rows (date + time) */
     .bookingcard-right .two-col {
         display: flex;
         gap: 12px;
@@ -80,7 +86,7 @@
             flex: 1;
         }
 
-
+/* Total row + button */
 .total-row {
     display: flex;
     justify-content: space-between;
@@ -99,29 +105,258 @@
     font-size: 0.95rem;
     cursor: pointer;
     transition: background 0.2s ease;
-    width: 100%; /* full-width confirm button */
+    width: 100%;
 }
 
     .bookingcard-right .primary-btn:hover {
         background: #3e6644;
     }
 
+/* Back link */
+.booking-backlink-wrapper {
+    text-align: center;
+    margin-top: 24px;
+}
 
 .back-link {
     font-size: 16px;
     font-weight: 600;
     color: #2a5b3d;
     text-decoration: underline;
-    cursor: pointer;
 }
 
-    .back-link:hover {
-        color: #1d402a;
+.back-link:hover {
+    color: #1d402a;
+}
+
+/* --- Booking Confirmation Layout --- */
+.booking-layout--confirm {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr);
+    gap: 32px;
+}
+
+/* Ticket styling */
+.ticket-shell {
+    margin-top: 18px;
+    display: flex;
+    align-items: stretch;
+    gap: 20px;
+    background: #f7f3e7;
+    border-radius: 18px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
+    padding: 18px 20px;
+    position: relative;
+}
+
+.ticket-main {
+    flex: 1;
+}
+
+.ticket-title {
+    margin: 0 0 10px;
+    font-size: 1.1rem;
+    font-weight: 700;
+}
+
+.ticket-qr {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.ticket-qr-img {
+    width: 140px;
+    height: 140px;
+    border-radius: 12px;
+    padding: 6px;
+    background: #fff;
+    border: 1px solid #ddd;
+}
+
+/* Booking summary list */
+.booking-summary-row {
+    display: grid;
+    grid-template-columns: 120px 1fr;
+    gap: 10px;
+    font-size: 0.9rem;
+    padding: 3px 0;
+}
+
+    .booking-summary-row dt {
+        font-weight: 600;
+        color: #555;
     }
 
-/* Responsive: stack columns on smaller screens */
-@media (max-width: 900px) {
+    .booking-summary-row dd {
+        margin: 0;
+    }
+
+/* Actions */
+.booking-actions {
+    margin-top: 24px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+}
+
+    /* Make both buttons equal height/padding */
+    .booking-actions .btn {
+        padding: 10px 20px;
+        font-size: 0.95rem;
+        border-radius: 6px;
+    }
+
+/* ============================
+   DESKTOP (1024px+)
+   ============================ */
+
+@media (min-width: 1024px) {
+    .myaccount-card {
+        background-color: #f5e6c8;
+        padding: 60px 100px 80px; /* smaller top padding */
+        margin: 0 auto 60px; /* remove top margin */
+        max-width: 1300px;
+    }
+
     .booking-layout {
+        display: grid;
+        grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+        gap: 32px;
+        align-items: stretch; /* good */
+    }
+
+        .booking-layout .event-card {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        /* Make the image shorter only on the booking page */
+        .booking-layout .event-media {
+            aspect-ratio: 16/6 !important;
+            max-height: 240px; /* keeps it from dominating */
+            flex-shrink: 0; /* prevents card from collapsing */
+        }
+
+            .booking-layout .event-media img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+
+        .booking-layout .event-body {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+    .bookingcard-right {
+        padding: 28px 26px;
+        height: 100%;
+    }
+
+        .bookingcard-right h2 {
+            font-size: 1.7rem;
+        }
+}
+
+
+
+/* ============================
+   TABLET (768px–1023px)
+   ============================ */
+
+@media (min-width: 768px) and (max-width: 1023px) {
+    .myaccount-card {
+        padding: 60px 40px;
+        margin: 30px auto 50px;
+        max-width: 1000px;
+    }
+
+    .booking-layout {
+        display: grid;
+        grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+        gap: 24px;
+    }
+
+        .booking-layout .event-card {
+            max-height: 480px;
+        }
+
+        .booking-layout .event-media {
+            aspect-ratio: 16 / 7; /* slightly taller than desktop, still not huge */
+        }
+
+    .bookingcard-right {
+        padding: 24px 22px;
+    }
+}
+
+
+
+/* ============================
+   MOBILE (0–767px)
+   ============================ */
+
+@media (max-width: 767px) {
+    .myaccount-card {
+        padding: 36px 16px;
+        margin: 20px auto 40px;
+        max-width: 100%;
+    }
+
+    .booking-layout {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+        .booking-layout .event-card {
+            max-height: none; /* let it grow naturally on small screens */
+        }
+
+        .booking-layout .event-media {
+            aspect-ratio: 16 / 9; /* more standard card look on phones */
+        }
+
+    .bookingcard-right {
+        padding: 22px 18px;
+        border-radius: 12px;
+    }
+
+        .bookingcard-right h2 {
+            font-size: 1.4rem;
+        }
+
+        /* Stack date/time vertically so they don't squish */
+        .bookingcard-right .two-col {
+            flex-direction: column;
+        }
+
+    .booking-layout--confirm {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .ticket-shell {
+        flex-direction: column;
+        padding: 18px;
+    }
+
+    .booking-summary-row {
         grid-template-columns: 1fr;
     }
+
+    .booking-actions {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+        .booking-actions .btn {
+            width: 100%;
+            text-align: center;
+        }
 }

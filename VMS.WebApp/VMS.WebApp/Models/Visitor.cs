@@ -9,8 +9,5 @@
         public string Phone { get; set; } = string.Empty;
         public string Interests { get; set; } = string.Empty;
         public DateTime RegistrationDate { get; set; }
-
-        // Navigation property - links to Booking table
-        public List<Booking> Bookings { get; set; } = new List<Booking>();
     }
 }

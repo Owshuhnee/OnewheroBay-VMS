@@ -1,4 +1,8 @@
-﻿/* Hero Section */
+﻿/* =====================================
+   BASE STYLES (shared across all sizes)
+   ===================================== */
+
+/* Hero Section */
 .events-hero {
     background-color: #b8c6b3;
     padding: 70px 100px;
@@ -50,7 +54,7 @@
 }
 
 .chip {
-    flex: 1 1 130px; 
+    flex: 1 1 130px;
     text-align: center;
     scroll-snap-align: start;
     padding: 10px 0;
@@ -60,8 +64,8 @@
     font-weight: 700;
     cursor: pointer;
     transition: transform .15s ease, background-color .15s ease;
-    min-width: 110px; 
-    max-width: 150px; 
+    min-width: 110px;
+    max-width: 150px;
 }
 
     .chip:hover {
@@ -74,8 +78,9 @@
     }
 
 /* Cards section spacing */
-.events-list { margin-bottom: 48px; }
-
+.events-list {
+    margin-bottom: 48px;
+}
 
 /* Grid */
 .events-grid {
@@ -85,7 +90,7 @@
     margin-top: 30px;
     margin-bottom: 30px;
 }
-  
+
 /* Card */
 .event-card {
     background: #fff;
@@ -101,7 +106,7 @@
 /* Media with fixed aspect ratio */
 .event-media {
     position: relative;
-    aspect-ratio: 16 / 8; 
+    aspect-ratio: 16 / 8;
     background: #eee;
 }
 
@@ -141,7 +146,7 @@
     display: flex;
     flex-direction: column;
     gap: 4px;
-    flex:1;
+    flex: 1;
 }
 
 .event-title {
@@ -173,7 +178,7 @@
 .event-info-row {
     display: flex;
     justify-content: center;
-    gap:22px;
+    gap: 22px;
     font-size: .9rem;
     font-weight: 600;
     color: #333;
@@ -196,6 +201,7 @@
     align-items: center;
     margin-top: auto;
 }
+
 .event-footer {
     margin-top: auto;
     display: flex;
@@ -224,7 +230,50 @@
     }
 
 
-/* MOBILE (0–767px) */
+
+/* ============================
+   DESKTOP (1024px+)
+   ============================ */
+
+@media (min-width: 1024px) {
+    .events-hero {
+        padding: 70px 100px;
+    }
+
+    .events-grid {
+        grid-template-columns: repeat(3, minmax(0,1fr)); /* THREE COLUMNS */
+        gap: 26px;
+    }
+}
+
+
+
+/* ============================
+   TABLET (768px–1023px)
+   ============================ */
+
+@media (min-width: 768px) and (max-width: 1023px) {
+    .events-hero {
+        padding: 60px 40px;
+    }
+
+    .events-hero-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 32px;
+    }
+
+    .events-grid {
+        grid-template-columns: repeat(2, minmax(0,1fr)); /* TWO COLUMNS */
+        gap: 24px;
+    }
+}
+
+
+
+/* ============================
+   MOBILE (0–767px)
+   ============================ */
+
 @media (max-width: 767px) {
     .events-hero {
         padding: 40px 20px;
@@ -238,7 +287,6 @@
     .events-header p {
         font-size: 1rem;
     }
-
 
     .events-hero-grid {
         grid-template-columns: 1fr;
@@ -273,46 +321,17 @@
     }
 
     .events-grid {
-        grid-template-columns: 1fr; /* ONE COLUMN on mobile */
+        grid-template-columns: 1fr; /* ONE COLUMN */
         gap: 20px;
     }
+
     .event-book-btn {
-        width: 100%; 
+        width: 100%;
         display: block;
         padding: 12px 0;
         max-width: none;
-        margin: 0; 
+        margin: 0;
         border-radius: 10px;
         font-size: 1rem;
     }
 }
-
-/* TABLET (768–1023px) */
-@media (min-width: 768px) and (max-width: 1023px) {
-    .events-hero {
-        padding: 60px 40px;
-    }
-
-    .events-hero-grid {
-        grid-template-columns: 1fr 1fr;
-        gap: 32px;
-    }
-
-    .events-grid {
-        grid-template-columns: repeat(2, minmax(0,1fr)); /* TWO COLUMNS */
-        gap: 24px;
-    }
-}
-
-/* DESKTOP (1024px+) */
-@media (min-width: 1024px) {
-    .events-hero {
-        padding: 70px 100px;
-    }
-
-    .events-grid {
-        grid-template-columns: repeat(3, minmax(0,1fr)); /* THREE COLUMNS */
-        gap: 26px;
-    }
-}
-

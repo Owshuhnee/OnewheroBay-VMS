@@ -4,60 +4,100 @@
     ViewData["Title"] = "My Bookings";
 }
 
-<div class="myaccount-card">
-    <h2>My Bookings</h2>
+<div class="tickets-page">
 
-    @if (!Model.Any())
+    <!-- HEADER / HERO STRIP -->
+    <section class="tickets-hero">
+        <h1>My Bookings</h1>
+        <p>
+            Here are your active tickets for Onewhero Bay Heritage Park.
+            Show the QR code at the entrance when you arrive.
+        </p>
+    </section>
+
+    @if (Model != null && Model.Any())
     {
-        <p>You don’t have any bookings yet.</p>
-        <a asp-controller="EventsFE" asp-action="Index" class="primary-btn">
-            Browse Events
-        </a>
-    }
-    else
-    {
-        <div class="bookings-list">
+        <!-- LIST OF TICKETS -->
+        <section class="tickets-list">
+
             @foreach (var b in Model)
             {
-                <article class="booking-item-card">
-                    <div class="booking-item-header">
-                        <h3>@b.Event.EventName</h3>
-                        <span class="booking-status">@b.BookingStatus</span>
+                var eventName = b.Event?.EventName ?? "Event";
+                var date = b.BookingDate.ToString("dd MMM yyyy");
+                var time = b.BookingTime.ToString(@"hh\:mm");
+                var status = (b.BookingStatus ?? "pending").ToLowerInvariant();
+                var qrUrl = Url.Action("TicketQr", "BookingsFE", new { id = b.BookingId });
+
+                <article class="ticket-card ticket-status-@status">
+
+                    <!-- LEFT SIDE: TEXT DETAILS -->
+                    <div class="ticket-main">
+                        <header class="ticket-header">
+                            <h2>@eventName</h2>
+                            <span class="ticket-status-badge">
+                                @b.BookingStatus
+                            </span>
+                        </header>
+
+                        <dl class="ticket-meta">
+                            <div class="ticket-meta-row">
+                                <dt>Booking #</dt>
+                                <dd>@b.BookingId</dd>
+                            </div>
+                            <div class="ticket-meta-row">
+                                <dt>Date</dt>
+                                <dd>@date</dd>
+                            </div>
+                            <div class="ticket-meta-row">
+                                <dt>Time</dt>
+                                <dd>@time</dd>
+                            </div>
+                            <div class="ticket-meta-row">
+                                <dt>Guests</dt>
+                                <dd>@b.GuestCount</dd>
+                            </div>
+                            <div class="ticket-meta-row">
+                                <dt>Total</dt>
+                                <dd>@b.TotalPrice.ToString("C")</dd>
+                            </div>
+                        </dl>
                     </div>
 
-                    <p class="booking-meta">
-                        <strong>Date:</strong> @b.BookingDate.ToString("dd MMM yyyy")<br />
-                        <strong>Time:</strong> @b.BookingTime<br />
-                        <strong>Guests:</strong> @b.GuestCount
-                    </p>
-
-                    @if (!string.IsNullOrWhiteSpace(b.SpecialRequest))
-                    {
-                        <p class="booking-notes">
-                            <strong>Special Requests:</strong> @b.SpecialRequest
-                        </p>
-                    }
-
-                    <div class="booking-footer-row" style="display:flex;align-items:center;gap:16px;flex-wrap:wrap;">
-                        <span class="booking-total">
-                            Total: @b.TotalPrice.ToString("C")
-                        </span>
-
-                        <div class="booking-qr">
-                            <img src="@Url.Action("TicketQr", "BookingsFE", new { id = b.BookingId })"
-                                 alt="Ticket QR for booking @b.BookingId"
-                                 style="width:120px;height:120px;border:1px solid #ccc;border-radius:8px;padding:4px;background:#fff;" />
+                    <!-- RIGHT SIDE: QR + ACTIONS -->
+                    <div class="ticket-qr-area">
+                        <div class="ticket-qr-wrapper">
+                            <img src="@qrUrl"
+                                 alt="QR code for booking @b.BookingId"
+                                 class="ticket-qr-img" />
                         </div>
 
-                        <a class="secondary-btn"
-                           href="@Url.Action("TicketQr", "BookingsFE", new { id = b.BookingId })"
-                           download="booking-@b.BookingId-qr.png">
+                        <a href="@qrUrl"
+                           download="booking-@b.BookingId-qr.png"
+                           class="ticket-link">
                             Download QR
+                        </a>
+
+                        <a asp-controller="BookingsFE"
+                           asp-action="Confirmation"
+                           asp-route-id="@b.BookingId"
+                           class="ticket-link ticket-link-secondary">
+                            View booking details
                         </a>
                     </div>
 
                 </article>
             }
-        </div>
+
+        </section>
+    }
+    else
+    {
+        <section class="tickets-empty">
+            <h2>You don’t have any active bookings yet.</h2>
+            <p>Ready to plan your visit?</p>
+            <a asp-controller="EventsFE" asp-action="Index" class="btn btn-primary">
+                Browse events
+            </a>
+        </section>
     }
 </div>

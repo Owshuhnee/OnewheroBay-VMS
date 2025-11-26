@@ -6,20 +6,24 @@
 
 <div class="myaccount-card">
 
-    <!-- TWO COLUMN GRID: EVENT CARD (LEFT) + FORM (RIGHT) -->
+    <!-- ===============================
+         MAIN TWO-COLUMN LAYOUT
+         =============================== -->
     <section class="booking-layout">
 
-        <!-- LEFT: Event card from DB -->
+        <!-- ===============================
+             LEFT COLUMN — EVENT SUMMARY CARD
+             =============================== -->
         <article class="event-card">
 
             <div class="event-media">
                 <img src="@(string.IsNullOrWhiteSpace(Model.EventImage)
-                                                   ? "/img/homepage1.png"
-                                                   : Model.EventImage)"
+                                                                          ? "/img/homepage1.png"
+                                                                          : Model.EventImage)"
                      alt="@Model.EventName" />
 
                 <span class="event-interest-tag">
-                    @(!string.IsNullOrWhiteSpace(Model.Schedule) ? "Schedule" : "Event")
+                    @(string.IsNullOrWhiteSpace(Model.Schedule) ? "Event" : "Schedule")
                 </span>
             </div>
 
@@ -33,43 +37,39 @@
                                         : Model.Schedule)
                 </p>
 
-                <p class="event-desc">
-                    @Model.Description
-                </p>
+                <p class="event-desc">@Model.Description</p>
 
                 <div class="event-footer">
                     <div class="event-info-row">
-                        @if (Model.TicketPrice.HasValue)
-                        {
-                            <span class="event-price">
-                                @Model.TicketPrice.Value.ToString("C")
-                            </span>
-                        }
-                        else
-                        {
-                            <span class="event-price">Not yet priced</span>
-                        }
+                        <span class="event-price">
+                            @(Model.TicketPrice.HasValue
+                                                        ? Model.TicketPrice.Value.ToString("C")
+                                                        : "Not yet priced")
+                        </span>
 
                         <span class="event-slots">
                             🔸 Available: @(Model.AvailableSlots ?? 0)
                         </span>
                     </div>
                 </div>
+
             </div>
         </article>
 
-        <!-- RIGHT: Booking Details form -->
+
+        <!-- ================================
+             RIGHT COLUMN — BOOKING FORM
+             ================================ -->
         <section class="bookingcard-right">
+
             <h2>Booking Details</h2>
-            <p>
-                Please provide your booking information. You’ll receive a confirmation once complete.
-            </p>
+            <p>Please provide your booking information. You’ll receive a confirmation once complete.</p>
 
             <form asp-action="Start" method="post">
                 @Html.AntiForgeryToken()
 
-                <!-- keep track of event -->
-                <input type="hidden" asp-for="EventID" />
+                <!-- Keep Event ID -->
+                <input type="hidden" asp-for="EventId" />
 
                 <div class="two-col">
                     <div>
@@ -77,6 +77,7 @@
                         <input asp-for="PreferredDate" type="date" />
                         <span asp-validation-for="PreferredDate" class="text-danger"></span>
                     </div>
+
                     <div>
                         <label asp-for="PreferredTime">Preferred Time</label>
                         <input asp-for="PreferredTime" type="time" />
@@ -97,23 +98,29 @@
 
                 <div class="total-row">
                     <span>Total Price</span>
-                    <strong id="totalPrice">
-                        @Model.TotalPrice.ToString("C")
-                    </strong>
+                    <strong id="totalPrice">@Model.TotalPrice.ToString("C")</strong>
                 </div>
 
                 <button type="submit" class="primary-btn">Confirm Booking</button>
             </form>
+
         </section>
 
+    </section>
+
+    <!-- ================================
+         BACK LINK — PERFECT POSITIONING
+         ================================ -->
+    <div class="booking-backlink-wrapper">
         <a asp-controller="EventsFE"
            asp-action="Index"
            class="back-link">
             ← Back to all Events
         </a>
+    </div>
 
-    </section>
 </div>
+
 
 
 @section Scripts {

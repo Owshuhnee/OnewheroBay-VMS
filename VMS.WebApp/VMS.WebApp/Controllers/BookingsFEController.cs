@@ -7,7 +7,6 @@ using VMS.WebApp.Data;
 using VMS.WebApp.Models;
 using System.Linq;
 using QRCoder;
-using System.IO;
 
 namespace VMS.WebApp.Controllers
 {
@@ -25,26 +24,48 @@ namespace VMS.WebApp.Controllers
             return HttpContext.Session.GetInt32("UserID");
         }
 
-        // GET: /BookingsFE?eventId=2
-        public async Task<IActionResult> Index(int? eventId)
+        private async Task<User?> GetCurrentUserAsync()
         {
             var userId = GetCurrentUserId();
             if (userId == null)
-            {
-                return RedirectToAction("Login", "Home");
-            }
+                return null;
+
+            return await _context.Users
+                .FirstOrDefaultAsync(u => u.UserId == userId.Value && u.IsActive);
+        }
+
+        private IActionResult RequireLogin()
+        {
+            return RedirectToAction("Login", "Home");
+        }
+
+        private IActionResult RequireVisitorRole()
+        {
+            // You can change this to a custom "AccessDenied" page if you prefer
+            return Forbid();
+        }
+
+        // GET: /BookingsFE?eventId=2
+        public async Task<IActionResult> Index(int? eventId)
+        {
+            var user = await GetCurrentUserAsync();
+            if (user == null)
+                return RequireLogin();
+
+            if (user.Role != "Visitor")
+                return RequireVisitorRole();
 
             Event? evt = null;
 
             if (eventId.HasValue)
             {
                 evt = await _context.Events
-                    .FirstOrDefaultAsync(e => e.EventID == eventId.Value && e.IsActive);
+                    .FirstOrDefaultAsync(e => e.EventId == eventId.Value && e.IsActive);
             }
 
             var model = new BookingStartViewModel
             {
-                EventID = evt?.EventID ?? 0,
+                EventId = evt?.EventId ?? 0,
                 EventName = evt?.EventName ?? "Select an event to book",
                 Description = evt?.Description ?? "Please choose an event from the Events page.",
                 EventImage = evt?.EventImage,
@@ -64,11 +85,12 @@ namespace VMS.WebApp.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Start(BookingStartViewModel model)
         {
-            var userId = GetCurrentUserId();
-            if (userId == null)
-            {
-                return RedirectToAction("Login", "Home");
-            }
+            var user = await GetCurrentUserAsync();
+            if (user == null)
+                return RequireLogin();
+
+            if (user.Role != "Visitor")
+                return RequireVisitorRole();
 
             if (!ModelState.IsValid)
             {
@@ -76,7 +98,7 @@ namespace VMS.WebApp.Controllers
             }
 
             var evt = await _context.Events
-                .FirstOrDefaultAsync(e => e.EventID == model.EventID && e.IsActive);
+                .FirstOrDefaultAsync(e => e.EventId == model.EventId && e.IsActive);
 
             if (evt == null)
             {
@@ -88,8 +110,8 @@ namespace VMS.WebApp.Controllers
 
             var booking = new Booking
             {
-                UserId = userId.Value,
-                EventId = evt.EventID,
+                UserId = user.UserId,
+                EventId = evt.EventId,
                 BookingDate = DateTime.SpecifyKind(model.PreferredDate.Date, DateTimeKind.Utc),
                 BookingTime = model.PreferredTime,
                 GuestCount = model.GuestCount,
@@ -105,21 +127,20 @@ namespace VMS.WebApp.Controllers
             return RedirectToAction("Confirmation", new { id = booking.BookingId });
         }
 
-
         // GET: /BookingsFE/Confirmation/5
-
         public async Task<IActionResult> Confirmation(int id)
         {
-            var userId = GetCurrentUserId();
-            if (userId == null)
-            {
-                return RedirectToAction("Login", "Home");
-            }
+            var user = await GetCurrentUserAsync();
+            if (user == null)
+                return RequireLogin();
+
+            if (user.Role != "Visitor")
+                return RequireVisitorRole();
 
             var booking = await _context.Bookings
                 .Include(b => b.Event)
                 .Include(b => b.User)
-                .FirstOrDefaultAsync(b => b.BookingId == id && b.UserId == userId.Value);
+                .FirstOrDefaultAsync(b => b.BookingId == id && b.UserId == user.UserId);
 
             if (booking == null)
             {
@@ -129,21 +150,20 @@ namespace VMS.WebApp.Controllers
             return View(booking); // Views/BookingsFE/Confirmation.cshtml
         }
 
-
-
-        //This is the single place to pull all bookings for the logged-in user.
+        // This is the single place to pull all bookings for the logged-in user.
         public async Task<IActionResult> MyBookings()
         {
-            var userId = GetCurrentUserId();
-            if (userId == null)
-            {
-                return RedirectToAction("Login", "Home");
-            }
+            var user = await GetCurrentUserAsync();
+            if (user == null)
+                return RequireLogin();
+
+            if (user.Role != "Visitor")
+                return RequireVisitorRole();
 
             var bookings = await _context.Bookings
                 .Include(b => b.Event)
-                .Where(b => b.UserId == userId.Value &&
-                            b.BookingStatus != "cancelled") // simple “active” filter
+                .Where(b => b.UserId == user.UserId &&
+                            b.BookingStatus != "cancelled")
                 .OrderBy(b => b.BookingDate)
                 .ThenBy(b => b.BookingTime)
                 .ToListAsync();
@@ -155,16 +175,17 @@ namespace VMS.WebApp.Controllers
         [HttpGet]
         public async Task<IActionResult> TicketQr(int id)
         {
-            var userId = GetCurrentUserId();
-            if (userId == null)
-            {
+            var user = await GetCurrentUserAsync();
+            if (user == null)
                 return Unauthorized();
-            }
+
+            if (user.Role != "Visitor")
+                return RequireVisitorRole();
 
             // Ensure the booking belongs to the logged-in user
             var booking = await _context.Bookings
                 .Include(b => b.Event)
-                .FirstOrDefaultAsync(b => b.BookingId == id && b.UserId == userId.Value);
+                .FirstOrDefaultAsync(b => b.BookingId == id && b.UserId == user.UserId);
 
             if (booking == null)
             {
@@ -178,16 +199,12 @@ namespace VMS.WebApp.Controllers
                 values: new { id = booking.BookingId },
                 protocol: Request.Scheme);
 
-            // Generate QR code as PNG bytes
             using var qrGenerator = new QRCodeGenerator();
             using QRCodeData qrCodeData = qrGenerator.CreateQrCode(ticketUrl, QRCodeGenerator.ECCLevel.Q);
-
-            // PngByteQRCode is available in QRCoder 1.7+
             using var qrCode = new PngByteQRCode(qrCodeData);
             byte[] qrBytes = qrCode.GetGraphic(20); // 20 = pixels per module
 
             return File(qrBytes, "image/png");
         }
-
     }
 }

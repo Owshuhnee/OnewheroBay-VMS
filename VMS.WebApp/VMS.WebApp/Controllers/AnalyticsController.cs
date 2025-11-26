@@ -106,7 +106,7 @@ namespace VMS.WebApp.Controllers
                 .Join(
                     _context.Events,
                     g => g.EventId,
-                    e => e.EventID,
+                    e => e.EventId,
                     (g, e) => new
                     {
                         name = e.EventName,

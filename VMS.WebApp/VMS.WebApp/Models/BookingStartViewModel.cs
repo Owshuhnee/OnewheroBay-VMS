@@ -6,7 +6,7 @@ namespace VMS.WebApp.Models
     public class BookingStartViewModel
     {
         // Event info (display only on the left card)
-        public int EventID { get; set; }
+        public int EventId { get; set; }
         public string EventName { get; set; } = string.Empty;
         public string Description { get; set; } = string.Empty;
         public string? EventImage { get; set; }
