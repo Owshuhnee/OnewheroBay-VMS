@@ -37,11 +37,6 @@ namespace VMS.WebApp.Controllers
             return View();
         }
 
-        public IActionResult Booking()
-        {
-            return View();
-        }
-
         public IActionResult About()
         {
             return View();

@@ -3,7 +3,7 @@
    ========================= */
 
 .account-page {
-    background-color: #f5e6c8; /* same as home hero */
+    background-color: #f5e6c8; 
     padding: 60px 100px;
     font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 }
@@ -22,7 +22,7 @@
 
     .account-hero p {
         margin: 0;
-        max-width: 640px;
+        max-width: 1300px;
         line-height: 1.5;
         color: #443a32;
     }
@@ -30,7 +30,7 @@
 /* Main 2-column layout */
 .account-layout {
     display: grid;
-    grid-template-columns: minmax(0, 1.2fr) minmax(0, 1.5fr);
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.5fr);
     gap: 32px;
 }
 
@@ -105,11 +105,13 @@
 
 /* Profile actions */
 .account-actions {
-    margin-top: 10px;
+    margin-top: 16px;
     display: flex;
     flex-wrap: wrap;
     gap: 10px;
+    align-items: center;
 }
+
 
 /* BOOKINGS CARD */
 .account-bookings-header h2 {
@@ -185,6 +187,17 @@
         margin: 0;
     }
 
+/* Logout button under the two-column layout */
+.account-logout {
+    margin: 24px auto 0;
+    display: flex;
+    justify-content: center;
+}
+
+.account-logout-btn {
+    min-width: 160px;
+}
+
 /* =========================
    RESPONSIVE
    ========================= */
@@ -241,4 +254,15 @@
             width: 100%;
             justify-content: center;
         }
+
+    /* Logout full-width-ish on mobile */
+    .account-logout {
+        margin-top: 24px;
+    }
+
+    .account-logout-btn {
+        width: 100%;
+        max-width: 320px;
+        justify-content: center;
+    }
 }
