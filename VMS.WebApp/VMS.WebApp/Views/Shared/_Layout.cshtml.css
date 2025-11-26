@@ -139,3 +139,23 @@
         gap: 10px;
     }
 }
+
+/* ACTIVE NAV HIGHLIGHT */
+.nav-link.active {
+    color: #ffd800 !important;
+    font-weight: 700;
+    position: relative;
+}
+
+    /* Optional underline marker for extra clarity */
+    .nav-link.active::after {
+        content: "";
+        position: absolute;
+        bottom: -4px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 50%;
+        height: 2px;
+        background-color: #315a35;
+        border-radius: 2px;
+    }

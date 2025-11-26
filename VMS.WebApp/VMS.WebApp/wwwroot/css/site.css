@@ -81,3 +81,335 @@ html {
     position: relative;
     min-height: 100%;
 }
+
+/* =========================
+   TICKETS – DESKTOP (1024px+)
+   ========================= */
+
+.tickets-page {
+    background-color: #f5e6c8;
+    padding: 60px 100px 80px;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+.tickets-hero {
+    max-width: 900px;
+    margin: 0 auto 32px;
+}
+
+    .tickets-hero h1 {
+        font-size: 2.2rem;
+        font-weight: 800;
+        margin: 0 0 0.5rem;
+        color: #2f2b25;
+    }
+
+    .tickets-hero p {
+        margin: 0;
+        max-width: 600px;
+        line-height: 1.5;
+        color: #4a4036;
+    }
+
+/* List container */
+.tickets-list {
+    max-width: 900px;
+    margin: 0 auto 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+/* Ticket card */
+.ticket-card {
+    background-color: #ffffff;
+    border-radius: 24px;
+    box-shadow: 0 10px 26px rgba(0, 0, 0, 0.08);
+    padding: 24px 28px;
+    display: grid;
+    grid-template-columns: minmax(0, 1.6fr) minmax(220px, 1fr);
+    gap: 24px;
+    position: relative;
+    overflow: hidden;
+}
+
+    /* Perforated “ticket” edge */
+    .ticket-card::before,
+    .ticket-card::after {
+        content: "";
+        position: absolute;
+        top: 50%;
+        width: 18px;
+        height: 18px;
+        border-radius: 50%;
+        background-color: #f5e6c8;
+        transform: translateY(-50%);
+    }
+
+    .ticket-card::before {
+        left: -9px;
+    }
+
+    .ticket-card::after {
+        right: -9px;
+    }
+
+    /* Vertical dotted separator between info and QR */
+    .ticket-card::marker {
+    }
+
+    .ticket-card::before {
+    }
+
+    .ticket-card::after {
+    }
+
+    .ticket-card::before {
+    }
+
+    .ticket-card::after {
+    }
+
+    .ticket-card::before,
+    .ticket-card::after {
+    }
+
+    .ticket-card::before {
+    }
+
+    .ticket-card::after {
+    }
+
+    .ticket-card::before,
+    .ticket-card::after {
+    }
+
+    .ticket-card::before {
+    }
+
+    .ticket-card::after {
+    }
+
+    .ticket-card::before {
+    }
+
+    .ticket-card::after {
+    }
+
+    .ticket-card::before {
+    }
+
+    .ticket-card::after {
+    }
+
+    /* actual separator inside grid */
+    .ticket-card::selection {
+    }
+
+    .ticket-card::selection {
+    }
+
+    .ticket-card::before {
+    }
+
+    .ticket-card::after {
+    }
+
+    .ticket-card::before {
+    }
+
+    .ticket-card::after {
+    }
+
+/* We'll use a pseudo element for the separator on the QR column */
+.ticket-qr-area {
+    position: relative;
+    padding-left: 24px;
+    border-left: 1px dashed #e2d4be;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+/* Header row (event name + status pill) */
+.ticket-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 10px;
+}
+
+    .ticket-header h2 {
+        margin: 0;
+        font-size: 1.4rem;
+        font-weight: 700;
+        color: #2f2b25;
+    }
+
+/* Status pill */
+.ticket-status-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 4px 12px;
+    border-radius: 999px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    background-color: #e0f2e4;
+    color: #315a35;
+}
+
+/* Different colours by status (optional) */
+.ticket-status-pending .ticket-status-badge {
+    background-color: #fff4d9;
+    color: #8a5a00;
+}
+
+.ticket-status-cancelled .ticket-status-badge {
+    background-color: #ffe4e4;
+    color: #a13c3c;
+}
+
+.ticket-status-confirmed .ticket-status-badge {
+    background-color: #e0f2e4;
+    color: #315a35;
+}
+
+/* Definition list styling */
+.ticket-meta {
+    margin: 0;
+}
+
+.ticket-meta-row {
+    display: grid;
+    grid-template-columns: 110px minmax(0, 1fr);
+    column-gap: 16px;
+    padding: 4px 0;
+    font-size: 0.95rem;
+}
+
+    .ticket-meta-row dt {
+        font-weight: 600;
+        color: #555;
+    }
+
+    .ticket-meta-row dd {
+        margin: 0;
+        color: #333;
+    }
+
+/* QR block */
+.ticket-qr-wrapper {
+    width: 140px;
+    height: 140px;
+    border-radius: 16px;
+    border: 1px solid #e2d4be;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #faf7f0;
+}
+
+.ticket-qr-img {
+    max-width: 120px;
+    max-height: 120px;
+    display: block;
+}
+
+/* Links under QR */
+.ticket-link {
+    font-size: 0.9rem;
+    text-decoration: underline;
+    color: #2a5b3d;
+    font-weight: 600;
+}
+
+    .ticket-link:hover {
+        color: #1b3e29;
+    }
+
+.ticket-link-secondary {
+    font-weight: 500;
+    color: #555;
+}
+
+/* Empty state */
+.tickets-empty {
+    max-width: 700px;
+    margin: 40px auto 80px;
+    text-align: center;
+}
+
+    .tickets-empty h2 {
+        margin-bottom: 0.5rem;
+    }
+
+/* =========================
+   TICKETS – TABLET (768–1023px)
+   ========================= */
+
+@media (min-width: 768px) and (max-width: 1023px) {
+    .tickets-page {
+        padding: 50px 40px 60px;
+    }
+
+    .tickets-list {
+        max-width: 800px;
+    }
+
+    .ticket-card {
+        padding: 20px 22px;
+        grid-template-columns: minmax(0, 1.5fr) minmax(200px, 1fr);
+        gap: 20px;
+    }
+
+    .ticket-qr-wrapper {
+        width: 120px;
+        height: 120px;
+    }
+}
+
+/* =========================
+   TICKETS – MOBILE (0–767px)
+   ========================= */
+
+@media (max-width: 767px) {
+    .tickets-page {
+        padding: 36px 16px 50px;
+    }
+
+    .tickets-hero h1 {
+        font-size: 1.9rem;
+    }
+
+    .tickets-hero p {
+        font-size: 0.95rem;
+    }
+
+    .ticket-card {
+        padding: 18px 18px 20px;
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+
+    /* No vertical border on mobile; we’ll stack */
+    .ticket-qr-area {
+        border-left: none;
+        padding-left: 0;
+        border-top: 1px dashed #e2d4be;
+        padding-top: 16px;
+        align-items: center;
+    }
+
+    .ticket-meta-row {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .ticket-qr-wrapper {
+        width: 130px;
+        height: 130px;
+    }
+}

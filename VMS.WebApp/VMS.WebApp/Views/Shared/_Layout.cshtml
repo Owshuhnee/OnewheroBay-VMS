@@ -35,7 +35,7 @@
     <header>
         <!--NAVBAR -->
         <div class="top-nav-wrapper">
-            <div class="top-nav-inner navbar navbar-expand-md navbar-light">
+            <div class="top-nav-inner navbar navbar-expand-lg navbar-light">
 
                 <!-- Logo (left) -->
                 <div class="nav-logo">
@@ -56,29 +56,62 @@
 
                     <!-- Center nav links -->
                     <ul class="navbar-nav mx-auto nav-links">
+
                         <li class="nav-item">
-                            <a class="nav-link" asp-controller="Home" asp-action="Index">Home</a>
+                            <a class="nav-link @(ViewContext.RouteData.Values["controller"]?.ToString() == "Home"
+                                                   && ViewContext.RouteData.Values["action"]?.ToString() == "Index"
+                                                   ? "active" : "")"
+                               asp-controller="Home" asp-action="Index">
+                                Home
+                            </a>
                         </li>
+
                         <li class="nav-item">
-                            <a class="nav-link" asp-controller="EventsFE" asp-action="Index">Events</a>
+                            <a class="nav-link @(ViewContext.RouteData.Values["controller"]?.ToString() == "EventsFE"
+                                                   && ViewContext.RouteData.Values["action"]?.ToString() == "Index"
+                                                   ? "active" : "")"
+                               asp-controller="EventsFE" asp-action="Index">
+                                Events
+                            </a>
                         </li>
+
                         <li class="nav-item">
-                            <a class="nav-link" asp-controller="BookingsFE" asp-action="Index">Bookings</a>
+                            <a class="nav-link @(ViewContext.RouteData.Values["controller"]?.ToString() == "BookingsFE"
+                                                   && ViewContext.RouteData.Values["action"]?.ToString() == "Index"
+                                                   ? "active" : "")"
+                               asp-controller="BookingsFE" asp-action="Index">
+                                Bookings
+                            </a>
                         </li>
+
                         <li class="nav-item">
-                            <a class="nav-link" asp-controller="Home" asp-action="ParkInfo">Park Info</a>
+                            <a class="nav-link @(ViewContext.RouteData.Values["controller"]?.ToString() == "Home"
+                                                   && ViewContext.RouteData.Values["action"]?.ToString() == "ParkInfo"
+                                                   ? "active" : "")"
+                               asp-controller="Home" asp-action="ParkInfo">
+                                Park Info
+                            </a>
                         </li>
+
                         <li class="nav-item">
-                            <a class="nav-link" asp-controller="Home" asp-action="About">About Us</a>
+                            <a class="nav-link @(ViewContext.RouteData.Values["controller"]?.ToString() == "Home"
+                                                   && ViewContext.RouteData.Values["action"]?.ToString() == "About"
+                                                   ? "active" : "")"
+                               asp-controller="Home" asp-action="About">
+                                About Us
+                            </a>
                         </li>
 
                         <!-- Only shows up on Admin access -->
                         @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
                         {
                             <li class="nav-item">
-                                <a class="nav-link" asp-controller="Home" asp-action="Analytics">
-                                    Analytics
-                                </a>
+                                <a class="nav-link @(ViewContext.RouteData.Values["controller"]?.ToString() == "Home"
+                                                       && ViewContext.RouteData.Values["action"]?.ToString() == "Analytics"
+                                                       ? "active" : "")"
+                               asp-controller="Home" asp-action="Analytics">
+                                Analytics
+                            </a>
                             </li>
                         }
 
