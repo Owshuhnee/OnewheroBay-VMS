@@ -55,10 +55,10 @@ namespace VMS.WebApp.Data
 
                 entity.ToTable("events");  // Postgres table name
 
-                entity.HasKey(e => e.EventID);
+                entity.HasKey(e => e.EventId);
 
                 // Columns
-                    entity.Property(e => e.EventID).HasColumnName("event_id");
+                    entity.Property(e => e.EventId).HasColumnName("event_id");
                     entity.Property(e => e.EventName).HasColumnName("event_name");
                     entity.Property(e => e.Description).HasColumnName("description");
                     entity.Property(e => e.EventImage).HasColumnName("event_image");
@@ -125,12 +125,14 @@ namespace VMS.WebApp.Data
                 entity.Property(b => b.BookingStatus).HasColumnName("booking_status");
 
                 entity.HasOne(b => b.Event)
-                      .WithMany()                 // or .WithMany(e => e.Bookings) if you add that collection
-                      .HasForeignKey(b => b.EventId);
+                       .WithMany(e => e.Bookings)
+                       .HasForeignKey(b => b.EventId);
 
                 entity.HasOne(b => b.User)
                       .WithMany()                 // or .WithMany(u => u.Bookings)
                       .HasForeignKey(b => b.UserId);
+
+                entity.Ignore("VisitorID");
             });
 
 
